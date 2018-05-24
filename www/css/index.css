@@ -1,0 +1,11 @@
+#headerDiscoveryNow {
+    font-family: 'Chewy', cursive;
+    font-size: 45px;
+    line-height: 24px;
+    z-index: 33;
+    position: relative;
+    color: #FFF;
+  }
+  #contetInicial {
+    background-image: url('/img/capa.gif')
+  }
