@@ -1,3 +1,226 @@
-<div class="page">
-    
+<div class="page padding blue-500 has-header has-sub-header">
+    <div class="header ">
+        <div class="left">
+            <button class="icon ion-navicon" onclick="openMenu('myMenu')"></button>
+        </div>
+        <div class="right">
+            <button class="icon ion-person"></button>
+        </div>
+        <h1>Bora Beber</h1>
+    </div>
+    <div class="menu white" id="myMenu">
+        <div class="list no-border">
+            <div class="item blue">
+                <div class="left">
+                    <img class="avatar circle" src="/img/user1.jpg">
+                </div>
+                <h1>Jeanette Fletcher</h1>
+                <p>jeanette@example.com</p>
+            </div>
+            <a class="item">
+                <div class="left">
+                    <i class="icon ion-ios-list-outline"></i>
+                </div>
+                <h1>My projects</h1>
+            </a>
+            <a class="item">
+                <div class="left">
+                    <i class="icon ion-ios-chatbubble-outline"></i>
+                </div>
+                <h1>Messages</h1>
+                <div class="right">
+                    <span class="text-small red radius padding">6</span>
+                </div>
+            </a>
+            <a class="item">
+                <div class="left">
+                    <i class="icon ion-ios-search"></i>
+                </div>
+                <h1>Search projects</h1>
+            </a>
+            <a onclick="closeMenu('myMenu')" class="item">
+                <div class="left">
+                    <i class="icon ion-ios-close-outline"></i>
+                </div>
+                <h1>Close menu</h1>
+            </a>
+        </div>
+    </div>
+    <div class="header blue-700 sub shadow tab">
+        <!-- <button class="icon ion-cash active" onclick="openTab('tabPromo')">Promoções</button>
+        <button class="icon ion-location" onclick="openTab('tabLocal')">Localização</button>
+        <button class="icon ion-chatbubbles" onclick="openTab('tabConvi')">Convites</button> -->
+        <!--  -->
+        <button class="text-white active" onclick="openTab('tabPromo')">Promoções</button>
+        <button class="text-white" onclick="openTab('tabLocal')">Localização</button>
+        <button class="text-white" onclick="openTab('tabConvi')">Convites</button>
+        <!--  -->
+        <!-- <button class="icon ion-cash active" onclick="openTab('tabPromo')"></button>
+        <button class="icon ion-location" onclick="openTab('tabLocal')"></button>
+        <button class="icon ion-chatbubbles" onclick="openTab('tabConvi')"></button> -->
+    </div>
+    <div class="content white">
+        <div class="tab-content active white" id="tabPromo">
+            <div class="list">
+                <h2 class="text-strong padding text-black align-center">Bares em Promoção</h2>
+                <div class="item">
+                    <div class="row">
+                        <div class="col">
+                            <img src="img/Bar1.jpg">
+                        </div>
+                        <div class="col-75 padding align-center">
+                            <h2 id="baresTitle" class="align-center text-strong text-blue-700">Bar dos Amigos</h2>
+                            <div class="space"></div>
+                            <div class="row">
+                                <div class="col">
+                                    <i class="icon ion-android-calendar"></i>
+                                </div>
+                                <div class="col">
+                                    <h4 class="text-red text-small">Ter-Dom</h4>
+                                </div>
+                                <div class="col">
+                                    <i class="icon ion-android-time"></i>
+                                </div>
+                                <div class="col">
+                                    <h4 class="text-red text-small">18:00 - 04:00</h4>
+                                </div>
+                            </div>
+                            <div class="space"></div>
+                            <h3 class="text-small">Av. Tiradentes nº 3003</h3>
+                            <div class="space"></div>
+                            <div class="row align-center">
+                                <div class="col-50">
+                                    <a href="#">XXXXX</a>
+                                </div>
+                                <div class="col-50">
+                                    <button class="radius shadow blue small">Detalhes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="row">
+                        <div class="col">
+                            <img src="img/Bar2.jpg">
+                        </div>
+                        <div class="col-75 padding align-center">
+                            <h2 id="baresTitle" class="align-center text-strong text-blue-700">BlueBeer</h2>
+                            <div class="space"></div>
+                            <div class="row">
+                                <div class="col">
+                                    <i class="icon ion-android-calendar"></i>
+                                </div>
+                                <div class="col">
+                                    <h4 class="text-green text-small">Seg-Sáb</h4>
+                                </div>
+                                <div class="col">
+                                    <i class="icon ion-android-time"></i>
+                                </div>
+                                <div class="col">
+                                    <h4 class="text-green text-small">16:00 - 01:00</h4>
+                                </div>
+                            </div>
+                            <div class="space"></div>
+                            <h3 class="text-small">Av. Prudente de Moraes nº 8080</h3>
+                            <div class="space"></div>
+                            <div class="row align-center">
+                                <div class="col-50">
+                                    <a href="#">XXXXX</a>
+                                </div>
+                                <div class="col-50">
+                                    <button class="radius shadow blue small">Detalhes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="row">
+                        <div class="col">
+                            <img src="img/Bar3.jpeg">
+                        </div>
+                        <div class="col-75 padding align-center">
+                            <h2 id="baresTitle" class="align-center text-strong text-blue-700">FUt&Bar</h2>
+                            <div class="space"></div>
+                            <div class="row">
+                                <div class="col">
+                                    <i class="icon ion-android-calendar"></i>
+                                </div>
+                                <div class="col">
+                                    <h4 class="text-red text-small">Ter-Dom</h4>
+                                </div>
+                                <div class="col">
+                                    <i class="icon ion-android-time"></i>
+                                </div>
+                                <div class="col">
+                                    <h4 class="text-red text-small">15:30 - 23:30</h4>
+                                </div>
+                            </div>
+                            <div class="space"></div>
+                            <h3 class="text-small">Av. Pedro Taches nº 195</h3>
+                            <div class="space"></div>
+                            <div class="row align-center">
+                                <div class="col-50">
+                                    <a href="#">XXXXX</a>
+                                </div>
+                                <div class="col-50">
+                                    <button class="radius shadow blue small">Detalhes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="row">
+                        <div class="col">
+                            <img src="img/Bar4.jpg">
+                        </div>
+                        <div class="col-75 padding align-center">
+                            <h2 id="baresTitle" class="align-center text-strong text-blue-700">GoodDrink's Pub</h2>
+                            <div class="space"></div>
+                            <div class="row">
+                                <div class="col">
+                                    <i class="icon ion-android-calendar"></i>
+                                </div>
+                                <div class="col">
+                                    <h4 class="text-green text-small">Seg-Sáb</h4>
+                                </div>
+                                <div class="col">
+                                    <i class="icon ion-android-time"></i>
+                                </div>
+                                <div class="col">
+                                    <h4 class="text-green text-small">17:00 - 01:00</h4>
+                                </div>
+                            </div>
+                            <div class="space"></div>
+                            <h3 class="text-small">Av. Brasil nº 1080</h3>
+                            <div class="space"></div>
+                            <div class="row align-center">
+                                <div class="col-50">
+                                    <a href="#">XXXXX</a>
+                                </div>
+                                <div class="col-50">
+                                    <button class="radius shadow blue small">Detalhes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>        
+        </div>
+        <div class="tab-content" id="tabLocal">
+            <h2 class="text-strong padding text-black align-center">Enviar Localização</h2>
+        </div>
+        <div class="tab-content" id="tabConvi">
+            <h2 class="text-strong padding text-black align-center">Convites</h2>
+        </div>
+    </div>
+
+
+
+
+
+
+
 </div>
