@@ -1,5 +1,3 @@
-
-
 function goDetail() {
     openPage('bardetail', function (){
         new Swiper('.swipper-gallery', {
