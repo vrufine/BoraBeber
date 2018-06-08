@@ -10,10 +10,3 @@
 #contetInicial {
   background-image: url('/img/capa.gif')
 }
-
-.content img {
-  max-width: 120px;
-  min-height: 170px;
-  width: auto;
-  height: auto;
-}
