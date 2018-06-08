@@ -1,10 +1,22 @@
 #headerDiscoveryNow {
-  font-family: 'Chewy', cursive;
-  font-size: 45px;
+  font-family: 'Rye', cursive;
+  font-size: 55px;
   line-height: 24px;
   z-index: 33;
   position: relative;
   color: #FFF;
+  text-shadow: 4px 4px rgba(0,0,0,0.9);
+  letter-spacing: -3px;
+}
+
+#headerDiscoveryNow span {
+  font-family: Android;
+  text-shadow:1px 1px rgba(0,0,0,0.9);
+  font-size:18px;
+  font-weight:300;
+  display:block;
+  letter-spacing:0;
+  margin-top:15px;
 }
 
 #contetInicial {
