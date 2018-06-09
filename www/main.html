@@ -51,7 +51,7 @@
         <button class="icon ion-location" onclick="openTab('tabLocal')">Localização</button>
         <button class="icon ion-chatbubbles" onclick="openTab('tabConvi')">Convites</button> -->
         <!--  -->
-        <button class="text-white active" onclick="openTab('tabPromo')">Promoções</button>
+        <button class="text-white active" onclick="openTab('tabPromo')">Bares</button>
         <button class="text-white" onclick="openTab('tabLocal')">Localização</button>
         <button class="text-white" onclick="openTab('tabConvi')">Convites</button>
         <!--  -->
@@ -66,15 +66,13 @@
                 <div class="item">
                     <div class="row">
                         <div class="col">
-                            <img src="img/Bar1.jpg">
+                            <img id="barImage" src="img/Bar1.jpg">
                         </div>
                         <div class="col-75 padding align-center">
                             <h3 class="align-center text-strong text-blue-700">Bar dos Amigos</h3>
-                                <!-- <div class="space"></div> -->
                                 <p class="text-blue">
-                                    (3.4) <i class="icon ion-android-star"></i> 
-                                </p>                                
-                            <!-- <div class="space-big"></div> -->
+                                    (9.4) <i class="icon ion-android-star"></i> 
+                                </p>
                             <div class="row">
                                 <div class="col">
                                     <i class="icon ion-android-calendar"></i>
@@ -92,25 +90,20 @@
                             <div class="space"></div>
                             <h3 class="text-small">Av. Tiradentes nº 3003</h3>
                             <div class="space"></div>
-                            <div class="row align-center">
-                                <div class="col-50">
-                                    
-                                </div>
-                                <div class="col-50">
-                                    <button class="radius shadow blue small" onclick="goDetail()">Detalhes</button>
-                                </div>
-                            </div>
+                            <button class="radius shadow blue small" onclick="goDetail()">Ver Detalhes</button>
                         </div>
                     </div>
                 </div>
                 <div class="item">
                     <div class="row">
                         <div class="col">
-                            <img src="img/Bar2.jpg">
+                            <img id="barImage" src="img/Bar2.jpg">
                         </div>
                         <div class="col-75 padding align-center">
-                            <h3 class="align-center text-strong text-blue-700">BlueBeer</h2>
-                            <div class="space-big"></div>
+                            <h3 class="align-center text-strong text-blue-700">BlueBeer</h3>
+                                <p class="text-blue">
+                                    (9.1) <i class="icon ion-android-star"></i> 
+                                </p>
                             <div class="row">
                                 <div class="col">
                                     <i class="icon ion-android-calendar"></i>
@@ -122,31 +115,26 @@
                                     <i class="icon ion-android-time"></i>
                                 </div>
                                 <div class="col">
-                                    <h4 class="text-green text-small">16:00 - 01:00</h4>
+                                    <h4 class="text-red text-small">16:00 - 01:00</h4>
                                 </div>
                             </div>
                             <div class="space"></div>
                             <h3 class="text-small">Av. Prudente de Moraes nº 8080</h3>
                             <div class="space"></div>
-                            <div class="row align-center">
-                                <div class="col-50">
-                                    <a href="#">XXXXX</a>
-                                </div>
-                                <div class="col-50">
-                                    <button class="radius shadow blue small" onclick="goDetail()">Detalhes</button>
-                                </div>
-                            </div>
+                            <button class="radius shadow blue small" onclick="goDetail()">Ver Detalhes</button>
                         </div>
                     </div>
                 </div>
                 <div class="item">
                     <div class="row">
                         <div class="col">
-                            <img src="img/Bar3.jpeg">
+                            <img id="barImage" src="img/Bar3.jpeg">
                         </div>
                         <div class="col-75 padding align-center">
-                            <h3 class="align-center text-strong text-blue-700">FUt&Bar</h2>
-                            <div class="space"></div>
+                            <h3 class="align-center text-strong text-blue-700">FUt&Bar</h3>
+                                <p class="text-blue">
+                                    (8.7) <i class="icon ion-android-star"></i> 
+                                </p>
                             <div class="row">
                                 <div class="col">
                                     <i class="icon ion-android-calendar"></i>
@@ -164,25 +152,20 @@
                             <div class="space"></div>
                             <h3 class="text-small">Av. Pedro Taches nº 195</h3>
                             <div class="space"></div>
-                            <div class="row align-center">
-                                <div class="col-50">
-                                    <a href="#">XXXXX</a>
-                                </div>
-                                <div class="col-50">
-                                    <button class="radius shadow blue small" onclick="goDetail()">Detalhes</button>
-                                </div>
-                            </div>
+                            <button class="radius shadow blue small" onclick="goDetail()">Ver Detalhes</button>
                         </div>
                     </div>
                 </div>
                 <div class="item">
                     <div class="row">
                         <div class="col">
-                            <img src="img/Bar4.jpg">
+                            <img id="barImage" src="img/Bar4.jpg">
                         </div>
                         <div class="col-75 padding align-center">
-                            <h3 class="align-center text-strong text-blue-700">GoodDrink's Pub</h2>
-                            <div class="space"></div>
+                            <h3 class="align-center text-strong text-blue-700">GoodDrink's Pub</h3>
+                                <p class="text-blue">
+                                    (7.4) <i class="icon ion-android-star"></i> 
+                                </p>
                             <div class="row">
                                 <div class="col">
                                     <i class="icon ion-android-calendar"></i>
@@ -200,14 +183,7 @@
                             <div class="space"></div>
                             <h3 class="text-small">Av. Brasil nº 1080</h3>
                             <div class="space"></div>
-                            <div class="row align-center">
-                                <div class="col-50">
-                                    <a href="#">XXXXX</a>
-                                </div>
-                                <div class="col-50">
-                                    <button class="radius shadow blue small" onclick="goDetail()">Detalhes</button>
-                                </div>
-                            </div>
+                            <button class="radius shadow blue small" onclick="goDetail()">Ver Detalhes</button>
                         </div>
                     </div>
                 </div>

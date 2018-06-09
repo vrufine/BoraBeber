@@ -22,3 +22,15 @@
 #contetInicial {
   background-image: url('/img/capa.gif')
 }
+
+.content #barImage {
+  max-width: 120px;
+  max-height: 190px;
+  width: 120px;
+  height: 190px;
+}
+
+.list .item p {
+  margin-top:10px;
+  margin-bottom: 10px;
+}
