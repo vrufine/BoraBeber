@@ -1,6 +1,9 @@
 @ECHO OFF
+
 SET MENSAGEM=%1
 
-GIT add .
-GIT Commit -m "%MENSAGEM%"
-GIT PUSH
+ECHO %MENSAGEM%
+
+git add .
+git commit -m "%MENSAGEM%"
+git push
