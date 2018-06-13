@@ -1,0 +1,6 @@
+@ECHO OFF
+SET MENSAGEM=%1
+
+GIT add .
+GIT Commit -m "%MENSAGEM%"
+GIT PUSH
