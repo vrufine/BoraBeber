@@ -10,11 +10,11 @@ function showMyCustomizedAlert(content, message){
     alert({
     title:message,
     message:content,
-    class:'blue',
+    class:'white',
     buttons:[
         {
             label: 'OK',
-            class:'text-white',
+            class:'text-blue-500',
             onclick: function(){
                 //You code when user click in OK button.
                 closeAlert();
@@ -22,7 +22,7 @@ function showMyCustomizedAlert(content, message){
         },
         {
             label:'Cancel',
-            class:'text-white',
+            class:'text-blue-500',
             onclick: function(){
                 closeAlert();
             }
