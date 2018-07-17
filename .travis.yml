@@ -40,14 +40,15 @@ install:
 
     - nvm install $nodejs_version
     - npm install
-    - npm install -g codecov
+    - npm install -g cordova
+    - npm install -g mobileui
 
 script:
     - gradle --version
     - node --version
     - npm --version
-    - npm test
-    - npm run cover
+    - cordova platform add android
+    - cordova build android
 
 after_script:
     - codecov
