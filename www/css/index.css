@@ -34,12 +34,3 @@
   margin-top:10px;
   margin-bottom: 10px;
 }
-
-#contentCadUser {
-  /* https://www.youtube.com/watch?v=kVz7ELEQMuc */
-  background-image: url('../img/backgrounds/CreateUser4.gif');
-  background-repeat: no-repeat;
-  background-position: center;
-  width: 100%;
-  height: 100%;
-}
