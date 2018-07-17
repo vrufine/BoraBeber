@@ -48,3 +48,21 @@ function convidar(nameUser, nameBar, nameBeer, valueDecimal, valueCentavos){
     // box += '</div>';
     showMyCustomizedAlert(box, 'Convidar')
 }
+
+function animatedShake(weekDay){
+    var weekDay = 'weekDay' + weekDay
+    var collorSeted = document.getElementById(weekDay).className
+    switch (collorSeted) {
+        case 'text-strong':
+            document.getElementById(weekDay).className = 'text-strong text-green'
+            break;
+        case 'text-strong text-green':
+            document.getElementById(weekDay).className = 'text-strong text-red'
+            break;
+        case 'text-strong text-red':
+            document.getElementById(weekDay).className = 'text-strong'
+            break;
+        default:
+            break;
+    }
+}

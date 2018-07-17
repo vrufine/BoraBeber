@@ -7,99 +7,113 @@
     </div>
     <div id="contentCadUser" class="content has-header">
         <div class="list no-border padding">
-            <div class="item radius grey-200">
-                <input type="text" placeholder="Qual o nome do estabelecimento ?">
+            <div class="item label-float radius grey-200">
+                <label>Qual o nome do estabelecimento ?</label>
+                <input type="text" id="estabName">
             </div>
             <div class="space"></div>
-            <div class="item radius grey-200">
-                <input type="number" placeholder="Qual o CNPJ do estabelecimento ?">
+            <div class="item label-float radius grey-200">
+                <label>Qual o CNPJ do estabelecimento ?</label>
+                <input type="number">
             </div>
             <div class="space"></div>
-            <div class="item radius grey-200">
-                <input type="text" placeholder="Qual Endereço do estabelecimento ?">
+            <div class="item label-float radius grey-200">
+                <label>Qual a Razão Social do estabelecimento ?</label>
+                <input type="number">
             </div>
             <div class="space"></div>
-            <div class="item radius grey-200">
-                <input type="text" placeholder="Qual Telefone do estabelecimento ?">
+            <div class="item label-float radius grey-200">
+                <label>Qual Endereço do estabelecimento ?</label>
+                <input type="text">
             </div>
             <div class="space"></div>
-            <div class="item radius grey-200">
+            <div class="item label-float radius grey-200">
+                <label>Qual número do estabelecimento ?</label>
+                <input type="number">
+            </div>
+            <div class="space"></div>
+            <div class="item label-float radius border-bottom grey-200">
+                <label>Qual Telefone do estabelecimento ?</label>
+                <input type="text">
+            </div> 
+            <div class="space"></div>
+            <div class="item label-float radius grey-200">
+                <p class="text-small">Selecione os dias que o estabelecimento abre.</p>
                 <div class="text-center">
-                    <p>Em quais dias o estabelecimento abre ?</p>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <div class="item">
-                            <p>Domingo</p>
-                            <div class="center">
-                                <input type="checkbox" name="user" class="teal">
+                    <div class="row">
+                        <div class="col">
+                            <div class="item" onclick="animatedShake('Dom')">
+                                <p id="weekDayDom" class="text-strong">D</p>
                             </div>
                         </div>
-                    </div>
-                    <div class="col">
-                        <div class="item text-center">
-                            <p>Segunda</p>
-                            <div class="center">
-                                <input type="checkbox" name="user" class="teal">
+                        <div class="col">
+                            <div class="item" onclick="animatedShake('Seg')">
+                                <p id="weekDaySeg" class="text-strong">S</p>
                             </div>
                         </div>
-                    </div>
-                    <div class="col">
-                        <div class="item">
-                            <p>Terça</p>
-                            <div class="center">
-                                <input type="checkbox" name="user" class="teal">
+                        <div class="col">
+                            <div class="item" onclick="animatedShake('Ter')">
+                                <p id="weekDayTer" class="text-strong">T</p>
                             </div>
                         </div>
-                    </div>
-                    <div class="col">
-                        <div class="item">
-                            <p>Quarta</p>
-                            <div class="center">
-                                <input type="checkbox" name="user" class="teal">
+                        <div class="col">
+                            <div class="item" onclick="animatedShake('Qua')">
+                                <p id="weekDayQua" class="text-strong">Q</p>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <div class="item">
-                            <p>Quinta</p>
-                            <div class="center">
-                                <input type="checkbox" name="user" class="teal">
+                        <div class="col">
+                            <div class="item" onclick="animatedShake('Qui')">
+                                <p id="weekDayQui" class="text-strong">Q</p>
                             </div>
                         </div>
-                    </div>
-                    <div class="col">
-                        <div class="item">
-                            <p>Sexta</p>
-                            <div class="right">
-                                <input type="checkbox" name="user" class="teal">
+                        <div class="col">
+                            <div class="item" onclick="animatedShake('Sex')">
+                                <p id="weekDaySex" class="text-strong">S</p>
                             </div>
                         </div>
-                    </div>
-                    <div class="col">
-                        <div class="item">
-                            <p>Sábado</p>
-                            <div class="right">
-                                <input type="checkbox" name="user" class="teal">
+                        <div class="col">
+                            <div class="item" onclick="animatedShake('Sab')">
+                                <p id="weekDaySab" class="text-strong">S</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="space"></div>
-            <div class="item radius grey-200">
-                <input type="text" placeholder="Qual  do estabelecimento ?">
-            </div>
+            <div class="item label-float radius border-bottom grey-200">
+                <label>Qual do estabelecimento ?</label>
+                <input type="text">
+            </div> 
             <div class="space"></div>
-            <div class="item radius grey-200">
-                <input type="text" placeholder="Qual  do estabelecimento ?">
-            </div>
+            <div class="item label-float radius border-bottom grey-200">
+                <label>Qual do estabelecimento ?</label>
+                <input type="text">
+            </div> 
             <div class="space"></div>
-            <div class="item radius grey-200">
-                <input type="text" placeholder="Qual  do estabelecimento ?">
-            </div>
+            <div class="item label-float radius border-bottom grey-200">
+                <label>Qual do estabelecimento ?</label>
+                <input type="text">
+            </div> 
+            <div class="space"></div>
+            <div class="item label-float radius border-bottom grey-200">
+                <label>Qual do estabelecimento ?</label>
+                <input type="text">
+            </div> 
+            <div class="space"></div>
+            <div class="item label-float radius border-bottom grey-200">
+                <label>Qual do estabelecimento ?</label>
+                <input type="text">
+            </div> 
+            <div class="space"></div>
+            <div class="item label-float radius border-bottom grey-200">
+                <label>Qual do estabelecimento ?</label>
+                <input type="text">
+            </div> 
+            <div class="space"></div>
+            <div class="item label-float radius border-bottom grey-200">
+                <label>Qual do estabelecimento ?</label>
+                <input type="text">
+            </div> 
         </div>
     </div>
 </div>
