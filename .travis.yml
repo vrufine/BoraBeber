@@ -1,28 +1,53 @@
 language: android
-install: ant deps
+sudo: false
+jdk:
+    - oraclejdk8
 
-language: android
 android:
-  components:
-    # Uncomment the lines below if you want to
-    # use the latest revision of Android SDK Tools
-    - tools
-    - platform-tools
-    - tools
+    components:
+        - build-tools-26.0.2
+        - tools
+        - platform-tools
+        - tools
+          # The SDK version used to compile your project
+        - android-26
 
-    # The BuildTools version used by your project
-    - build-tools-26.0.2
+        # Additional components
+        - extra-google-google_play_services
+        - extra-google-m2repository
+        - extra-android-m2repository
+        - addon-google_apis-google-26
 
-    # The SDK version used to compile your project
-    - android-26
+        # Specify at least one system image,
+        # if you need to run emulator(s) during your tests
+        - sys-img-armeabi-v7a-android-26
+        - sys-img-armeabi-v7a-android-
+env:
+    global:
+        # Keep gradle from crapping all over the log
+        - TERM=dumb
+    matrix:
+        - nodejs_version=6
+        - nodejs_version=8
+        - nodejs_version=10
 
-    # Additional components
-    - extra-google-google_play_services
-    - extra-google-m2repository
-    - extra-android-m2repository
-    - addon-google_apis-google-26
+install:
+    # Install a sdkmanager version that supports the --licenses switch and
+    # accept any Android SDK licenses. The output redirection prevents us from
+    # hitting the travis log size limit of 4MB which would fail the build.
+    - yes | sdkmanager tools > /dev/null
+    - yes | sdkmanager --licenses > /dev/null
 
-    # Specify at least one system image,
-    # if you need to run emulator(s) during your tests
-    - sys-img-armeabi-v7a-android-26
-    - sys-img-armeabi-v7a-android-17
+    - nvm install $nodejs_version
+    - npm install
+    - npm install -g codecov
+
+script:
+    - gradle --version
+    - node --version
+    - npm --version
+    - npm test
+    - npm run cover
+
+after_script:
+    - codecov
