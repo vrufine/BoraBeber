@@ -52,9 +52,20 @@ function convidar(nameUser, nameBar, nameBeer, valueDecimal, valueCentavos){
 function animatedShake(weekDay){
     var weekDay = 'weekDay' + weekDay
     var collorSeted = document.getElementById(weekDay).className
+    var box = '<div class="row">'
+    box += '    <div class="col align-left">'
+    box += '        <label>Aberto das:</label>'
+    box += '        <input id="barTimeOpened" type="time" required="required" maxlength="8" name="hour" pattern="[0-9]{2}:[0-9]{2} [0-9]{2}$"/>'
+    box += '    </div>'
+    box += '    <div class="col align-right">'
+    box += '        <label>Até as:</label>'
+    box += '        <input id="barTimeClosed" type="time" required="required" maxlength="8" name="hour" pattern="[0-9]{2}:[0-9]{2} [0-9]{2}$"/>'
+    box += '    </div>'
+    box += '</div>'
     switch (collorSeted) {
         case 'text-strong':
             document.getElementById(weekDay).className = 'text-strong text-green'
+            showMyCustomizedAlert(box, '')
             break;
         case 'text-strong text-green':
             document.getElementById(weekDay).className = 'text-strong text-red'
