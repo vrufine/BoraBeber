@@ -33,9 +33,9 @@ function showMyCustomizedAlert(content, message){
 
 function avaliar(name){
     var box = 'Quem é '+ name +' no rolê? <br/><br/>';
-    box += '<button class="text-small margin-bottom full green radius padding"  onclick="closeAlert()">Chapa no Rolê</button>';
-    box += '<button class="text-small margin-bottom full purple radius padding onclick="closeAlert()"">Vai as vezes</button>';
-    box += '<button class="text-small margin-bottom full red full radius padding onclick="closeAlert()"">Nem Chama</button>';
+    box += '<button class="text-small margin-bottom full green radius padding" onclick="closeAlert()">Chapa no Rolê</button>';
+    box += '<button class="text-small margin-bottom full purple radius padding" onclick="closeAlert()">Vai as vezes</button>';
+    box += '<button class="text-small margin-bottom full red full radius padding" onclick="closeAlert()">Nem Chama</button>';
     showMyCustomizedAlert(box, 'Avaliar')
 }
 
