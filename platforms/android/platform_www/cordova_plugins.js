@@ -21,6 +21,15 @@ module.exports = [
     "clobbers": [
       "cordova.plugins.screenorientation"
     ]
+  },
+  {
+    "id": "cordova-plugin-datetimepicker.plugin",
+    "file": "plugins/cordova-plugin-datetimepicker/www/plugin.js",
+    "pluginId": "cordova-plugin-datetimepicker",
+    "clobbers": [
+      "DateTimePicker"
+    ],
+    "runs": true
   }
 ];
 module.exports.metadata = 
@@ -29,7 +38,8 @@ module.exports.metadata =
   "cordova-plugin-whitelist": "1.3.3",
   "cordova-plugin-statusbar": "2.4.2",
   "es6-promise-plugin": "4.2.2",
-  "cordova-plugin-screen-orientation": "3.0.1"
+  "cordova-plugin-screen-orientation": "3.0.1",
+  "cordova-plugin-datetimepicker": "1.0.0"
 };
 // BOTTOM OF METADATA
 });
