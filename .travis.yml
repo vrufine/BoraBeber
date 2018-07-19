@@ -48,20 +48,13 @@ script:
     - cordova platform add android
     - cordova build android
 
-# before_deploy:
-#     - git config --local user.name "YOUR GIT USER NAME"
-#     - git config --local user.email "YOUR GIT USER EMAIL"
-#     - git tag "$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)"
-
 deploy:
   provider: releases
-  api_key: BoraBeberKey
-    secure: YOUR_API_KEY_ENCRYPTED
+  api_key: e3e2c5a3e853c59d50ed9388e25bf9cd92fe0f77
   file: "/home/travis/build/Alexandre-Muzulao/BoraBeber/platforms/android/app/build/outputs/apk/debug/app-debug.apk"
   skip_cleanup: true
   on:
     tags: true
-
 
 after_script:
     - codecov
