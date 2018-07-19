@@ -24,19 +24,14 @@ android:
         - sys-img-armeabi-v7a-android-
 env:
     global:
-        # Keep gradle from crapping all over the log
         - TERM=dumb
     matrix:
         - nodejs_version=8
 
 install:
-    # Install a sdkmanager version that supports the --licenses switch and
-    # accept any Android SDK licenses. The output redirection prevents us from
-    # hitting the travis log size limit of 4MB which would fail the build.
     - yes | sdkmanager tools > /dev/null
     - yes | sdkmanager --licenses > /dev/null
-
-    - nvm install $nodejs_version
+        
     - npm install
     - npm install -g cordova
     - npm install -g mobileui
@@ -51,9 +46,11 @@ script:
 deploy:
   provider: releases
   api_key: 
+    secure: t7i658vNKEf2RTaXZjqRCtoVzKH9dA5s8+czpKHP6HZ6ZBrVLldfyhrbHw3H3JDE/frnZ5DXZsFbfrywvJ0tbOYRrgBEz2MyCpSU5ihuRSktO7Rk9PbYacNbfQvcUbNJvZiXTZg7sREvBMWL1tS/Gygv98KLzMUfYjjzOTxHvFcdqFBejcgaArxRV62VNQySdcLiQugkCF/TsB1OXWFHrAAYkazIvRz9FWV4A/v0zf8JSWNxzd+NnoOtxX8RemcSRXvNerCFwHjyx/CS+A/5UZIDG/kqfsNYXP9h2vVkAB7MRacCPWMhljsuyT/yYNB9ah2i9s62ao9UxZVFzPg7/sT31Pjwg/xNBpBhRkj1TJMl1d7EOgfDhE46WoZuWiGbAk/TOH5zf+0jwLiGp4aFsYmqA/XrtqdbHnIR9wE4JAly0jCaoVGRGgYigR+LnCLimaf7pO8ri3iSWLswXshWMeaz/YbxuSp8g28LxMRbAvCJL/AgqLsGm6YKGn8GU5X5MK8bPKMzfcmjMIbhSMV0L/P8uzVr2UbxWr8+NpSQtywWS1TXav71JUu+wk/cE00U6w637/wjrj8hHY5uSs29iMZtL4D6hZROOquSs9TU6IjZT3/Br7V5xO74lYpuUIXeN2j7P2bF3O3bOXn1hC3RgT7IlvaJf02MNk6ulG5YBTA=
   file: "/home/travis/build/Alexandre-Muzulao/BoraBeber/platforms/android/app/build/outputs/apk/debug/app-debug.apk"
   skip_cleanup: true
   on:
+    repo: Alexandre-Muzulao/BoraBeber
     tags: true
 
 after_script:
