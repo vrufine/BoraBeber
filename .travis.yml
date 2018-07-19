@@ -31,7 +31,9 @@ env:
 install:
     - yes | sdkmanager tools > /dev/null
     - yes | sdkmanager --licenses > /dev/null
-        
+
+    - nvm install $nodejs_version    
+    
     - npm install
     - npm install -g cordova
     - npm install -g mobileui

@@ -37,7 +37,6 @@ function showMyCustomizedAlert(content, message){
             label: 'OK',
             class:'text-blue-500',
             onclick: function(){
-                //You code when user click in OK button.
                 closeAlert();
             }
         },
