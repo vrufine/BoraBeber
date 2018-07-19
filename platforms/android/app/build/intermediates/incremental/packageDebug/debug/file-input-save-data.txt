@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Tue Jul 17 23:12:20 BRT 2018
+#Thu Jul 19 00:40:33 BRT 2018
 5.base=C\:\\worksapce\\BoraBeber\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_
 42.base=C\:\\worksapce\\BoraBeber\\platforms\\android\\app\\build\\intermediates\\assets\\debug
 32.set=ASSET
@@ -9,8 +9,9 @@
 21.set=ASSET
 39.set=ANDROID_RESOURCE
 46.base=C\:\\worksapce\\BoraBeber\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_
+72.set=ASSET
 56.base=C\:\\worksapce\\BoraBeber\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_
-71.file=C\:\\worksapce\\BoraBeber\\platforms\\android\\app\\build\\intermediates\\assets\\debug\\www\\img\\BUDWEISER-LATA.png
+71.file=C\:\\worksapce\\BoraBeber\\platforms\\android\\app\\build\\intermediates\\assets\\debug\\www\\plugins\\cordova-plugin-datetimepicker\\www\\plugin.js
 10.set=ASSET
 28.set=ASSET
 22.base=C\:\\worksapce\\BoraBeber\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_
@@ -66,6 +67,7 @@
 47.base=C\:\\worksapce\\BoraBeber\\platforms\\android\\app\\build\\intermediates\\assets\\debug
 62.file=C\:\\worksapce\\BoraBeber\\platforms\\android\\app\\build\\intermediates\\assets\\debug\\www\\img\\users\\24.jpg
 57.base=C\:\\worksapce\\BoraBeber\\platforms\\android\\app\\build\\intermediates\\assets\\debug
+72.file=C\:\\worksapce\\BoraBeber\\platforms\\android\\app\\build\\intermediates\\assets\\debug\\www\\img\\BUDWEISER-LATA.png
 20.set=ANDROID_RESOURCE
 38.set=ASSET
 23.base=C\:\\worksapce\\BoraBeber\\platforms\\android\\app\\build\\intermediates\\assets\\debug
@@ -76,7 +78,7 @@
 17.base=C\:\\worksapce\\BoraBeber\\platforms\\android\\app\\build\\intermediates\\assets\\debug
 27.set=ASSET
 60.set=ASSET
-count=72
+count=73
 5.file=C\:\\worksapce\\BoraBeber\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\mipmap-xxxhdpi-v4\\icon.png
 27.base=C\:\\worksapce\\BoraBeber\\platforms\\android\\app\\build\\intermediates\\assets\\debug
 42.file=C\:\\worksapce\\BoraBeber\\platforms\\android\\app\\build\\intermediates\\assets\\debug\\www\\css\\index.css
@@ -208,6 +210,7 @@ count=72
 24.file=C\:\\worksapce\\BoraBeber\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\xml\\config.xml
 62.base=C\:\\worksapce\\BoraBeber\\platforms\\android\\app\\build\\intermediates\\assets\\debug
 34.file=C\:\\worksapce\\BoraBeber\\platforms\\android\\app\\build\\intermediates\\assets\\debug\\www\\main.html
+72.base=C\:\\worksapce\\BoraBeber\\platforms\\android\\app\\build\\intermediates\\assets\\debug
 18.file=C\:\\worksapce\\BoraBeber\\platforms\\android\\app\\build\\intermediates\\assets\\debug\\www\\img\\users\\15.jpg
 1.base=C\:\\worksapce\\BoraBeber\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_
 54.set=ASSET

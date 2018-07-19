@@ -1,3 +1,24 @@
+var url = 'https://g34czjej1b.execute-api.us-east-1.amazonaws.com/production'
+
+function login(){
+    var usuario = {}
+    usuario.email = document.getElementById('email').value
+    usuario.senha = document.getElementById('senha').value
+    
+    MobileUI.ajax.post(url + '/login').send(usuario).then(function (res){
+        if(res.body.errorMessage) {
+            alert(res.body.errorMessage)
+        } else {
+            console.log(res.body)
+            openPage('main')
+        }
+    }).catch(function(err) {
+        console.log(err)
+        alert('erro api')
+     })
+
+}
+
 function goDetail() {
     openPage('bardetail', function (){
         new Swiper('.swipper-gallery', {
@@ -33,9 +54,9 @@ function showMyCustomizedAlert(content, message){
 
 function avaliar(name){
     var box = 'Quem é '+ name +' no rolê? <br/><br/>';
-    box += '<button class="text-small margin-bottom full green radius padding"  onclick="closeAlert()">Chapa no Rolê</button>';
-    box += '<button class="text-small margin-bottom full purple radius padding onclick="closeAlert()"">Vai as vezes</button>';
-    box += '<button class="text-small margin-bottom full red full radius padding onclick="closeAlert()"">Nem Chama</button>';
+    box += '<button class="text-small margin-bottom full green radius padding" onclick="closeAlert()">Chapa no Rolê</button>';
+    box += '<button class="text-small margin-bottom full purple radius padding" onclick="closeAlert()">Vai as vezes</button>';
+    box += '<button class="text-small margin-bottom full red full radius padding" onclick="closeAlert()">Nem Chama</button>';
     showMyCustomizedAlert(box, 'Avaliar')
 }
 
