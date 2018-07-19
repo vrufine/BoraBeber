@@ -14,10 +14,33 @@ function login(){
         }
     }).catch(function(err) {
         console.log(err)
-        alert('erro api')
+        alert('Api Error!')
      })
-
 }
+
+function cadBar(){
+    var dadosBar = {}
+    dadosBar.nomeEstabelecimento = document.getElementById('nomeEstabelecimento').value
+    dadosBar.cnpjEstabelecimento = document.getElementById('cnpjEstabelecimento').value
+    dadosBar.xNomeEstabelecimento = document.getElementById('xNomeEstabelecimento').value
+    dadosBar.enderecoEstabelecimento = document.getElementById('enderecoEstabelecimento').value
+    dadosBar.nroEstabelecimento = document.getElementById('nroEstabelecimento').value
+    dadosBar.tellEstabelecimento = document.getElementById('tellEstabelecimento').value
+
+    MobileUI.ajas.post(url + '/register').send(dadosBar).then(function (res){
+        if(res.body.errorMessage) {
+            alert(res.body.errorMessage)
+        } else {
+            console.log(res.body)
+            alert('Cadastro realizado com sucesso!')
+            openPage('main')
+        }
+    }).catch(function (err){
+        console.log(err)
+        alert('Api Error!')
+    })
+}
+
 
 function goDetail() {
     openPage('bardetail', function (){

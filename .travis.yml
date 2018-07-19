@@ -33,7 +33,7 @@ install:
     - yes | sdkmanager --licenses > /dev/null
 
     - nvm install $nodejs_version    
-    
+
     - npm install
     - npm install -g cordova
     - npm install -g mobileui
@@ -48,7 +48,7 @@ script:
 deploy:
   provider: releases
   api_key: 
-    secure: t7i658vNKEf2RTaXZjqRCtoVzKH9dA5s8+czpKHP6HZ6ZBrVLldfyhrbHw3H3JDE/frnZ5DXZsFbfrywvJ0tbOYRrgBEz2MyCpSU5ihuRSktO7Rk9PbYacNbfQvcUbNJvZiXTZg7sREvBMWL1tS/Gygv98KLzMUfYjjzOTxHvFcdqFBejcgaArxRV62VNQySdcLiQugkCF/TsB1OXWFHrAAYkazIvRz9FWV4A/v0zf8JSWNxzd+NnoOtxX8RemcSRXvNerCFwHjyx/CS+A/5UZIDG/kqfsNYXP9h2vVkAB7MRacCPWMhljsuyT/yYNB9ah2i9s62ao9UxZVFzPg7/sT31Pjwg/xNBpBhRkj1TJMl1d7EOgfDhE46WoZuWiGbAk/TOH5zf+0jwLiGp4aFsYmqA/XrtqdbHnIR9wE4JAly0jCaoVGRGgYigR+LnCLimaf7pO8ri3iSWLswXshWMeaz/YbxuSp8g28LxMRbAvCJL/AgqLsGm6YKGn8GU5X5MK8bPKMzfcmjMIbhSMV0L/P8uzVr2UbxWr8+NpSQtywWS1TXav71JUu+wk/cE00U6w637/wjrj8hHY5uSs29iMZtL4D6hZROOquSs9TU6IjZT3/Br7V5xO74lYpuUIXeN2j7P2bF3O3bOXn1hC3RgT7IlvaJf02MNk6ulG5YBTA=
+    secure: oX1q8nru+RIEOQ839VhgWYOQy7M2PDltntew953xX0D5y25cPq8x6eIPgxyqd9h9iTva0tOl/5OWVgkjzdp82LAKqU8qb87agtU28lOi5wsB5oHwUmis47SQyAGY8m1vhZjyTsmU/5uwqkb13V8WkAQxVPDdT7hzUISNkqD3SCtYPvdCpYyEvi/d/PxXA4cXRfLIg9KmO51Lwvm84O1erXmY1OXoFfcfej8wnA9Kd5KS/77T/N5s2dNDB8wk5qFCSut//fz8ixibaKQfZoqNiBtI366rPBzVqLblHxwWgTtSd2xCljqlBRDMqiNe5rgpJ+tGOicYyKQ3c+KrniiO2jJjTLa7NugrCMAv8rFO3Ftg3zQjq5XqW1v199eiZVj3q7+8saRk4Di/Yp5X81laTAWxndYEIhzd0a5T5YD0nqqTu1Vq8c3Jpg8cp/lGB93u7kcwS9lEEIh3xXzEdP+Yzp3u8IPVOeDsdKpYAMm2yjy6u55DOurW92QJXrUH8xeU+bZXs1Dp5nIx4ZXwZyAUlIA5KdQ2Tf2c8xmTzmKGmmWRfEB3WV+SJ6C62f3fAESr5ShYrScG8+gLaAAg4DcGT3uKex7BnYacswWjnoQG+dFlN7dvklZN7W4s+UEfUUWe8ZmvxWMy4ajJw5T6Pn17gU9kyVppvHqMUx3mWofZeY8=
   file: "/home/travis/build/Alexandre-Muzulao/BoraBeber/platforms/android/app/build/outputs/apk/debug/app-debug.apk"
   skip_cleanup: true
   on:
