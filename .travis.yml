@@ -50,7 +50,7 @@ script:
 
 deploy:
   provider: releases
-  api_key: e3e2c5a3e853c59d50ed9388e25bf9cd92fe0f77
+  api_key: 
   file: "/home/travis/build/Alexandre-Muzulao/BoraBeber/platforms/android/app/build/outputs/apk/debug/app-debug.apk"
   skip_cleanup: true
   on:
