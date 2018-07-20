@@ -1,27 +1,54 @@
-var url = 'https://g34czjej1b.execute-api.us-east-1.amazonaws.com/production'
-// var url = 'http://localhost:3000'
+// var url = 'https://g34czjej1b.execute-api.us-east-1.amazonaws.com/production'
+var url = 'http://localhost:3000'
 var moment = req('moment');
 
 function login(){
-    var usuario = {}
-    usuario.email = document.getElementById('email').value
-    usuario.senha = document.getElementById('senha').value
-    
+    var usuario = {}    
+    usuario.email = document.getElementById('userEmailName').value
+    usuario.senha = document.getElementById('userPassword').value
+    loading('Por favor aguarde o Login!')
     MobileUI.ajax.post(url + '/login').send(usuario).then(function (res){
         if(res.body.errorMessage) {
+            closeLoading()
             alert(res.body.errorMessage)
         } else {
-            console.log(res.body)
+            closeLoading()
             openPage('main')
         }
     }).catch(function(err) {
-        console.log(err)
-        alert('Api Error!')
+        closeLoading()
+        alert('Falha ao realizar o Login! Tente novamente.')
      })
 }
 
+function cadUser(){
+    var dadosUser = {}
+    dadosUser.typeAccount = 'user'
+    dadosUser.nomeUser = document.getElementById('nomeUser').value
+    dadosUser.emailUser = document.getElementById('emailUser').value
+    dadosUser.passwordUser = document.getElementById('passwordUser').value
+    dadosUser.passwordConfirmUser = document.getElementById('passwordConfirmUser').value
+
+    loading('Por favor aguarde, estou salvando suas precisas informações!')
+    MobileUI.ajax.post(url + '/register').send(dadosUser).then(function (res){
+        if(res.body.errorMessage) {
+            closeLoading()
+            alert(res.body.errorMessage)
+        } else {
+            closeLoading()
+            alert('Cadastro realizado com sucesso!')
+            openPage('main')
+        }
+    }).catch(function (err){
+        closeLoading()
+        alert('Api Error!')
+    })
+}
+
+
 function cadBar(){
     var dadosBar = {}
+    dadosBar.typeAccount = 'company'
     dadosBar.nomeCompany = document.getElementById('nomeCompany').value
     dadosBar.cnpjCompany = document.getElementById('cnpjCompany').value
     dadosBar.xNomeCompany = document.getElementById('xNomeCompany').value
@@ -68,18 +95,24 @@ function cadBar(){
         ]
     }
 
+    loading('Por favor aguarde, salvando os dados da sua empresa!')
     MobileUI.ajax.post(url + '/register').send(dadosBar).then(function (res){
         if(res.body.errorMessage) {
+            closeLoading()
             alert(res.body.errorMessage)
         } else {
+            closeLoading()
             alert('Cadastro realizado com sucesso!')
             openPage('main')
         }
     }).catch(function (err){
+        closeLoading()
         alert('Api Error!')
     })
 }
-
+function exitFromApp(){
+    navigator.app.exitApp();
+}
 
 function goDetail() {
     openPage('bardetail', function (){
