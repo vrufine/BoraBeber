@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Thu Jul 19 00:40:33 BRT 2018
+#Thu Jul 19 23:41:21 BRT 2018
 5.base=C\:\\worksapce\\BoraBeber\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_
 42.base=C\:\\worksapce\\BoraBeber\\platforms\\android\\app\\build\\intermediates\\assets\\debug
 32.set=ASSET

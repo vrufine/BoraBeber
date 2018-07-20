@@ -1,5 +1,6 @@
 var url = 'https://g34czjej1b.execute-api.us-east-1.amazonaws.com/production'
 // var url = 'http://localhost:3000'
+var moment = req('moment');
 
 function login(){
     var usuario = {}
@@ -27,17 +28,54 @@ function cadBar(){
     dadosBar.enderecoCompany = document.getElementById('enderecoCompany').value
     dadosBar.nroCompany = document.getElementById('nroCompany').value
     dadosBar.tellCompany = document.getElementById('tellCompany').value
+    dadosBar.callendar = {
+        "weekDays": [
+            {
+              "day": "Dom",
+              "open": document.getElementById('weekDayDomOpen').innerHTML,
+              "close": document.getElementById('weekDayDomClose').innerHTML
+            },
+            {
+              "day": "Seg",
+              "open": document.getElementById('weekDaySegOpen').innerHTML,
+              "close": document.getElementById('weekDaySegClose').innerHTML
+            },
+            {
+              "day": "Ter",
+              "open": document.getElementById('weekDayTerOpen').innerHTML,
+              "close": document.getElementById('weekDayTerClose').innerHTML
+            },
+            {
+              "day": "Qua",
+              "open": document.getElementById('weekDayQuaOpen').innerHTML,
+              "close": document.getElementById('weekDayQuaClose').innerHTML
+            },
+            {
+              "day": "Qui",
+              "open": document.getElementById('weekDayQuiOpen').innerHTML,
+              "close": document.getElementById('weekDayQuiClose').innerHTML
+            },
+            {
+              "day": "Sex",
+              "open": document.getElementById('weekDaySexOpen').innerHTML,
+              "close": document.getElementById('weekDaySexClose').innerHTML
+            },
+            {
+              "day": "Sab",
+              "open": document.getElementById('weekDaySabOpen').innerHTML,
+              "close": document.getElementById('weekDaySabClose').innerHTML
+            }
+        ]
+    }
 
     MobileUI.ajax.post(url + '/register').send(dadosBar).then(function (res){
         if(res.body.errorMessage) {
             alert(res.body.errorMessage)
         } else {
-            console.log(res.body)
             alert('Cadastro realizado com sucesso!')
             openPage('main')
         }
     }).catch(function (err){
-        console.log(err)
         alert('Api Error!')
     })
 }
@@ -84,42 +122,57 @@ function avaliar(name){
 }
 
 function convidar(nameUser, nameBar, nameBeer, valueDecimal, valueCentavos){
-    // var box = '<div class="blue align-center padding">';
     var box = 'Enviar convite para ' + nameUser + ' ?'
     box += '<p> Oii ' + nameUser + ' vamos lá no ' + nameBar + ' tomar uma ' + nameBeer + ' ????</p>';
     box += '<p>Tá só R$ ' + valueDecimal + ',' + valueCentavos + ' !!!</p>';
     box += '<p> Tá ai a Localização... BoraBeber!!!</p>';
-    // box += '</div>';
     showMyCustomizedAlert(box, 'Convidar')
 }
 
-function animatedShake(weekDay){
-    var weekDay = 'weekDay' + weekDay
-    var collorSeted = document.getElementById(weekDay).className
-    var element = document.getElementById('teste')
-    // var box = '<div class="row">'
-    // box += '    <div class="col align-left">'
-    // box += '        <label>Aberto das:</label>'
-    var box = '        <input id="barTimeOpened" type="time" required="required" maxlength="8" name="hour" pattern="[0-9]{2}:[0-9]{2} [0-9]{2}$" placeholder="Aberto das:"/>'
-    // box += '    </div>'
-    // box += '    <div class="col align-right">'
-    // box += '        <label>Até as:</label>'
-    box += '        <input id="barTimeClosed" type="time" required="required" maxlength="8" name="hour" pattern="[0-9]{2}:[0-9]{2} [0-9]{2}$" placeholder="Até as:"/>'
-    // box += '    </div>'
-    // box += '</div>'
-
+function weekCollor(weekDay){
+    var collorSeted = document.getElementById('weekDay' + weekDay).className
     switch (collorSeted) {
-        case 'text-strong':
-            document.getElementById(weekDay).className = 'text-strong text-green'
-            element.innerHTML = box
+        case 'grey-200':
+            document.getElementById('weekDay' + weekDay).className = 'text-green'
             break;
-        case 'text-strong text-green':
-            document.getElementById(weekDay).className = 'text-strong text-red'
+        case 'text-green':
+            document.getElementById('weekDay' + weekDay).className = 'text-red'
+            document.getElementById('weekDay' + weekDay + 'Open').innerHTML = '00:00'
+            document.getElementById('weekDay' + weekDay + 'Close').innerHTML = '00:00'
             break;
-        case 'text-strong text-red':
-            document.getElementById(weekDay).className = 'text-strong'
+        case 'text-red':
+            document.getElementById('weekDay' + weekDay).className = 'text-green'
             break;
         default:
             break;
     }
+}
+
+function weekDayTime(weekDay, status){
+    var weekDay = weekDay
+    var status = status
+    var options = {
+        type: 'time',
+        date: new Date(),
+        minDate: new Date(),
+        maxDate: new Date()
+    }
+
+    window.DateTimePicker.pick(options, function (date) {
+        var ts = new Date(date)
+        document.getElementById('weekDay' + weekDay + status).innerHTML = moment(ts).format('HH:mm')
+        if (document.getElementById('weekDay' + weekDay + status).innerHTML !== '00:00'){
+            document.getElementById('weekDay' + weekDay).className = 'text-green'
+        } else {
+            document.getElementById('weekDay' + weekDay).className = 'text-red'
+        }
+    })    
+    
+    //### Código mantido para testar no navegador!
+    // document.getElementById('weekDay' + weekDay + status).innerHTML = '10:30'
+    // if (document.getElementById('weekDay' + weekDay + status).innerHTML !== '00:00'){
+    //     document.getElementById('weekDay' + weekDay).className = 'text-green'
+    // } else {
+    //     document.getElementById('weekDay' + weekDay).className = 'text-red'
+    // }
 }

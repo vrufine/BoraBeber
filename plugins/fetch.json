@@ -34,7 +34,7 @@
   "cordova-plugin-datetimepicker": {
     "source": {
       "type": "registry",
-      "id": "cordova-plugin-datetimepicker"
+      "id": "cordova-plugin-datetimepicker@^1.1.2"
     },
     "is_top_level": true,
     "variables": {}
