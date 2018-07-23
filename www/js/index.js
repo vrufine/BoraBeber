@@ -56,70 +56,75 @@ function cadUser(){
     })
 }
 
-function cadCompany(){
+function cadBar(){
     var dadosBar = {}
     dadosBar.typeAccount = 'company'
-    // dadosBar.nomeCompany = document.getElementById('nomeCompany').value
-    dadosBar.xNomeCompany = document.getElementById('xNomeCompany').value
-    dadosBar.cnpjCompany = document.getElementById('cnpjCompany').value
+    dadosBar.nomeCompany = document.getElementById('nomeCompany').value
     dadosBar.enderecoCompany = document.getElementById('enderecoCompany').value
     dadosBar.nroCompany = document.getElementById('nroCompany').value
     dadosBar.bairroCompany = document.getElementById('bairroCompany').value
     dadosBar.tellCompany = document.getElementById('tellCompany').value
-    // dadosBar.callendar = {
-    //     "weekDays": [
-    //         {
-    //           "day": "Dom",
-    //           "open": document.getElementById('weekDayDomOpen').innerHTML,
-    //           "close": document.getElementById('weekDayDomClose').innerHTML
-    //         },
-    //         {
-    //           "day": "Seg",
-    //           "open": document.getElementById('weekDaySegOpen').innerHTML,
-    //           "close": document.getElementById('weekDaySegClose').innerHTML
-    //         },
-    //         {
-    //           "day": "Ter",
-    //           "open": document.getElementById('weekDayTerOpen').innerHTML,
-    //           "close": document.getElementById('weekDayTerClose').innerHTML
-    //         },
-    //         {
-    //           "day": "Qua",
-    //           "open": document.getElementById('weekDayQuaOpen').innerHTML,
-    //           "close": document.getElementById('weekDayQuaClose').innerHTML
-    //         },
-    //         {
-    //           "day": "Qui",
-    //           "open": document.getElementById('weekDayQuiOpen').innerHTML,
-    //           "close": document.getElementById('weekDayQuiClose').innerHTML
-    //         },
-    //         {
-    //           "day": "Sex",
-    //           "open": document.getElementById('weekDaySexOpen').innerHTML,
-    //           "close": document.getElementById('weekDaySexClose').innerHTML
-    //         },
-    //         {
-    //           "day": "Sab",
-    //           "open": document.getElementById('weekDaySabOpen').innerHTML,
-    //           "close": document.getElementById('weekDaySabClose').innerHTML
-    //         }
-    //     ]
-    // }
-    openPage('createBar')
-
-    // loading('Por favor aguarde, salvando os dados da sua empresa!')
-    // MobileUI.ajax.post(url + '/register').send(dadosBar).then(function (res){
-    //     if(res.body.errorMessage) {
-    //         closeLoading()
-    //         alert(res.body.errorMessage)
-    //     } else {
-    //         closeLoading()
-    //         openPage('createBar')
-    //     }
-    // }).catch(function (err){
-    //     closeLoading()
-    //     alert('Ops, tive um probleminha para salvar seu cadastro! Tente novamente por gentileza.')
-    // })
+    dadosBar.xNomeCompany = ""
+    dadosBar.cnpjCompany = ""
+    dadosBar.callendar = {
+        "weekDays": [
+            {
+                "day": "Dom",
+                "open": document.getElementById('weekDayDomOpen').innerHTML,
+                "close": document.getElementById('weekDayDomClose').innerHTML
+            },
+            {
+                "day": "Seg",
+                "open": document.getElementById('weekDaySegOpen').innerHTML,
+                "close": document.getElementById('weekDaySegClose').innerHTML
+            },
+            {
+                "day": "Ter",
+                "open": document.getElementById('weekDayTerOpen').innerHTML,
+                "close": document.getElementById('weekDayTerClose').innerHTML
+            },
+            {
+                "day": "Qua",
+                "open": document.getElementById('weekDayQuaOpen').innerHTML,
+                "close": document.getElementById('weekDayQuaClose').innerHTML
+            },
+            {
+                "day": "Qui",
+                "open": document.getElementById('weekDayQuiOpen').innerHTML,
+                "close": document.getElementById('weekDayQuiClose').innerHTML
+            },
+            {
+                "day": "Sex",
+                "open": document.getElementById('weekDaySexOpen').innerHTML,
+                "close": document.getElementById('weekDaySexClose').innerHTML
+            },
+            {
+                "day": "Sab",
+                "open": document.getElementById('weekDaySabOpen').innerHTML,
+                "close": document.getElementById('weekDaySabClose').innerHTML
+            }
+        ]
+    }    
+    dadosBar.passwordCompany = document.getElementById('passwordCompany').value
+    dadosBar.passwordConfirmCompany = document.getElementById('passwordConfirmCompany').value
+    
+    loading('Por favor aguarde, salvando os dados da sua empresa!')
+    MobileUI.ajax.post(url + '/register').send(dadosBar).then(function (res){
+        if(res.body.errorMessage) {
+            closeLoading()
+            alert(res.body.errorMessage)
+        } else {
+            closeLoading()
+            openPage('barAdmin')
+            // openPage('barAdmin', function(){
+            //     // devolver o "$oid": "5b514de862b0d437ec61e049"
+            // })
+        }
+    }).catch(function (err){
+        closeLoading()
+        console.log(err)
+        alert('Ops, tive um probleminha para salvar seu cadastro! Tente novamente por gentileza.')
+    })
 }
 
 function exitFromApp(){
