@@ -1,24 +1,35 @@
-var url = 'https://g34czjej1b.execute-api.us-east-1.amazonaws.com/production'
-// var url = 'http://localhost:3000'
-var moment = req('moment');
+// var url = 'https://g34czjej1b.execute-api.us-east-1.amazonaws.com/production'
+var url = 'http://localhost:3000'
+// var moment = req('moment');
 
-function login(){
-    var usuario = {}    
+function login(){    
+    var usuario = {}
     usuario.email = document.getElementById('userEmailName').value
     usuario.senha = document.getElementById('userPassword').value
-    loading('Por favor aguarde o Login!')
-    MobileUI.ajax.post(url + '/login').send(usuario).then(function (res){
-        if(res.body.errorMessage) {
+    if (document.getElementById('userEmailName').value == "" || document.getElementById('userPassword').value == ""){
+        alert('Usuário e Senha vazios, verifique e tente novamente por gentileza !')
+    } else {
+        loading('Por favor aguarde o Login!')
+        MobileUI.ajax.post(url + '/login').send(usuario).then(function (res){
+            if(res.body.errorMessage) {
+                closeLoading()
+                alert(res.body.errorMessage)
+            } else {
+                var data = JSON.parse(JSON.stringify(res.body.data))
+                if (data.typeAccount == 'user'){
+                    closeLoading()
+                    openPage('main')
+                } else {
+                    closeLoading()
+                    openPage('barAdmin')
+                }
+            }
+        }).catch(function(err) {
             closeLoading()
-            alert(res.body.errorMessage)
-        } else {
-            closeLoading()
-            openPage('main')
-        }
-    }).catch(function(err) {
-        closeLoading()
-        alert('Falha ao realizar o Login! Tente novamente.')
-     })
+            console.log(err)
+            alert('Falha ao realizar o Login! Tente novamente.')
+        })
+    }
 }
 
 function cadUser(){
@@ -45,71 +56,72 @@ function cadUser(){
     })
 }
 
-
-function cadBar(){
+function cadCompany(){
     var dadosBar = {}
     dadosBar.typeAccount = 'company'
-    dadosBar.nomeCompany = document.getElementById('nomeCompany').value
-    dadosBar.cnpjCompany = document.getElementById('cnpjCompany').value
+    // dadosBar.nomeCompany = document.getElementById('nomeCompany').value
     dadosBar.xNomeCompany = document.getElementById('xNomeCompany').value
+    dadosBar.cnpjCompany = document.getElementById('cnpjCompany').value
     dadosBar.enderecoCompany = document.getElementById('enderecoCompany').value
     dadosBar.nroCompany = document.getElementById('nroCompany').value
+    dadosBar.bairroCompany = document.getElementById('bairroCompany').value
     dadosBar.tellCompany = document.getElementById('tellCompany').value
-    dadosBar.callendar = {
-        "weekDays": [
-            {
-              "day": "Dom",
-              "open": document.getElementById('weekDayDomOpen').innerHTML,
-              "close": document.getElementById('weekDayDomClose').innerHTML
-            },
-            {
-              "day": "Seg",
-              "open": document.getElementById('weekDaySegOpen').innerHTML,
-              "close": document.getElementById('weekDaySegClose').innerHTML
-            },
-            {
-              "day": "Ter",
-              "open": document.getElementById('weekDayTerOpen').innerHTML,
-              "close": document.getElementById('weekDayTerClose').innerHTML
-            },
-            {
-              "day": "Qua",
-              "open": document.getElementById('weekDayQuaOpen').innerHTML,
-              "close": document.getElementById('weekDayQuaClose').innerHTML
-            },
-            {
-              "day": "Qui",
-              "open": document.getElementById('weekDayQuiOpen').innerHTML,
-              "close": document.getElementById('weekDayQuiClose').innerHTML
-            },
-            {
-              "day": "Sex",
-              "open": document.getElementById('weekDaySexOpen').innerHTML,
-              "close": document.getElementById('weekDaySexClose').innerHTML
-            },
-            {
-              "day": "Sab",
-              "open": document.getElementById('weekDaySabOpen').innerHTML,
-              "close": document.getElementById('weekDaySabClose').innerHTML
-            }
-        ]
-    }
+    // dadosBar.callendar = {
+    //     "weekDays": [
+    //         {
+    //           "day": "Dom",
+    //           "open": document.getElementById('weekDayDomOpen').innerHTML,
+    //           "close": document.getElementById('weekDayDomClose').innerHTML
+    //         },
+    //         {
+    //           "day": "Seg",
+    //           "open": document.getElementById('weekDaySegOpen').innerHTML,
+    //           "close": document.getElementById('weekDaySegClose').innerHTML
+    //         },
+    //         {
+    //           "day": "Ter",
+    //           "open": document.getElementById('weekDayTerOpen').innerHTML,
+    //           "close": document.getElementById('weekDayTerClose').innerHTML
+    //         },
+    //         {
+    //           "day": "Qua",
+    //           "open": document.getElementById('weekDayQuaOpen').innerHTML,
+    //           "close": document.getElementById('weekDayQuaClose').innerHTML
+    //         },
+    //         {
+    //           "day": "Qui",
+    //           "open": document.getElementById('weekDayQuiOpen').innerHTML,
+    //           "close": document.getElementById('weekDayQuiClose').innerHTML
+    //         },
+    //         {
+    //           "day": "Sex",
+    //           "open": document.getElementById('weekDaySexOpen').innerHTML,
+    //           "close": document.getElementById('weekDaySexClose').innerHTML
+    //         },
+    //         {
+    //           "day": "Sab",
+    //           "open": document.getElementById('weekDaySabOpen').innerHTML,
+    //           "close": document.getElementById('weekDaySabClose').innerHTML
+    //         }
+    //     ]
+    // }
+    openPage('createBar')
 
-    loading('Por favor aguarde, salvando os dados da sua empresa!')
-    MobileUI.ajax.post(url + '/register').send(dadosBar).then(function (res){
-        if(res.body.errorMessage) {
-            closeLoading()
-            alert(res.body.errorMessage)
-        } else {
-            closeLoading()
-            alert('Cadastro realizado com sucesso!')
-            openPage('main')
-        }
-    }).catch(function (err){
-        closeLoading()
-        alert('Api Error!')
-    })
+    // loading('Por favor aguarde, salvando os dados da sua empresa!')
+    // MobileUI.ajax.post(url + '/register').send(dadosBar).then(function (res){
+    //     if(res.body.errorMessage) {
+    //         closeLoading()
+    //         alert(res.body.errorMessage)
+    //     } else {
+    //         closeLoading()
+    //         openPage('createBar')
+    //     }
+    // }).catch(function (err){
+    //     closeLoading()
+    //     alert('Ops, tive um probleminha para salvar seu cadastro! Tente novamente por gentileza.')
+    // })
 }
+
 function exitFromApp(){
     navigator.app.exitApp();
 }
