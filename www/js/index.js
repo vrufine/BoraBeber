@@ -3,10 +3,15 @@ var url = 'https://g34czjej1b.execute-api.us-east-1.amazonaws.com/production'
 
 var USER = []
 
-function login(){    
+// MobileUI.formByObject('contetInicial', {
+//     userEmailName: '',
+//     userPassword: ''
+// })
+
+function login(){
     var usuario = {}
     usuario.email = document.getElementById('userEmailName').value
-    usuario.senha = document.getElementById('userPassword').value
+    usuario.senha = document.getElementById('userPassword').value    
     if (document.getElementById('userEmailName').value == "" || document.getElementById('userPassword').value == ""){
         alert('Usuário e Senha vazios, verifique e tente novamente por gentileza !')
     } else {
@@ -21,8 +26,12 @@ function login(){
                     closeLoading()
                     openPage('main')
                 } else {
-                    closeLoading()
-                    openPage('barAdmin')
+                    closeLoading()                    
+                    openPage('barAdmin', function (){
+                        new Swiper('.swipper-gallery', {
+                            pagination: '.swiper-pagination'
+                        });
+                    })
                 }
             }
         }).catch(function(err) {
@@ -151,7 +160,43 @@ function goDetail() {
     })
 }
 
+function addBarAmbientImg(tpEntrada){
+    if (tpEntrada == 'cam'){
+        var cameraOptions = {
+            quality: 80,
+            DestinationType: 0,
+            PictureSourceType: 1,
+            allowEdit: true,
+            targetWidth: 720,
+            targetHeight: 400,
+            correctOrientation: true,
+            saveToPhotoAlbum: true            
+        }
+    }
+    else {
+        var cameraOptions = {
+            quality: 80,
+            DestinationType: 0,
+            PictureSourceType: 0,
+            allowEdit: true,
+            targetWidth: 720,
+            targetHeight: 400,
+            correctOrientation: true,
+            saveToPhotoAlbum: true            
+        }
 
+    }
+    navigator.camera.getPicture(cameraSuccess, cameraError, cameraOptions);
+}
+
+function cameraSuccess(imageData){    
+    var image = document.getElementById('foto')
+    image.src = "data:image/jpeg;base64," + imageData
+}
+
+function cameraError(){
+    alert(message)
+}
 
 function showMyCustomizedAlert(content, message){
     alert({
