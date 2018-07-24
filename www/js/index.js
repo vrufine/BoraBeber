@@ -135,11 +135,8 @@ function cadBar(){
             closeLoading()
             alert(res.body.errorMessage)
         } else {
-            closeLoading()
-            // openPage('barAdmin')
-            openPage('barAdmin', function(){
-                console.log(res.body)
-            })
+            closeLoading()            
+            openPage('barAdmin')
         }
     }).catch(function (err){
         closeLoading()
@@ -160,38 +157,49 @@ function goDetail() {
     })
 }
 
-function addBarAmbientImg(tpEntrada){
+function addBarAmbientImg(tpEntrada){    
+    var tpEnt = '' 
     if (tpEntrada == 'cam'){
-        var cameraOptions = {
-            quality: 80,
-            DestinationType: 0,
-            PictureSourceType: 1,
-            allowEdit: true,
-            targetWidth: 720,
-            targetHeight: 400,
-            correctOrientation: true,
-            saveToPhotoAlbum: true            
-        }
+        tpEnt = 1 
+    } else {
+        tpEnt = 0 
     }
-    else {
-        var cameraOptions = {
-            quality: 80,
-            DestinationType: 0,
-            PictureSourceType: 0,
-            allowEdit: true,
-            targetWidth: 720,
-            targetHeight: 400,
-            correctOrientation: true,
-            saveToPhotoAlbum: true            
-        }
+        
+    var cameraOptions = {
+        quality: 80,
+        DestinationType: 0,
+        PictureSourceType: tpEnt,
+        allowEdit: true,
+        targetWidth: 720,
+        targetHeight: 400,
+        correctOrientation: true,
+        saveToPhotoAlbum: true            
+    }    
 
-    }
     navigator.camera.getPicture(cameraSuccess, cameraError, cameraOptions);
 }
 
-function cameraSuccess(imageData){    
+function cameraSuccess(imageData){
+    var ImgBar = {}
     var image = document.getElementById('foto')
     image.src = "data:image/jpeg;base64," + imageData
+    ImgBar.fotoCapa = "data:image/jpeg;base64," + imageData
+
+    loading('Por favor aguarde, estou salvando a imagem do seu estabelecimento!')
+    MobileUI.ajax.post(url + '/cadbar').send(ImgBar).then(function (res){
+        if(res.body.errorMessage) {
+            closeLoading()
+            alert(res.body.errorMessage)
+        } else {
+            closeLoading()
+            // openPage('barAdmin')
+            alert('Imagem salva com sucesso!')
+        }
+    }).catch(function (err){
+        closeLoading()
+        console.log(err)
+        alert('Ops, tive um probleminha para salvar seu cadastro! Tente novamente por gentileza.')
+    })
 }
 
 function cameraError(){
