@@ -1,21 +1,21 @@
 <div class="page">
-    <div class="header grey-900">
+    <div class="header grey-900" data="USER">
         <div class="left">
             <button class="icon ion-navicon" onclick="openMenu('myMenu')"></button>
         </div>
         <div class="right">
             <button class="icon ion-person"></button>
         </div>
-        <h1>${'Nome do bar'}</h1>
+        <h1>${nomeCompany}</h1>
     </div>
     <div class="menu white" id="myMenu">
         <div class="list no-border">
-            <div class="item grey-900">
+            <div class="item grey-900" data="USER">
                 <div class="left">
                     <img class="avatar circle" src="/img/user1.jpg">
                 </div>
-                <h1>Jeanette Fletcher</h1>
-                <p>jeanette@example.com</p>
+                <h1>${nomeCompany}</h1>
+                <p>${emailCompany}</p>
             </div>
             <a class="item">
                 <div class="left">

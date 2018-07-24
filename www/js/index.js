@@ -1,6 +1,7 @@
 var url = 'https://g34czjej1b.execute-api.us-east-1.amazonaws.com/production'
 // var url = 'http://localhost:3000'
-// var moment = req('moment');
+
+var USER = []
 
 function login(){    
     var usuario = {}
@@ -15,8 +16,8 @@ function login(){
                 closeLoading()
                 alert(res.body.errorMessage)
             } else {
-                var data = JSON.parse(JSON.stringify(res.body.data))
-                if (data.typeAccount == 'user'){
+                USER = JSON.parse(JSON.stringify(res.body.data))
+                if (USER.typeAccount == 'user'){
                     closeLoading()
                     openPage('main')
                 } else {
@@ -30,6 +31,16 @@ function login(){
             alert('Falha ao realizar o Login! Tente novamente.')
         })
     }
+}
+
+function createBar() {
+    openPage('createBar', function() {
+        $("#tellCompany").mask("(99) 9 9999-99 99")
+        // MobileUI.formByObject('formCreateBar', {
+        //     enderecoCompany: 'aaaaaa',
+        //     nroCompany: '111'
+        // })
+    })    
 }
 
 function cadUser(){
@@ -116,10 +127,10 @@ function cadBar(){
             alert(res.body.errorMessage)
         } else {
             closeLoading()
-            openPage('barAdmin')
-            // openPage('barAdmin', function(){
-            //     // devolver o "$oid": "5b514de862b0d437ec61e049"
-            // })
+            // openPage('barAdmin')
+            openPage('barAdmin', function(){
+                console.log(res.body)
+            })
         }
     }).catch(function (err){
         closeLoading()
@@ -139,6 +150,8 @@ function goDetail() {
         });
     })
 }
+
+
 
 function showMyCustomizedAlert(content, message){
     alert({
