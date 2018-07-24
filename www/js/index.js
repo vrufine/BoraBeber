@@ -1,5 +1,5 @@
-var url = 'https://g34czjej1b.execute-api.us-east-1.amazonaws.com/production'
-// var url = 'http://localhost:3000'
+// var url = 'https://g34czjej1b.execute-api.us-east-1.amazonaws.com/production'
+var url = 'http://localhost:3000'
 // var moment = req('moment');
 
 function login(){    
@@ -60,6 +60,7 @@ function cadBar(){
     var dadosBar = {}
     dadosBar.typeAccount = 'company'
     dadosBar.nomeCompany = document.getElementById('nomeCompany').value
+    dadosBar.emailCompany = document.getElementById('emailCompany').value
     dadosBar.enderecoCompany = document.getElementById('enderecoCompany').value
     dadosBar.nroCompany = document.getElementById('nroCompany').value
     dadosBar.bairroCompany = document.getElementById('bairroCompany').value
@@ -104,10 +105,10 @@ function cadBar(){
                 "close": document.getElementById('weekDaySabClose').innerHTML
             }
         ]
-    }    
+    }
+
     dadosBar.passwordCompany = document.getElementById('passwordCompany').value
     dadosBar.passwordConfirmCompany = document.getElementById('passwordConfirmCompany').value
-    
     loading('Por favor aguarde, salvando os dados da sua empresa!')
     MobileUI.ajax.post(url + '/register').send(dadosBar).then(function (res){
         if(res.body.errorMessage) {
