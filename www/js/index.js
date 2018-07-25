@@ -1,12 +1,12 @@
-var url = 'https://g34czjej1b.execute-api.us-east-1.amazonaws.com/production'
-// var url = 'http://localhost:3000'
+// var url = 'https://g34czjej1b.execute-api.us-east-1.amazonaws.com/production'
+var url = 'http://localhost:3000'
 
-var USER, COMPANY = []
+var USER = []
 
-// MobileUI.formByObject('contetInicial', {
-//     userEmailName: 'Bar',
-//     userPassword: '123'
-// })
+MobileUI.formByObject('contetInicial', {
+    userEmailName: 'Teste',
+    userPassword: '123'
+})
 
 function login(){
     var usuario = {}
@@ -74,8 +74,8 @@ function cadUser(){
             alert(res.body.errorMessage)
         } else {
             USER = JSON.parse(JSON.stringify(res.body.data.ops))
-            closeLoading()
             openPage('main')
+            closeLoading()
         }
     }).catch(function (err){
         closeLoading()
@@ -142,14 +142,9 @@ function cadBar(){
             closeLoading()
             alert(res.body.errorMessage)
         } else {
-            COMPANY = JSON.parse(JSON.stringify(res.body.data.ops))
-            console.log(COMPANY)
+            USER = JSON.parse(JSON.stringify(res.body.data.ops))
             closeLoading()
-            openPage('barAdmin', function (){
-                new Swiper('.swipper-gallery', {
-                    pagination: '.swiper-pagination'
-                });
-            })
+            openPage('barAdmin')
         }
     }).catch(function (err){
         closeLoading()
@@ -170,7 +165,7 @@ function goDetail() {
 }
 
 function addBarAmbientImg(tpEntrada){    
-    var tpEnt = '' 
+    var tpEnt = ''
     if (tpEntrada == 'cam'){
         tpEnt = 1 
     } else {
@@ -196,9 +191,15 @@ function cameraSuccess(imageData){
     var ImgBar = {}
     var image = document.getElementById('foto')
     image.src = "data:image/jpeg;base64," + imageData
-    ImgBar.imgOrder = '1'
-    ImgBar.fotoCapa = "data:image/jpeg;base64," + imageData
-    ImgBar.barName = COMPANY.nomeCompany
+    ImgBar.swiperPhotos = {
+        "photos": [
+        {
+            barName: USER.nomeCompany,
+            imgOrder: '1',
+            base64Photo: "data:image/jpeg;base64," + imageData
+        }
+    ]
+}
 
     loading('Por favor aguarde, estou salvando a imagem do seu estabelecimento!')
     MobileUI.ajax.post(url + '/cadbar').send(ImgBar).then(function (res){
