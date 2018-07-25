@@ -1,11 +1,11 @@
 var url = 'https://g34czjej1b.execute-api.us-east-1.amazonaws.com/production'
 // var url = 'http://localhost:3000'
 
-var USER = []
+var USER, COMPANY = []
 
 // MobileUI.formByObject('contetInicial', {
-//     userEmailName: '',
-//     userPassword: ''
+//     userEmailName: 'Bar',
+//     userPassword: '123'
 // })
 
 function login(){
@@ -26,7 +26,8 @@ function login(){
                     closeLoading()
                     openPage('main')
                 } else {
-                    closeLoading()                    
+                    COMPANY = JSON.parse(JSON.stringify(res.body.data))
+                    closeLoading()
                     openPage('barAdmin', function (){
                         new Swiper('.swipper-gallery', {
                             pagination: '.swiper-pagination'
@@ -36,18 +37,24 @@ function login(){
             }
         }).catch(function(err) {
             closeLoading()
-            console.log(err)
             alert('Falha ao realizar o Login! Tente novamente.')
         })
     }
 }
 
 function createBar() {
-    openPage('createBar', function() {
+    
+    openPage('createBar', function() {        
         $("#tellCompany").mask("(99) 9 9999-99 99")
         // MobileUI.formByObject('formCreateBar', {
-        //     enderecoCompany: 'aaaaaa',
-        //     nroCompany: '111'
+        //     nomeCompany: 'Bar',
+        //     emailCompany: 'bar@bar.com.br',
+        //     enderecoCompany: 'Rua do Bar',
+        //     nroCompany: '123',
+        //     bairroCompany: 'Jd. do Bar',
+        //     tellCompany: '12312312312',
+        //     passwordCompany: '123',
+        //     passwordConfirmCompany: '123'
         // })
     })    
 }
@@ -66,8 +73,8 @@ function cadUser(){
             closeLoading()
             alert(res.body.errorMessage)
         } else {
+            USER = JSON.parse(JSON.stringify(res.body.data.ops))
             closeLoading()
-            alert('Cadastro realizado com sucesso!')
             openPage('main')
         }
     }).catch(function (err){
@@ -135,12 +142,17 @@ function cadBar(){
             closeLoading()
             alert(res.body.errorMessage)
         } else {
-            closeLoading()            
-            openPage('barAdmin')
+            COMPANY = JSON.parse(JSON.stringify(res.body.data.ops))
+            console.log(COMPANY)
+            closeLoading()
+            openPage('barAdmin', function (){
+                new Swiper('.swipper-gallery', {
+                    pagination: '.swiper-pagination'
+                });
+            })
         }
     }).catch(function (err){
         closeLoading()
-        console.log(err)
         alert('Ops, tive um probleminha para salvar seu cadastro! Tente novamente por gentileza.')
     })
 }
@@ -162,19 +174,20 @@ function addBarAmbientImg(tpEntrada){
     if (tpEntrada == 'cam'){
         tpEnt = 1 
     } else {
-        tpEnt = 0 
+        tpEnt = 2
     }
         
     var cameraOptions = {
-        quality: 80,
+        Quality: 80,
         DestinationType: 0,
         PictureSourceType: tpEnt,
-        allowEdit: true,
-        targetWidth: 720,
-        targetHeight: 400,
-        correctOrientation: true,
-        saveToPhotoAlbum: true            
-    }    
+        AllowEdit: true,
+        TargetWidth: 720,
+        TargetHeight: 400,
+        CorrectOrientation: true,
+        SaveToPhotoAlbum: true,
+        Direction: 0
+    }
 
     navigator.camera.getPicture(cameraSuccess, cameraError, cameraOptions);
 }
@@ -183,7 +196,9 @@ function cameraSuccess(imageData){
     var ImgBar = {}
     var image = document.getElementById('foto')
     image.src = "data:image/jpeg;base64," + imageData
+    ImgBar.imgOrder = '1'
     ImgBar.fotoCapa = "data:image/jpeg;base64," + imageData
+    ImgBar.barName = COMPANY.nomeCompany
 
     loading('Por favor aguarde, estou salvando a imagem do seu estabelecimento!')
     MobileUI.ajax.post(url + '/cadbar').send(ImgBar).then(function (res){
@@ -193,11 +208,13 @@ function cameraSuccess(imageData){
         } else {
             closeLoading()
             // openPage('barAdmin')
+                new Swiper('.swipper-gallery', {
+                    pagination: '.swiper-pagination'
+                })
             alert('Imagem salva com sucesso!')
         }
     }).catch(function (err){
         closeLoading()
-        console.log(err)
         alert('Ops, tive um probleminha para salvar seu cadastro! Tente novamente por gentileza.')
     })
 }
