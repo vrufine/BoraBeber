@@ -4,10 +4,10 @@ var url = 'https://g34czjej1b.execute-api.us-east-1.amazonaws.com/production'
 var USER = []
 var MAXQTDIMG = 1
 
-MobileUI.formByObject('contetInicial', {
-    userEmailName: 'Teste',
-    userPassword: '123'
-})
+// MobileUI.formByObject('contetInicial', {
+//     userEmailName: 'Teste',
+//     userPassword: '123'
+// })
 
 function login(){
     var usuario = {}
