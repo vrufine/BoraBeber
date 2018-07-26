@@ -45,13 +45,6 @@ script:
     - cordova platform add android
     - cordova build android
 
-before_deploy:
-      # Set up git user name and tag this commit
-      - git config --local user.name "Alexandre-Muzulao"
-      - git config --local user.email "alexandre_muzulao@hotmail.com"
-    #   - git tag "$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)"
-    #      - git tag "v1.0.0"
-
 deploy:
   provider: releases
   api_key: 

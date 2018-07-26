@@ -188,10 +188,27 @@ function addBarAmbientImg(tpEntrada){
         Direction: 0
     }
 
-
     // Colocar um Alert recomendando virar a camera do cell...
     // alertGifMessage()
-    navigator.camera.getPicture(cameraSuccess, cameraError, cameraOptions)
+    var box = '<div class="grey-800 align-center">'
+    box += '    <p>Para ter a melhor foto, por gentileza gire seu dispositivo para a esquerda, o colocando na posição horizontal.</p>'
+    box += '    <img src="img/rotate.gif" style="widows: 100px; height: 100px;">'
+    box += '</div>'
+    alert({
+        title: 'Imagens para capa!',
+        message: box,
+        class: 'grey-800 radius',
+        buttons:[
+            {
+                label: 'Ok',
+                class: 'text-grey-50',
+                onclick: function(){
+                    closeAlert()
+                    navigator.camera.getPicture(cameraSuccess, cameraError, cameraOptions)
+                }
+            }
+        ]
+    })
 }
 
 function cameraSuccess(imageData){
@@ -219,6 +236,7 @@ function cameraSuccess(imageData){
                 pagination: '.swiper-pagination'
             })
             // Aqui é a mágica
+            closeLoading()
             alert('Imagem salva com sucesso!')
             if (MAXQTDIMG <= 6){
                 // alertGifMessage()
@@ -237,26 +255,26 @@ function cameraError(){
     alert(message)
 }
 
-function alertGifMessage(){
-    var box = '<div class="grey-800 align-center">'
-        box += '    <p>Para ter a melhor foto, por gentileza gire seu dispositivo para a esquerda, o colocando na posição horizontal.</p>'
-        box += '    <img src="img/rotate.gif" style="widows: 100px; height: 100px;">'
-        box += '</div>'
-    alert({
-        title: 'Imagens para capa!',
-        message: box,
-        class: 'grey-800 radius',
-        buttons:[
-            {
-                label: 'Sim',
-                class: 'text-grey-50',
-                onclick: function(){
-                    closeAlert()
-                }
-            }
-        ]
-    })
-}
+// function alertGifMessage(){
+//     var box = '<div class="grey-800 align-center">'
+//         box += '    <p>Para ter a melhor foto, por gentileza gire seu dispositivo para a esquerda, o colocando na posição horizontal.</p>'
+//         box += '    <img src="img/rotate.gif" style="widows: 100px; height: 100px;">'
+//         box += '</div>'
+//     alert({
+//         title: 'Imagens para capa!',
+//         message: box,
+//         class: 'grey-800 radius',
+//         buttons:[
+//             {
+//                 label: 'Sim',
+//                 class: 'text-grey-50',
+//                 onclick: function(){
+//                     closeAlert()
+//                 }
+//             }
+//         ]
+//     })
+// }
 
 function showMyCustomizedAlert(content, message){
     alert({
