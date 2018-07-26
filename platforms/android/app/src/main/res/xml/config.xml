@@ -15,6 +15,9 @@
         <param name="android-package" value="com.alexanderploner.datetimepicker.DateTimePicker" />
         <param name="onload" value="true" />
     </feature>
+    <feature name="Camera">
+        <param name="android-package" value="org.apache.cordova.camera.CameraLauncher" />
+    </feature>
     <name>BoraBeber</name>
     <description>
         O aplicativo para tomar uma com os amigos.
@@ -34,7 +37,4 @@
     <preference name="loglevel" value="DEBUG" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="Fullscreen" value="true" />
-    <feature name="Camera">
-        <param name="android-package" value="org.apache.cordova.camera.CameraLauncher" />
-    </feature>
 </widget>

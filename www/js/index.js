@@ -1,7 +1,8 @@
-// var url = 'https://g34czjej1b.execute-api.us-east-1.amazonaws.com/production'
-var url = 'http://localhost:3000'
+var url = 'https://g34czjej1b.execute-api.us-east-1.amazonaws.com/production'
+// var url = 'http://localhost:3000'
 
 var USER = []
+var MAXQTDIMG = 1
 
 MobileUI.formByObject('contetInicial', {
     userEmailName: 'Teste',
@@ -36,8 +37,10 @@ function login(){
                 }
             }
         }).catch(function(err) {
+            console.log(err)
             closeLoading()
-            alert('Falha ao realizar o Login! Tente novamente.')
+            // alert('Falha ao realizar o Login! Tente novamente.')
+            alert(err)
         })
     }
 }
@@ -165,6 +168,7 @@ function goDetail() {
 }
 
 function addBarAmbientImg(tpEntrada){    
+    alert('caraaaai')
     var tpEnt = ''
     if (tpEntrada == 'cam'){
         tpEnt = 1 
@@ -184,7 +188,10 @@ function addBarAmbientImg(tpEntrada){
         Direction: 0
     }
 
-    navigator.camera.getPicture(cameraSuccess, cameraError, cameraOptions);
+
+    // Colocar um Alert recomendando virar a camera do cell...
+    // alertGifMessage()
+    navigator.camera.getPicture(cameraSuccess, cameraError, cameraOptions)
 }
 
 function cameraSuccess(imageData){
@@ -192,14 +199,14 @@ function cameraSuccess(imageData){
     var image = document.getElementById('foto')
     image.src = "data:image/jpeg;base64," + imageData
     ImgBar.swiperPhotos = {
-        "photos": [
-        {
-            barName: USER.nomeCompany,
-            imgOrder: '1',
-            base64Photo: "data:image/jpeg;base64," + imageData
-        }
-    ]
-}
+            "photos": [
+            {
+                barName: USER.nomeCompany,
+                imgOrder: MAXQTDIMG,
+                base64Photo: "data:image/jpeg;base64," + imageData
+            }
+        ]
+    }
 
     loading('Por favor aguarde, estou salvando a imagem do seu estabelecimento!')
     MobileUI.ajax.post(url + '/cadbar').send(ImgBar).then(function (res){
@@ -208,13 +215,19 @@ function cameraSuccess(imageData){
             alert(res.body.errorMessage)
         } else {
             closeLoading()
-            // openPage('barAdmin')
-                new Swiper('.swipper-gallery', {
-                    pagination: '.swiper-pagination'
-                })
+            new Swiper('.swipper-gallery', {
+                pagination: '.swiper-pagination'
+            })
+            // Aqui é a mágica
             alert('Imagem salva com sucesso!')
+            if (MAXQTDIMG <= 6){
+                // alertGifMessage()
+            } else {
+                alert('Você já cadastrou a quantidade máxima de fotos permitida!')
+            }
         }
     }).catch(function (err){
+        console.log(err)
         closeLoading()
         alert('Ops, tive um probleminha para salvar seu cadastro! Tente novamente por gentileza.')
     })
@@ -222,6 +235,27 @@ function cameraSuccess(imageData){
 
 function cameraError(){
     alert(message)
+}
+
+function alertGifMessage(){
+    var box = '<div class="grey-800 align-center">'
+        box += '    <p>Para ter a melhor foto, por gentileza gire seu dispositivo para a esquerda, o colocando na posição horizontal.</p>'
+        box += '    <img src="img/rotate.gif" style="widows: 100px; height: 100px;">'
+        box += '</div>'
+    alert({
+        title: 'Imagens para capa!',
+        message: box,
+        class: 'grey-800 radius',
+        buttons:[
+            {
+                label: 'Sim',
+                class: 'text-grey-50',
+                onclick: function(){
+                    closeAlert()
+                }
+            }
+        ]
+    })
 }
 
 function showMyCustomizedAlert(content, message){

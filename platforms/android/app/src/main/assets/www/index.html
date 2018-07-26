@@ -8,7 +8,6 @@
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
         <link rel="stylesheet" type="text/css" href="css/index.css">
-        <!-- <link href="../node_modules/animate.css/animate.css" rel="stylesheet"> -->
         <title>BoraBeber</title>
     </head>
     <body>
@@ -19,7 +18,7 @@
                 <span>Unindo a galera da beer!</span>
             </h1>
         </div>
-        <div id="contetInicial" class="cover orange content align-center padding" >
+        <div class="cover orange content align-center padding" id="contetInicial">
             <div class="space-huge"></div>
             <div class="space-huge"></div>
             <div class="space"></div>
@@ -29,11 +28,11 @@
                     <div class="list no-border align-left">
                         <div class="item label-float border-grey border-bottom">
                             <label class="icon ion-android-contact">Usuário</label>
-                            <input class="text-white" type="text" id="email">
+                            <input class="text-white" type="text" id="userEmailName">
                         </div>
                         <div class="item label-float border-grey border-bottom">
                             <label class="icon ion-locked">Senha</label>
-                            <input class="text-white" type="password" id="senha">
+                            <input class="text-white" type="password" id="userPassword">
                         </div>
                     </div>
                     <div class="space"></div>
@@ -50,19 +49,27 @@
                     </div>
                     <div class="space"></div>
                     <div class="text-center">
-                        <button class="icon ion-social-facebook text-blue white-opacity-90 text-small shadow radius full"> Entrar com o Facebook</button>
+                        <button class="icon ion-social-facebook text-blue white-opacity-90 text-small shadow radius full"> Entrar com o Facebook ou Google</button>
                     </div>
-                    <div class="space"></div>
+                    <div class="row">
+                        <div class="col">
+                            <button class="small text-grey-100 text-strong" onclick="openPage('createUser')">Não possui uma conta?</button>
+                        </div>
+                        <div class="col">
+                            <button class="small text-light-blue-500 text-strong text-small" onclick="openPage('createUser')">cadastre-se!</button>
+                        </div>
+                    </div>
                     <div class="space"></div>
                     <div>
-                        <button class="text-light-blue-200 text-strong" onclick="openPage('createBoss')">É Empreendedor? Cadastre-se!!</button>
+                        <button class="text-light-blue-200 text-strong" onclick="createBar()">É Empreendedor? Cadastre-se!!</button>
                     </div>
                 </div>
-                <div class="col"></div>
             </div>
         </div>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="mobileui/mobileui.js"></script>
+        <script type="text/javascript" src="js/jquery/dist/jquery.min.js"></script>
+        <script type="text/javascript" src="js/jquery-mask-plugin/dist/jquery.mask.min.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
     </body>
 </html>
