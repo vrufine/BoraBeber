@@ -202,7 +202,7 @@ function cameraSuccess(imageData){
     }    
     
     if (MAXQTDIMG <= 6){
-        loading('Por favor aguarde, estou salvando a imagem do seu estabelecimento!')
+        loading('Por favor aguarde, estou salvando a imagem do seu estabelecimento.')
         MobileUI.ajax.post(url + '/cadbar').send(ImgBar).then(function (res){
             if(res.body.errorMessage) {
                 closeLoading()
@@ -213,7 +213,7 @@ function cameraSuccess(imageData){
                 new Swiper('.swipper-gallery', {
                     pagination: '.swiper-pagination'
                 })
-                alert('Imagem salva com sucesso!')
+                alert('Imagem salva com sucesso.')
             }
         }).catch(function (err){
             console.log(err)
