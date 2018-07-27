@@ -2,6 +2,7 @@ var url = 'https://g34czjej1b.execute-api.us-east-1.amazonaws.com/production'
 // var url = 'http://localhost:3000'
 
 var USER = []
+var IMGCAPAS = []
 var MAXQTDIMG = 0
 // MobileUI.formByObject('contetInicial', {
 //     userEmailName: 'Teste',
@@ -209,11 +210,13 @@ function cameraSuccess(imageData){
                 alert(res.body.errorMessage)
             } else {
                 closeLoading()
-                MAXQTDIMG = JSON.parse(JSON.stringify(res.body.data.swiperPhotos)).length            
+                alert('Imagem salva com sucesso.')
+                MAXQTDIMG = JSON.parse(JSON.stringify(res.body.data.swiperPhotos)).length
+                USER = res.body.data
+                console.log(USER)
                 new Swiper('.swipper-gallery', {
                     pagination: '.swiper-pagination'
                 })
-                alert('Imagem salva com sucesso.')
             }
         }).catch(function (err){
             console.log(err)
