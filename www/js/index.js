@@ -4,10 +4,10 @@ var url = 'https://g34czjej1b.execute-api.us-east-1.amazonaws.com/production'
 var USER = []
 var IMGCAPAS = []
 var MAXQTDIMG = 0
-// MobileUI.formByObject('contetInicial', {
-//     userEmailName: 'Teste',
-//     userPassword: '123'
-// })
+MobileUI.formByObject('contetInicial', {
+    userEmailName: 'Teste',
+    userPassword: '123'
+})
 
 function login(){
     var usuario = {}
@@ -27,9 +27,13 @@ function login(){
                     closeLoading()
                     openPage('main')
                 } else {
-                    COMPANY = JSON.parse(JSON.stringify(res.body.data))
+                    
+                    
                     closeLoading()
                     openPage('barAdmin', function (){
+                        console.log(res.body.data.swiperPhotos)
+                        IMGCAPAS = res.body.data.swiperPhotos
+
                         new Swiper('.swipper-gallery', {
                             pagination: '.swiper-pagination'
                         });
