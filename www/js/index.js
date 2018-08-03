@@ -222,6 +222,7 @@ function cameraSuccess(imageData){
                 alert('Imagem salva com sucesso.')
                 MAXQTDIMG = res.body.data.swiperPhotos.length
                 USER = res.body.data
+                IMGCAPAS = res.body.data.swiperPhotos
                 setTimeout(() => {
                     new Swiper('.swipper-gallery', {
                         pagination: '.swiper-pagination'
