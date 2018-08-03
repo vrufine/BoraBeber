@@ -31,11 +31,9 @@ function login(){
                     closeLoading()
                     openPage('main')
                 } else {
-                    
-                    
                     closeLoading()
                     openPage('barAdmin', function (){
-                        console.log(res.body.data.swiperPhotos)
+                        // console.log(res.body.data.swiperPhotos)
                         IMGCAPAS = res.body.data.swiperPhotos
                         new Swiper('.swipper-gallery', {
                             pagination: '.swiper-pagination'
