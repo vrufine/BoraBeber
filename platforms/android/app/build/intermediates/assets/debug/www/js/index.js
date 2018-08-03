@@ -2,12 +2,16 @@ var url = 'https://g34czjej1b.execute-api.us-east-1.amazonaws.com/production'
 // var url = 'http://localhost:3000'
 
 var USER = []
-var MAXQTDIMG = 1
-
+var IMGCAPAS = []
+var MAXQTDIMG = 0
 MobileUI.formByObject('contetInicial', {
     userEmailName: 'Teste',
     userPassword: '123'
 })
+
+window.addEventListener("orientationchange", function(){
+    screen.orientation.lock('portrait')
+});
 
 function login(){
     var usuario = {}
@@ -27,9 +31,12 @@ function login(){
                     closeLoading()
                     openPage('main')
                 } else {
-                    COMPANY = JSON.parse(JSON.stringify(res.body.data))
+                    
+                    
                     closeLoading()
                     openPage('barAdmin', function (){
+                        console.log(res.body.data.swiperPhotos)
+                        IMGCAPAS = res.body.data.swiperPhotos
                         new Swiper('.swipper-gallery', {
                             pagination: '.swiper-pagination'
                         });
@@ -39,6 +46,7 @@ function login(){
         }).catch(function(err) {
             closeLoading()
             alert('Falha ao realizar o Login! Tente novamente.')
+            alert(err)
         })
     }
 }
@@ -165,8 +173,7 @@ function goDetail() {
     })
 }
 
-function addBarAmbientImg(tpEntrada){    
-    alert('caraaaai')
+function addBarAmbientImg(tpEntrada){
     var tpEnt = ''
     if (tpEntrada == 'cam'){
         tpEnt = 1 
@@ -176,7 +183,7 @@ function addBarAmbientImg(tpEntrada){
         
     var cameraOptions = {
         Quality: 80,
-        DestinationType: 0,
+        DestinationType: 1,
         PictureSourceType: tpEnt,
         AllowEdit: true,
         TargetWidth: 720,
@@ -185,49 +192,51 @@ function addBarAmbientImg(tpEntrada){
         SaveToPhotoAlbum: true,
         Direction: 0
     }
-
-
-    // Colocar um Alert recomendando virar a camera do cell...
-    // alertGifMessage()
-    navigator.camera.getPicture(cameraSuccess, cameraError, cameraOptions)
+    
+    alertGifMessage(cameraOptions)
+    
 }
 
 function cameraSuccess(imageData){
     var ImgBar = {}
-    var image = document.getElementById('foto')
-    image.src = "data:image/jpeg;base64," + imageData
+    ImgBar.barName = USER.nomeCompany
     ImgBar.swiperPhotos = {
-            "photos": [
+        "photosCapa": [
             {
-                barName: USER.nomeCompany,
-                imgOrder: MAXQTDIMG,
-                base64Photo: "data:image/jpeg;base64," + imageData
+                "imgOrder": parseInt(MAXQTDIMG) + 1,
+                "base64Photo": "data:image/jpeg;base64," + imageData,                
             }
         ]
-    }
-
-    loading('Por favor aguarde, estou salvando a imagem do seu estabelecimento!')
-    MobileUI.ajax.post(url + '/cadbar').send(ImgBar).then(function (res){
-        if(res.body.errorMessage) {
-            closeLoading()
-            alert(res.body.errorMessage)
-        } else {
-            closeLoading()
-            new Swiper('.swipper-gallery', {
-                pagination: '.swiper-pagination'
-            })
-            // Aqui é a mágica
-            alert('Imagem salva com sucesso!')
-            if (MAXQTDIMG <= 6){
-                // alertGifMessage()
+    }    
+    window.addEventListener("orientationchange", function(){
+        screen.orientation.lock('landscape-primary')
+    })
+    if (MAXQTDIMG <= 6){
+        loading('Por favor aguarde, estou salvando a imagem do seu estabelecimento.')
+        MobileUI.ajax.post(url + '/cadbar').send(ImgBar).then(function (res){
+            if(res.body.errorMessage) {
+                closeLoading()
+                alert(res.body.errorMessage)
             } else {
-                alert('Você já cadastrou a quantidade máxima de fotos permitida!')
+                closeLoading()
+                alert('Imagem salva com sucesso.')
+                MAXQTDIMG = res.body.data.swiperPhotos.length
+                USER = res.body.data
+                console.log(USER)
+                new Swiper('.swipper-gallery', {
+                    pagination: '.swiper-pagination'
+                })
             }
-        }
-    }).catch(function (err){
-        console.log(err)
-        closeLoading()
-        alert('Ops, tive um probleminha para salvar seu cadastro! Tente novamente por gentileza.')
+        }).catch(function (err){
+            console.log(err)
+            closeLoading()
+            alert('Ops, tive um probleminha para salvar seu cadastro! Tente novamente por gentileza.')
+        })
+    } else {
+        alert('Você já cadastrou a quantidade máxima de fotos permitida!')
+    }
+    window.addEventListener("orientationchange", function(){
+        screen.orientation.lock('portrait')
     })
 }
 
@@ -235,21 +244,22 @@ function cameraError(){
     alert(message)
 }
 
-function alertGifMessage(){
+function alertGifMessage(cameraOptions){
     var box = '<div class="grey-800 align-center">'
-        box += '    <p>Para ter a melhor foto, por gentileza gire seu dispositivo para a esquerda, o colocando na posição horizontal.</p>'
-        box += '    <img src="img/rotate.gif" style="widows: 100px; height: 100px;">'
-        box += '</div>'
+    box += '    <p>Para ter a melhor foto, por gentileza gire seu dispositivo para a esquerda, o colocando na posição horizontal.</p>'
+    box += '    <img src="img/rotate.gif" style="widows: 100px; height: 100px;">'
+    box += '</div>'
     alert({
-        title: 'Imagens para capa!',
+        title: 'Imagens para capa.',
         message: box,
         class: 'grey-800 radius',
         buttons:[
             {
-                label: 'Sim',
+                label: 'Ok',
                 class: 'text-grey-50',
                 onclick: function(){
                     closeAlert()
+                    navigator.camera.getPicture(cameraSuccess, cameraError, cameraOptions)
                 }
             }
         ]

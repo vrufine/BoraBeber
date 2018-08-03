@@ -9,6 +9,10 @@ MobileUI.formByObject('contetInicial', {
     userPassword: '123'
 })
 
+window.addEventListener("orientationchange", function(){
+    screen.orientation.lock('portrait')
+});
+
 function login(){
     var usuario = {}
     usuario.email = document.getElementById('userEmailName').value
@@ -27,13 +31,10 @@ function login(){
                     closeLoading()
                     openPage('main')
                 } else {
-                    
-                    
                     closeLoading()
                     openPage('barAdmin', function (){
-                        console.log(res.body.data.swiperPhotos)
+                        // console.log(res.body.data.swiperPhotos)
                         IMGCAPAS = res.body.data.swiperPhotos
-
                         new Swiper('.swipper-gallery', {
                             pagination: '.swiper-pagination'
                         });
@@ -180,7 +181,7 @@ function addBarAmbientImg(tpEntrada){
         
     var cameraOptions = {
         Quality: 80,
-        DestinationType: 0,
+        DestinationType: 1,
         PictureSourceType: tpEnt,
         AllowEdit: true,
         TargetWidth: 720,
@@ -189,13 +190,13 @@ function addBarAmbientImg(tpEntrada){
         SaveToPhotoAlbum: true,
         Direction: 0
     }
-    alertGifMessage(cameraOptions)    
+    
+    alertGifMessage(cameraOptions)
+    
 }
 
 function cameraSuccess(imageData){
     var ImgBar = {}
-    var image = document.getElementById('foto')
-    image.src = "data:image/jpeg;base64," + imageData
     ImgBar.barName = USER.nomeCompany
     ImgBar.swiperPhotos = {
         "photosCapa": [
@@ -205,7 +206,9 @@ function cameraSuccess(imageData){
             }
         ]
     }    
-    
+    window.addEventListener("orientationchange", function(){
+        screen.orientation.lock('landscape-primary')
+    })
     if (MAXQTDIMG <= 6){
         loading('Por favor aguarde, estou salvando a imagem do seu estabelecimento.')
         MobileUI.ajax.post(url + '/cadbar').send(ImgBar).then(function (res){
@@ -215,7 +218,7 @@ function cameraSuccess(imageData){
             } else {
                 closeLoading()
                 alert('Imagem salva com sucesso.')
-                MAXQTDIMG = JSON.parse(JSON.stringify(res.body.data.swiperPhotos)).length
+                MAXQTDIMG = res.body.data.swiperPhotos.length
                 USER = res.body.data
                 console.log(USER)
                 new Swiper('.swipper-gallery', {
@@ -230,8 +233,9 @@ function cameraSuccess(imageData){
     } else {
         alert('Você já cadastrou a quantidade máxima de fotos permitida!')
     }
-
-    
+    window.addEventListener("orientationchange", function(){
+        screen.orientation.lock('portrait')
+    })
 }
 
 function cameraError(){
