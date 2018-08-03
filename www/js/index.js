@@ -35,9 +35,11 @@ function login(){
                     openPage('barAdmin', function (){
                         // console.log(res.body.data.swiperPhotos)
                         IMGCAPAS = res.body.data.swiperPhotos
-                        new Swiper('.swipper-gallery', {
-                            pagination: '.swiper-pagination'
-                        });
+                        setTimeout(() => {
+                            new Swiper('.swipper-gallery', {
+                                pagination: '.swiper-pagination'
+                            });
+                        }, 1000)
                     })
                 }
             }
@@ -181,7 +183,7 @@ function addBarAmbientImg(tpEntrada){
         
     var cameraOptions = {
         Quality: 80,
-        DestinationType: 1,
+        DestinationType: 0,
         PictureSourceType: tpEnt,
         AllowEdit: true,
         TargetWidth: 720,
@@ -220,10 +222,11 @@ function cameraSuccess(imageData){
                 alert('Imagem salva com sucesso.')
                 MAXQTDIMG = res.body.data.swiperPhotos.length
                 USER = res.body.data
-                console.log(USER)
-                new Swiper('.swipper-gallery', {
-                    pagination: '.swiper-pagination'
-                })
+                setTimeout(() => {
+                    new Swiper('.swipper-gallery', {
+                        pagination: '.swiper-pagination'
+                    });
+                }, 1000)
             }
         }).catch(function (err){
             console.log(err)
