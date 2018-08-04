@@ -1,4 +1,4 @@
-#Thu Aug 02 23:50:05 BRT 2018
+#Sat Aug 04 17:15:29 BRT 2018
 base.0=C\:\\worksapce\\BoraBeber\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
 renamed.0=classes.dex
 file.0=C\:\\worksapce\\BoraBeber\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0\\classes.dex

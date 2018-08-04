@@ -35,9 +35,11 @@ function login(){
                     openPage('barAdmin', function (){
                         // console.log(res.body.data.swiperPhotos)
                         IMGCAPAS = res.body.data.swiperPhotos
-                        new Swiper('.swipper-gallery', {
-                            pagination: '.swiper-pagination'
-                        });
+                        setTimeout(() => {
+                            new Swiper('.swipper-gallery', {
+                                pagination: '.swiper-pagination'
+                            });
+                        }, 1000)
                     })
                 }
             }
@@ -174,21 +176,21 @@ function goDetail() {
 function addBarAmbientImg(tpEntrada){
     var tpEnt = ''
     if (tpEntrada == 'cam'){
-        tpEnt = 1 
+        tpEnt = 1
     } else {
-        tpEnt = 2
+        tpEnt = 0
     }
         
     var cameraOptions = {
-        Quality: 80,
-        DestinationType: 1,
-        PictureSourceType: tpEnt,
-        AllowEdit: true,
-        TargetWidth: 720,
-        TargetHeight: 400,
-        CorrectOrientation: true,
-        SaveToPhotoAlbum: true,
-        Direction: 0
+        quality: 80,
+        destinationType: 0,
+        sourceType: tpEnt,
+        allowEdit: true,
+        targetWidth: 720,
+        targetHeight: 400,
+        correctOrientation: true,
+        saveToPhotoAlbum: true,
+        direction: 0
     }
     
     alertGifMessage(cameraOptions)
@@ -205,7 +207,7 @@ function cameraSuccess(imageData){
                 "base64Photo": "data:image/jpeg;base64," + imageData,                
             }
         ]
-    }    
+    }
     window.addEventListener("orientationchange", function(){
         screen.orientation.lock('landscape-primary')
     })
@@ -220,10 +222,12 @@ function cameraSuccess(imageData){
                 alert('Imagem salva com sucesso.')
                 MAXQTDIMG = res.body.data.swiperPhotos.length
                 USER = res.body.data
-                console.log(USER)
-                new Swiper('.swipper-gallery', {
-                    pagination: '.swiper-pagination'
-                })
+                IMGCAPAS = res.body.data.swiperPhotos
+                setTimeout(() => {
+                    new Swiper('.swipper-gallery', {
+                        pagination: '.swiper-pagination'
+                    });
+                }, 1000)
             }
         }).catch(function (err){
             console.log(err)
