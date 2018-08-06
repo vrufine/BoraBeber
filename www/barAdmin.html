@@ -57,7 +57,116 @@
             </div>
             <div class="swiper-pagination swiper-pagination-white"></div>
         </div>
-        <div class="row align-center">
+        <div class="contentItens grey-800 sub shadow tab" style="max-height: 40px">
+            <button class="text-white active" onclick="openTab('tabBebidas')">Bebidas</button>
+            <button class="text-white" onclick="openTab('tabPorcoes')">Porções</button>
+        </div>
+        <div class="tab-content has-contentItens has-sub-contentItens active white" id="tabBebidas">
+            <div class="list">
+                <div class="item">
+                    <div class="align-center">
+                        <h2 class="align-center text-strong text-blue">Cerveja Skol Lata 350 ML</h2>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <img class="align-center avatar circle" src="img/SKOL-LATA.png" style="padding-top:10px; max-width: 50px; min-height: 80px; width: auto; height: auto;">
+                        </div>
+                        <div class="col">
+                            <div class="space-big"></div>
+                            <div class="row">
+                                <div class="col">
+                                    <p style="font-size:20px;">R$</p>
+                                </div>
+                                <div class="col">
+                                    <p style="font-size:20px;">1</p>
+                                </div>
+                                <div class="col">
+                                    <p style="font-size:20px;">,88</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="align-center">
+                        <h2 class="align-center text-strong text-blue">Cerveja BRAHMA Lata 350 ML</h2>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <img class="align-center avatar circle" src="img/BRAHMA-LATA.png" style="padding-top:10px; max-width: 50px; min-height: 80px; width: auto; height: auto;">
+                        </div>
+                        <div class="col">
+                            <div class="space-big"></div>
+                            <div class="row">
+                                <div class="col">
+                                    <p style="font-size:20px;">R$</p>
+                                </div>
+                                <div class="col">
+                                    <p style="font-size:20px;">1</p>
+                                </div>
+                                <div class="col">
+                                    <p style="font-size:20px;">,68</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-content active white" id="tabPorcoes">
+            <div class="list">
+                <div class="item">
+                    <div class="align-center">
+                        <h2 class="align-center text-strong text-blue">Tilápia Frita</h2>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <img class="align-center avatar circle" src="img/SKOL-LATA.png" style="padding-top:10px; max-width: 50px; min-height: 80px; width: auto; height: auto;">
+                        </div>
+                        <div class="col">
+                            <div class="space-big"></div>
+                            <div class="row">
+                                <div class="col">
+                                    <p style="font-size:20px;">R$</p>
+                                </div>
+                                <div class="col">
+                                    <p style="font-size:20px;">12</p>
+                                </div>
+                                <div class="col">
+                                    <p style="font-size:20px;">,88</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="align-center">
+                        <h2 class="align-center text-strong text-blue">Aza de Morcego</h2>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <img class="align-center avatar circle" src="img/BRAHMA-LATA.png" style="padding-top:10px; max-width: 50px; min-height: 80px; width: auto; height: auto;">
+                        </div>
+                        <div class="col">
+                            <div class="space-big"></div>
+                            <div class="row">
+                                <div class="col">
+                                    <p style="font-size:20px;">R$</p>
+                                </div>
+                                <div class="col">
+                                    <p style="font-size:20px;">19</p>
+                                </div>
+                                <div class="col">
+                                    <p style="font-size:20px;">,68</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="row align-center">
             <div class="col">
                 <div class="row">
                     <div class="col-75 align-rigth">
@@ -67,56 +176,7 @@
                         <button class="circle icon ion-plus-circled" onclick="addBarItem('beer')"></button>
                     </div>
                 </div>
-                <div class="list">
-                    <div class="item">
-                        <div class="align-center">
-                            <h2 class="align-center text-strong text-blue">Cerveja Skol Lata 350 ML</h2>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <img class="align-center avatar circle" src="img/SKOL-LATA.png" style="padding-top:10px; max-width: 50px; min-height: 80px; width: auto; height: auto;">
-                            </div>
-                            <div class="col">
-                                <div class="space-big"></div>
-                                <div class="row">
-                                    <div class="col">
-                                        <p style="font-size:20px;">R$</p>
-                                    </div>
-                                    <div class="col">
-                                        <p style="font-size:20px;">1</p>
-                                    </div>
-                                    <div class="col">
-                                        <p style="font-size:20px;">,88</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="align-center">
-                            <h2 class="align-center text-strong text-blue">Cerveja BRAHMA Lata 350 ML</h2>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <img class="align-center avatar circle" src="img/BRAHMA-LATA.png" style="padding-top:10px; max-width: 50px; min-height: 80px; width: auto; height: auto;">
-                            </div>
-                            <div class="col">
-                                <div class="space-big"></div>
-                                <div class="row">
-                                    <div class="col">
-                                        <p style="font-size:20px;">R$</p>
-                                    </div>
-                                    <div class="col">
-                                        <p style="font-size:20px;">1</p>
-                                    </div>
-                                    <div class="col">
-                                        <p style="font-size:20px;">,68</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
             </div>
             <div class="col">
                 <div class="row">
@@ -127,57 +187,8 @@
                         <button class="circle icon ion-plus-circled" onclick="addBarItem('porcao')"></button>
                     </div>
                 </div>
-                <div class="list">
-                    <div class="item">
-                        <div class="align-center">
-                            <h2 class="align-center text-strong text-blue">Cerveja Skol Lata 350 ML</h2>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <img class="align-center avatar circle" src="img/SKOL-LATA.png" style="padding-top:10px; max-width: 50px; min-height: 80px; width: auto; height: auto;">
-                            </div>
-                            <div class="col">
-                                <div class="space-big"></div>
-                                <div class="row">
-                                    <div class="col">
-                                        <p style="font-size:20px;">R$</p>
-                                    </div>
-                                    <div class="col">
-                                        <p style="font-size:20px;">1</p>
-                                    </div>
-                                    <div class="col">
-                                        <p style="font-size:20px;">,88</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="align-center">
-                            <h2 class="align-center text-strong text-blue">Cerveja BRAHMA Lata 350 ML</h2>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <img class="align-center avatar circle" src="img/BRAHMA-LATA.png" style="padding-top:10px; max-width: 50px; min-height: 80px; width: auto; height: auto;">
-                            </div>
-                            <div class="col">
-                                <div class="space-big"></div>
-                                <div class="row">
-                                    <div class="col">
-                                        <p style="font-size:20px;">R$</p>
-                                    </div>
-                                    <div class="col">
-                                        <p style="font-size:20px;">1</p>
-                                    </div>
-                                    <div class="col">
-                                        <p style="font-size:20px;">,68</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
             </div>
-        </div>
+        </div> -->
     </div>
 </div>
