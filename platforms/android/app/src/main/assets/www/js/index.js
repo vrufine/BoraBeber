@@ -186,8 +186,8 @@ function addBarAmbientImg(tpEntrada){
         destinationType: 0,
         sourceType: tpEnt,
         allowEdit: true,
-        targetWidth: 720,
-        targetHeight: 400,
+        targetWidth: 360,
+        targetHeight: 300,
         correctOrientation: true,
         saveToPhotoAlbum: true,
         direction: 0

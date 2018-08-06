@@ -186,8 +186,8 @@ function addBarAmbientImg(tpEntrada){
         destinationType: 0,
         sourceType: tpEnt,
         allowEdit: true,
-        targetWidth: 720,
-        targetHeight: 400,
+        targetWidth: 360,
+        targetHeight: 300,
         correctOrientation: true,
         saveToPhotoAlbum: true,
         direction: 0
@@ -265,6 +265,57 @@ function alertGifMessage(cameraOptions){
                 }
             }
         ]
+    })
+}
+
+function addBarItem(tpItem){
+    var msgTitle = ''
+    if (tpItem == 'beer'){
+        msgTitle = 'Cadastre a Cerveja'
+    } else {
+        msgTitle = 'Cadastre a porção'
+    }
+    var box = '<div class="grey-800 align-center">'
+        box += '<div class="row">'
+        box += '    <div class="col">'
+        box += '        <img class="avatar" src="img/semImg.jpg" style="padding-top:10px; max-width: 90px; min-height: 130px; width: auto; height: auto;">'
+        box += '        <button class="circle text-green icon ion-plus-circled text-rigth"></button>'
+        box += '    </div>'
+        box += '    <div class="col">'
+        box += '        <div class="list">'
+        box += '            <div class="item">'
+        box += '                <input class="text-white" type="text" placeholder="Nome do Item">'
+        box += '            </div>'
+        box += '            <div class="item">'
+        box += '                <input class="text-white" type="text" placeholder="Descrição do Item">'
+        box += '            </div>'
+        box += '            <div class="item">'
+        box += '                <input class="text-white" type="number" placeholder="Valor do Item">'
+        box += '            </div>'
+        box += '        </div>'
+        box += '    </div>'
+        box += '</div>'
+        box += '</div>'
+    alert({
+        title: msgTitle,
+        message: box,
+        class: 'grey-800 radius',
+        buttons:[
+            {
+                label: 'Cancelar',
+                class: 'text-grey-50',
+                onclick: function(){
+                    closeAlert()
+                }
+            },
+            {
+                label: 'Salvar',
+                class: 'text-grey-50',
+                onclick: function(){
+                    closeAlert()
+                }
+            }
+        ]        
     })
 }
 
