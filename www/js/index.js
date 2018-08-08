@@ -161,6 +161,11 @@ function cadBar(){
     })
 }
 
+function openAddItem(){
+    MobileUI.show('addItemBox')
+    MobileUI.hide('btnAddItem')
+}
+
 function exitFromApp(){
     navigator.app.exitApp();
 }

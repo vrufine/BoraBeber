@@ -64,11 +64,11 @@
         <div class="tab-content has-contentItens has-sub-contentItens active white" id="tabBebidas">
             <div class="list">
                 <div class="item">
-                    <div class="align-center">
-                        <button class="radius shadow grey-800 icon ion-plus-circled" onclick="">Adicionar Item</button>
+                    <div class="align-center" id="btnAddItem">
+                        <button class="radius shadow grey-800 icon ion-plus-circled" onclick="openAddItem()">Adicionar Item</button>
                     </div>
                     <div class="space"></div>
-                    <div class="row">
+                    <div class="row" id="addItemBox" style="display: none;">
                         <div class="col">
                             <img src="img/Camera.png" style="max-width: 100px; max-height: 100px; padding-right: 7px; padding-top: 20px;">
                             <button class="icon ion-plus-circled text-green text-big" id="btnAddImgItem"></button>
@@ -87,15 +87,15 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="space"></div>
-                    <div class="row padding">
-                        <div class="col">
-                            <button class="radius shadow icon full ion-plus-circled text-green grey-800">Salvar</button>
-                        </div>
-                        <div class="col"></div>
-                        <div class="col">
-                            <button class="radius shadow icon full ion-android-cancel text-red grey-800">Cancelar</button>
+                        <div class="space"></div>
+                        <div class="row padding">
+                            <div class="col">
+                                <button class="radius shadow icon full ion-plus-circled text-green grey-800">Salvar</button>
+                            </div>
+                            <div class="col"></div>
+                            <div class="col">
+                                <button class="radius shadow icon full ion-android-cancel text-red grey-800">Cancelar</button>
+                            </div>
                         </div>
                     </div>
                 </div>
