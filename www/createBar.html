@@ -6,138 +6,142 @@
         <h1>Cadastro do seu Estabelecimento</h1>
     </div>
     <div class="content has-header grey-900" id="formCreateBar">
-        <div class="list no-border padding">
-            <div class="item label-float radius grey-200">
-                <label>Qual o Nome do seu estabelecimento ?</label>
-                <input type="text" id="nomeCompany">
-            </div>
-            <div class="space"></div>
-            <div class="item label-float radius grey-200">
-                <label>Qual o Email para seu estabelecimento ?</label>
-                <input type="email" id="emailCompany">
-            </div>
-            <div class="space"></div>
-            <div class="row">
-                <div class="col-90" style="margin-right: 5px">
+        <div class="row vertical-align-center full-height" style="margin-top: 373px;">
+            <div class="col">                
+                <div class="list no-border padding">
                     <div class="item label-float radius grey-200">
-                        <label>Endereço ?</label>
-                        <input type="text" id="enderecoCompany">
+                        <label>Qual o Nome do seu estabelecimento ?</label>
+                        <input type="text" id="nomeCompany">
                     </div>
-                </div>
-                <div class="col">
+                    <div class="space"></div>
                     <div class="item label-float radius grey-200">
-                        <label>Número</label>
-                        <input type="number" id="nroCompany">
+                        <label>Qual o Email para seu estabelecimento ?</label>
+                        <input type="email" id="emailCompany">
+                    </div>
+                    <div class="space"></div>
+                    <div class="row">
+                        <div class="col-90" style="margin-right: 5px">
+                            <div class="item label-float radius grey-200">
+                                <label>Endereço ?</label>
+                                <input type="text" id="enderecoCompany">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="item label-float radius grey-200">
+                                <label>Número</label>
+                                <input type="number" id="nroCompany">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="space"></div>
+                    <div class="item label-float radius border-bottom grey-200">
+                        <label>Qual o Bairro do estabelecimento ?</label>
+                        <input type="text" id="bairroCompany">
+                    </div>
+                    <div class="space"></div>
+                    <div class="item label-float radius border-bottom grey-200">
+                        <label>Qual Telefone do estabelecimento ?</label>
+                        <input type="text" id="tellCompany">
+                    </div>
+                    <div class="space"></div>
+                    <div class="item label-float radius grey-200">
+                        <p class="text-small">Selecione os dias que o estabelecimento abre.</p>
+                        <div class="row text-center">
+                            <div class="col-40">
+                                <p class="text-center text-strong">Dia da
+                                    <br> semana</p>
+                                <div class="item" onclick="weekCollor('Dom')">
+                                    <p id="weekDayDom" class="grey-200">Domingo</p>
+                                </div>
+                                <div class="item" onclick="weekCollor('Seg')">
+                                    <p id="weekDaySeg" class="grey-200">Segunda</p>
+                                </div>
+                                <div class="item" onclick="weekCollor('Ter')">
+                                    <p id="weekDayTer" class="grey-200">Terça</p>
+                                </div>
+                                <div class="item" onclick="weekCollor('Qua')">
+                                    <p id="weekDayQua" class="grey-200">Quarta</p>
+                                </div>
+                                <div class="item" onclick="weekCollor('Qui')">
+                                    <p id="weekDayQui" class="grey-200">Quinta</p>
+                                </div>
+                                <div class="item" onclick="weekCollor('Sex')">
+                                    <p id="weekDaySex" class="grey-200">Sexta</p>
+                                </div>
+                                <div class="item" onclick="weekCollor('Sab')">
+                                    <p id="weekDaySab" class="grey-200">Sábado</p>
+                                </div>
+                            </div>
+                            <div class="col-30">
+                                <p class="text-strong">Horário de Abertura</p>
+                                <div class="item" onclick="weekDayTime('Dom','Open')">
+                                    <p id="weekDayDomOpen">00:00</p>
+                                </div>
+                                <div class="item" onclick="weekDayTime('Seg','Open')">
+                                    <p id="weekDaySegOpen">00:00</p>
+                                </div>
+                                <div class="item" onclick="weekDayTime('Ter','Open')">
+                                    <p id="weekDayTerOpen">00:00</p>
+                                </div>
+                                <div class="item" onclick="weekDayTime('Qua','Open')">
+                                    <p id="weekDayQuaOpen">00:00</p>
+                                </div>
+                                <div class="item" onclick="weekDayTime('Qui','Open')">
+                                    <p id="weekDayQuiOpen">00:00</p>
+                                </div>
+                                <div class="item" onclick="weekDayTime('Sex','Open')">
+                                    <p id="weekDaySexOpen">00:00</p>
+                                </div>
+                                <div class="item" onclick="weekDayTime('Sab','Open')">
+                                    <p id="weekDaySabOpen">00:00</p>
+                                </div>
+                            </div>
+                            <div class="col-30">
+                                <p class="text-strong">Horário de Fechamento</p>
+                                <div class="item" onclick="weekDayTime('Dom','Close')">
+                                    <p id="weekDayDomClose">00:00</p>
+                                </div>
+                                <div class="item" onclick="weekDayTime('Seg','Close')">
+                                    <p id="weekDaySegClose">00:00</p>
+                                </div>
+                                <div class="item" onclick="weekDayTime('Ter','Close')">
+                                    <p id="weekDayTerClose">00:00</p>
+                                </div>
+                                <div class="item" onclick="weekDayTime('Qua','Close')">
+                                    <p id="weekDayQuaClose">00:00</p>
+                                </div>
+                                <div class="item" onclick="weekDayTime('Qui','Close')">
+                                    <p id="weekDayQuiClose">00:00</p>
+                                </div>
+                                <div class="item" onclick="weekDayTime('Sex','Close')">
+                                    <p id="weekDaySexClose">00:00</p>
+                                </div>
+                                <div class="item" onclick="weekDayTime('Sab','Close')">
+                                    <p id="weekDaySabClose">00:00</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="space"></div>
+                    <div class="item label-float radius border-bottom grey-200">
+                        <label>Insira uma Senha para o acesso.</label>
+                        <input type="password" id="passwordCompany">
+                    </div>
+                    <div class="space"></div>
+                    <div class="item label-float radius border-bottom grey-200">
+                        <label>Confirme a senha inserida.</label>
+                        <input type="password" id="passwordConfirmCompany">
+                    </div>
+                    <!-- <div class="space"></div>
+                    <div class="item label-float radius border-bottom grey-200">
+                        <label>Qual do estabelecimento ?</label>
+                        <input type="text">
+                    </div> -->
+                    <div class="space"></div>
+                    <div class="item">
+                        <button class="full radius shadow green" onclick="cadBar()">Concluir o Cadastro!!</button>
                     </div>
                 </div>
-            </div>
-            <div class="space"></div>
-            <div class="item label-float radius border-bottom grey-200">
-                <label>Qual o Bairro do estabelecimento ?</label>
-                <input type="text" id="bairroCompany">
-            </div>
-            <div class="space"></div>
-            <div class="item label-float radius border-bottom grey-200">
-                <label>Qual Telefone do estabelecimento ?</label>
-                <input type="text" id="tellCompany">
-            </div>
-            <div class="space"></div>
-            <div class="item label-float radius grey-200">
-                <p class="text-small">Selecione os dias que o estabelecimento abre.</p>
-                <div class="row text-center">
-                    <div class="col-40">
-                        <p class="text-center text-strong">Dia da
-                            <br> semana</p>
-                        <div class="item" onclick="weekCollor('Dom')">
-                            <p id="weekDayDom" class="grey-200">Domingo</p>
-                        </div>
-                        <div class="item" onclick="weekCollor('Seg')">
-                            <p id="weekDaySeg" class="grey-200">Segunda</p>
-                        </div>
-                        <div class="item" onclick="weekCollor('Ter')">
-                            <p id="weekDayTer" class="grey-200">Terça</p>
-                        </div>
-                        <div class="item" onclick="weekCollor('Qua')">
-                            <p id="weekDayQua" class="grey-200">Quarta</p>
-                        </div>
-                        <div class="item" onclick="weekCollor('Qui')">
-                            <p id="weekDayQui" class="grey-200">Quinta</p>
-                        </div>
-                        <div class="item" onclick="weekCollor('Sex')">
-                            <p id="weekDaySex" class="grey-200">Sexta</p>
-                        </div>
-                        <div class="item" onclick="weekCollor('Sab')">
-                            <p id="weekDaySab" class="grey-200">Sábado</p>
-                        </div>
-                    </div>
-                    <div class="col-30">
-                        <p class="text-strong">Horário de Abertura</p>
-                        <div class="item" onclick="weekDayTime('Dom','Open')">
-                            <p id="weekDayDomOpen">00:00</p>
-                        </div>
-                        <div class="item" onclick="weekDayTime('Seg','Open')">
-                            <p id="weekDaySegOpen">00:00</p>
-                        </div>
-                        <div class="item" onclick="weekDayTime('Ter','Open')">
-                            <p id="weekDayTerOpen">00:00</p>
-                        </div>
-                        <div class="item" onclick="weekDayTime('Qua','Open')">
-                            <p id="weekDayQuaOpen">00:00</p>
-                        </div>
-                        <div class="item" onclick="weekDayTime('Qui','Open')">
-                            <p id="weekDayQuiOpen">00:00</p>
-                        </div>
-                        <div class="item" onclick="weekDayTime('Sex','Open')">
-                            <p id="weekDaySexOpen">00:00</p>
-                        </div>
-                        <div class="item" onclick="weekDayTime('Sab','Open')">
-                            <p id="weekDaySabOpen">00:00</p>
-                        </div>
-                    </div>
-                    <div class="col-30">
-                        <p class="text-strong">Horário de Fechamento</p>
-                        <div class="item" onclick="weekDayTime('Dom','Close')">
-                            <p id="weekDayDomClose">00:00</p>
-                        </div>
-                        <div class="item" onclick="weekDayTime('Seg','Close')">
-                            <p id="weekDaySegClose">00:00</p>
-                        </div>
-                        <div class="item" onclick="weekDayTime('Ter','Close')">
-                            <p id="weekDayTerClose">00:00</p>
-                        </div>
-                        <div class="item" onclick="weekDayTime('Qua','Close')">
-                            <p id="weekDayQuaClose">00:00</p>
-                        </div>
-                        <div class="item" onclick="weekDayTime('Qui','Close')">
-                            <p id="weekDayQuiClose">00:00</p>
-                        </div>
-                        <div class="item" onclick="weekDayTime('Sex','Close')">
-                            <p id="weekDaySexClose">00:00</p>
-                        </div>
-                        <div class="item" onclick="weekDayTime('Sab','Close')">
-                            <p id="weekDaySabClose">00:00</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="space"></div>
-            <div class="item label-float radius border-bottom grey-200">
-                <label>Insira uma Senha para o acesso.</label>
-                <input type="password" id="passwordCompany">
-            </div>
-            <div class="space"></div>
-            <div class="item label-float radius border-bottom grey-200">
-                <label>Confirme a senha inserida.</label>
-                <input type="password" id="passwordConfirmCompany">
-            </div>
-            <!-- <div class="space"></div>
-            <div class="item label-float radius border-bottom grey-200">
-                <label>Qual do estabelecimento ?</label>
-                <input type="text">
-            </div> -->
-            <div class="space"></div>
-            <div class="item">
-                <button class="full radius shadow green" onclick="cadBar()">Concluir o Cadastro!!</button>
             </div>
         </div>
     </div>
