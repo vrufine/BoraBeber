@@ -161,9 +161,24 @@ function cadBar(){
     })
 }
 
-function openAddItem(){
-    MobileUI.show('addItemBox')
-    MobileUI.hide('btnAddItem')
+function openAddItem(tpItem){
+    if(tpItem == 'beer'){
+        MobileUI.show('addItemBoxBeer')
+        MobileUI.hide('btnAddItemBeer')
+    } else {
+        MobileUI.show('addItemBoxPorcao')
+        MobileUI.hide('btnAddItemPorcao')
+    }
+}
+
+function cancelAddItem(tpItem){
+    if(tpItem == 'beer'){
+        MobileUI.hide('addItemBoxBeer')
+        MobileUI.show('btnAddItemBeer')
+    } else {
+        MobileUI.hide('addItemBoxPorcao')
+        MobileUI.show('btnAddItemPorcao')
+    }
 }
 
 function exitFromApp(){
@@ -187,11 +202,11 @@ function addBarAmbientImg(tpEntrada){
     }
         
     var cameraOptions = {
-        quality: 80,
+        quality: 100,
         destinationType: 0,
         sourceType: tpEnt,
         allowEdit: true,
-        targetWidth: 360,
+        targetWidth: 400,
         targetHeight: 300,
         correctOrientation: true,
         saveToPhotoAlbum: true,
@@ -235,7 +250,6 @@ function cameraSuccess(imageData){
                 }, 1000)
             }
         }).catch(function (err){
-            console.log(err)
             closeLoading()
             alert('Ops, tive um probleminha para salvar seu cadastro! Tente novamente por gentileza.')
         })
@@ -273,55 +287,21 @@ function alertGifMessage(cameraOptions){
     })
 }
 
-function addBarItem(tpItem){
-    var msgTitle = ''
+function addItem(tpItem){
+    var item = {}
     if (tpItem == 'beer'){
-        msgTitle = 'Cadastre a Cerveja'
+        item.imgBeer = ''
+        item.tituloBeer = document.getElementById('bebidaItemTitle').value
+        item.descricaoBeer = document.getElementById('bebidaItemDetail').value
+        item.precoBeer = document.getElementById('bebidaItemPrice').value
     } else {
-        msgTitle = 'Cadastre a porção'
+        item.imgPorcao = ''
+        item.tituloPorcao = document.getElementById('porcaoItemTitle').value
+        item.descricaoPorcao = document.getElementById('porcaoItemDetail').value
+        item.precoPorcao = document.getElementById('porcaoItemPrice').value
+        
     }
-    var box = '<div class="grey-800 align-center">'
-        box += '<div class="row">'
-        box += '    <div class="col">'
-        box += '        <img class="avatar" src="img/semImg.jpg" style="padding-top:10px; max-width: 90px; min-height: 130px; width: auto; height: auto;">'
-        box += '        <button class="circle text-green icon ion-plus-circled text-rigth"></button>'
-        box += '    </div>'
-        box += '    <div class="col">'
-        box += '        <div class="list">'
-        box += '            <div class="item">'
-        box += '                <input class="text-white" type="text" placeholder="Nome do Item">'
-        box += '            </div>'
-        box += '            <div class="item">'
-        box += '                <input class="text-white" type="text" placeholder="Descrição do Item">'
-        box += '            </div>'
-        box += '            <div class="item">'
-        box += '                <input class="text-white" type="number" placeholder="Valor do Item">'
-        box += '            </div>'
-        box += '        </div>'
-        box += '    </div>'
-        box += '</div>'
-        box += '</div>'
-    alert({
-        title: msgTitle,
-        message: box,
-        class: 'grey-800 radius',
-        buttons:[
-            {
-                label: 'Cancelar',
-                class: 'text-grey-50',
-                onclick: function(){
-                    closeAlert()
-                }
-            },
-            {
-                label: 'Salvar',
-                class: 'text-grey-50',
-                onclick: function(){
-                    closeAlert()
-                }
-            }
-        ]        
-    })
+    
 }
 
 function showMyCustomizedAlert(content, message){
@@ -401,13 +381,5 @@ function weekDayTime(weekDay, status){
         } else {
             document.getElementById('weekDay' + weekDay).className = 'text-red'
         }
-    })    
-    
-    //### Código mantido para testar no navegador!
-    // document.getElementById('weekDay' + weekDay + status).innerHTML = '10:30'
-    // if (document.getElementById('weekDay' + weekDay + status).innerHTML !== '00:00'){
-    //     document.getElementById('weekDay' + weekDay).className = 'text-green'
-    // } else {
-    //     document.getElementById('weekDay' + weekDay).className = 'text-red'
-    // }
+    })
 }

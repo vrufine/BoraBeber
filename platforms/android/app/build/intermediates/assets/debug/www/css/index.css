@@ -44,3 +44,15 @@
   margin-top: 250px;
   margin-left: 310px;
 }
+
+#btnAddImgItem {
+  float: right;
+  position: absolute;
+  z-index:9999;
+  margin-top: -36px;
+  margin-left: 44px; 
+}
+
+.text-big .icon, .text-big.icon {
+  font-size: 25px!important;
+}
