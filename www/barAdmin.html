@@ -61,25 +61,23 @@
             <button class="text-white active" onclick="openTab('tabBebidas')">Bebidas</button>
             <button class="text-white" onclick="openTab('tabPorcoes')">Porções</button>
         </div>
-
-
         <div class="tab-content has-contentItens has-sub-contentItens active white" id="tabBebidas">
+            <div class="popover" id="imgOptionsItensBeer" style="position: fixed; top: 47px; left: 50px;">
+                <div class="row">
+                    <div class="col">
+                        <button class="icon ion-camera" onclick="addBarItemImg('cam')"></button>
+                    </div>
+                    <div class="col">
+                        <button class="icon ion-images" onclick="addBarItemImg('alb')"></button>
+                    </div>
+                </div>
+            </div>
             <div class="list">
-                <div class="item" style="position: relative;">
+                <div class="item">
                     <div class="align-center" id="btnAddItemBeer">
                         <button class="radius shadow grey-800 icon ion-plus-circled" onclick="openAddItem('beer')">Adicionar Cerveja</button>
                     </div>
                     <div class="row" id="addItemBoxBeer" style="display: none;">
-                        <div class="popover" id="imgOptionsItensBeer" style="margin-top: 73px; margin-left: 97px;">
-                            <div class="row">
-                                <div class="col">
-                                    <button class="icon ion-camera" onclick="addBarItemImg('cam')"></button>
-                                </div>
-                                <div class="col">
-                                    <button class="icon ion-images" onclick="addBarItemImg('alb')"></button>
-                                </div>
-                            </div>
-                        </div>
                         <div class="row align-center">
                             <div class="col">
                                 <img src="img/Camera.png" style="width: 100px; height: 100px;" id="imgItem">
@@ -136,48 +134,51 @@
             </div>
         </div>
         <div class="tab-content white" id="tabPorcoes">
+            <div class="popover" id="imgOptionsItensPorcao" style="position: fixed; top: 47px; left: 50px;">
+                <div class="row">
+                    <div class="col">
+                        <button class="icon ion-camera" onclick="addBarItemImg('cam')"></button>
+                    </div>
+                    <div class="col">
+                        <button class="icon ion-images" onclick="addBarItemImg('alb')"></button>
+                    </div>
+                </div>
+            </div>
             <div class="list">
                 <div class="item">
                     <div class="align-center" id="btnAddItemPorcao">
                         <button class="radius shadow grey-800 icon ion-plus-circled" onclick="openAddItem('Porcao')">Adicionar Porção</button>
                     </div>
                     <div class="row" id="addItemBoxPorcao" style="display: none;">
-                        <div class="popover" id="imgOptionsItensPorcao" style="margin-top: 73px; margin-left: 97px;">
-                            <div class="row">
-                                <div class="col">
-                                    <button class="icon ion-camera" onclick="addBarItemImg('cam')"></button>
-                                </div>
-                                <div class="col">
-                                    <button class="icon ion-images" onclick="addBarItemImg('alb')"></button>
-                                </div>
+                        <div class="row align-center">
+                            <div class="col">
+                                <img src="img/Camera.png" style="width: 100px; height: 100px;" id="imgItem">
+                                <button class="icon ion-plus-circled text-green text-big" id="btnAddImgItem" onclick="openPopover('imgOptionsItensPorcao')"></button>
+                            </div>
+                            <div class="col">
+                                <img src="img/semImg.jpg" style="width: 100px; height: 110px;">
                             </div>
                         </div>
-                        <div class="col">
-                            <img src="img/Camera.png" style="max-width: 100px; max-height: 100px; padding-right: 7px; padding-top: 20px;" id="imgItem">
-                            <button class="icon ion-plus-circled text-green text-big" id="btnAddImgItem" onclick="openPopover('imgOptionsItensPorcao')"></button>
-                        </div>
-                        <div class="col">
-                            <div class="list no-border">
-                                <div class="item border-grey-800 border-bottom" style="height: 40px;">
-                                    <input type="text" placeholder="Título do Item" id="porcaoItemTitle">
-                                </div>
-                                <div class="item border-grey-800 border-bottom" style="height: 40px;">
-                                    <input type="text" placeholder="Descrição do Item" id="porcaoItemDetail">
-                                </div>
-                                <div class="item label-fixed border-grey-800 border-bottom" style="height: 50px;">
-                                    <label style="margin-right: -65px; margin-top: 2px;">R$</label>
-                                    <input type="number" placeholder="Preço" class="text-big" id="porcaoItemPrice">
-                                </div>
+                        <div class="list no-border">
+                            <div class="item border-grey-800 border-bottom" style="height: 40px;">
+                                <input type="text" placeholder="Título do Item" id="porcaoItemTitle">
+                            </div>
+                            <div class="item border-grey-800 border-bottom" style="height: 40px;">
+                                <input type="text" placeholder="Descrição do Item" id="porcaoItemDetail">
+                            </div>
+                            <div class="item label-fixed border-grey-800 border-bottom" style="height: 50px;">
+                                <label style="margin-right: -65px; margin-top: 2px;">R$</label>
+                                <input type="number" placeholder="Preço" class="text-big" id="porcaoItemPrice">
                             </div>
                         </div>
                         <div class="space"></div>
                         <div class="row padding">
                             <div class="col">
-                                <button class="radius shadow icon full ion-plus-circled text-green grey-800" onclick="addItem('Porcao')">Salvar</button>
+                                <button class="radius shadow icon full ion-plus-circled text-green grey-800" onclick="addItem('')">Salvar</button>
                             </div>
                             <div class="col"></div>
                             <div class="col">
-                                <button class="radius shadow icon full ion-android-cancel text-red grey-800" onclick="cancelAddItem('Porcao')">Cancelar</button>
+                                <button class="radius shadow icon full ion-android-cancel text-red grey-800" onclick="cancelAddItem('')">Cancelar</button>
                             </div>
                         </div>
                     </div>

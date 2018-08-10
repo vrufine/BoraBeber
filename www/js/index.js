@@ -202,12 +202,12 @@ function addBarAmbientImg(tpEntrada){
     }
         
     var cameraOptions = {
-        quality: 100,
+        quality: 85,
         destinationType: 0,
         sourceType: tpEnt,
         allowEdit: true,
-        targetWidth: 400,
-        targetHeight: 300,
+        targetWidth: 1300,
+        targetHeight: 700,
         correctOrientation: true,
         saveToPhotoAlbum: true,
         direction: 0
