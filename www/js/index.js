@@ -193,7 +193,7 @@ function goDetail() {
     })
 }
 
-function addBarAmbientImg(tpEntrada){
+function addImgTypes(tpEntrada, tWidth, tHeight, tpImg){
     var tpEnt = ''
     if (tpEntrada == 'cam'){
         tpEnt = 1
@@ -206,18 +206,28 @@ function addBarAmbientImg(tpEntrada){
         destinationType: 0,
         sourceType: tpEnt,
         allowEdit: true,
-        targetWidth: 1300,
-        targetHeight: 700,
+        targetWidth: tWidth,
+        targetHeight: tHeight,
         correctOrientation: true,
         saveToPhotoAlbum: true,
         direction: 0
     }
     
-    alertGifMessage(cameraOptions)
+    switch (tpImg){
+        case 'painel':
+            alertGifMessage(cameraOptions)
+        break
+        case 'beer':
+            alertAddBeer(cameraOptions)
+        break
+        case 'porcao':
+            alertAddPorcao(cameraOptions)
+        break
+    }
     
 }
 
-function cameraSuccess(imageData){
+function cameraSuccessPainel(imageData){
     var ImgBar = {}
     ImgBar.barName = USER.nomeCompany
     ImgBar.swiperPhotos = {
@@ -261,10 +271,6 @@ function cameraSuccess(imageData){
     })
 }
 
-function cameraError(){
-    alert(message)
-}
-
 function alertGifMessage(cameraOptions){
     var box = '<div class="grey-800 align-center">'
     box += '    <p>Para ter a melhor foto, por gentileza gire seu dispositivo para a esquerda, o colocando na posição horizontal.</p>'
@@ -280,7 +286,39 @@ function alertGifMessage(cameraOptions){
                 class: 'text-grey-50',
                 onclick: function(){
                     closeAlert()
-                    navigator.camera.getPicture(cameraSuccess, cameraError, cameraOptions)
+                    navigator.camera.getPicture(cameraSuccessPainel, cameraError, cameraOptions)
+                }
+            }
+        ]
+    })
+}
+
+function cameraSuccessBeer(imageData){
+    var ImgBarBeer = {}
+    ImgBarBeer.swiperPhotos = {
+        "itemBeer": [
+            {
+                "qtdImgBeer": parseInt(MAXQTDIMG) + 1,
+                "base64ImgBeer": "data:image/jpeg;base64," + imageData,                
+            }
+        ]
+    }
+}
+
+function alertAddBeer(cameraOptions){
+    
+    
+    alert({
+        title: 'Imagens para capa.',
+        message: box,
+        class: 'grey-800 radius',
+        buttons:[
+            {
+                label: 'Ok',
+                class: 'text-grey-50',
+                onclick: function(){
+                    closeAlert()
+                    navigator.camera.getPicture(cameraSuccessBeer, cameraError, cameraOptions)
                 }
             }
         ]
@@ -303,6 +341,13 @@ function addItem(tpItem){
     }
     
 }
+
+
+function cameraError(){
+    alert(message)
+}
+
+
 
 function showMyCustomizedAlert(content, message){
     alert({
