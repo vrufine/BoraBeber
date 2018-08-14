@@ -33,8 +33,12 @@ function login(){
                 } else {
                     closeLoading()
                     openPage('barAdmin', function (){
-                        // console.log(res.body.data.swiperPhotos)
                         IMGCAPAS = res.body.data.swiperPhotos
+                        if (IMGCAPAS == undefined){
+                            MAXQTDIMG = 0
+                        } else {
+                            MAXQTDIMG = IMGCAPAS.length
+                        }
                         setTimeout(() => {
                             new Swiper('.swipper-gallery', {
                                 pagination: '.swiper-pagination'
@@ -175,9 +179,13 @@ function cancelAddItem(tpItem){
     if(tpItem == 'beer'){
         MobileUI.hide('addItemBoxBeer')
         MobileUI.show('btnAddItemBeer')
+        var image = document.getElementById('beerImg')
+        image.src = 'img/semImg.jpg'
     } else {
         MobileUI.hide('addItemBoxPorcao')
         MobileUI.show('btnAddItemPorcao')
+        var image = document.getElementById('porcaoImg')
+        image.src = 'img/semImg.jpg'
     }
 }
 
@@ -212,17 +220,20 @@ function addImgTypes(tpEntrada, tWidth, tHeight, tpImg){
         saveToPhotoAlbum: true,
         direction: 0
     }
-    
-    switch (tpImg){
-        case 'painel':
-            alertGifMessage(cameraOptions)
-        break
-        case 'beer':
-            alertAddBeer(cameraOptions)
-        break
-        case 'porcao':
-            alertAddPorcao(cameraOptions)
-        break
+    if (MAXQTDIMG <= 6){
+        switch (tpImg){
+            case 'painel':
+                alertGifMessage(cameraOptions)
+            break
+            case 'beer':
+                alertAddBeer(cameraOptions)
+            break
+            case 'porcao':
+                alertAddPorcao(cameraOptions)
+            break
+        }
+    } else {
+        alert('Você já cadastrou a quantidade máxima de fotos permitida!')
     }
     
 }
@@ -241,31 +252,27 @@ function cameraSuccessPainel(imageData){
     window.addEventListener("orientationchange", function(){
         screen.orientation.lock('landscape-primary')
     })
-    if (MAXQTDIMG <= 6){
-        loading('Por favor aguarde, estou salvando a imagem do seu estabelecimento.')
-        MobileUI.ajax.post(url + '/cadbar').send(ImgBar).then(function (res){
-            if(res.body.errorMessage) {
-                closeLoading()
-                alert(res.body.errorMessage)
-            } else {
-                closeLoading()
-                alert('Imagem salva com sucesso.')
-                MAXQTDIMG = res.body.data.swiperPhotos.length
-                USER = res.body.data
-                IMGCAPAS = res.body.data.swiperPhotos
-                setTimeout(() => {
-                    new Swiper('.swipper-gallery', {
-                        pagination: '.swiper-pagination'
-                    });
-                }, 1000)
-            }
-        }).catch(function (err){
+    loading('Por favor aguarde, estou salvando a imagem do seu estabelecimento.')
+    MobileUI.ajax.post(url + '/cadbar').send(ImgBar).then(function (res){
+        if(res.body.errorMessage) {
             closeLoading()
-            alert('Ops, tive um probleminha para salvar seu cadastro! Tente novamente por gentileza.')
-        })
-    } else {
-        alert('Você já cadastrou a quantidade máxima de fotos permitida!')
-    }
+            alert(res.body.errorMessage)
+        } else {
+            closeLoading()
+            alert('Imagem salva com sucesso.')
+            MAXQTDIMG = res.body.data.swiperPhotos.length
+            USER = res.body.data
+            IMGCAPAS = res.body.data.swiperPhotos
+            setTimeout(() => {
+                new Swiper('.swipper-gallery', {
+                    pagination: '.swiper-pagination'
+                });
+            }, 1000)
+        }
+    }).catch(function (err){
+        closeLoading()
+        alert('Ops, tive um probleminha para salvar seu cadastro! Tente novamente por gentileza.')
+    })
     window.addEventListener("orientationchange", function(){
         screen.orientation.lock('portrait')
     })
@@ -294,6 +301,8 @@ function alertGifMessage(cameraOptions){
 }
 
 function cameraSuccessBeer(imageData){
+    var image = document.getElementById('beerImg')
+    image.src = "data:image/jpeg;base64," + imageData
     var ImgBarBeer = {}
     ImgBarBeer.swiperPhotos = {
         "itemBeer": [
@@ -306,8 +315,10 @@ function cameraSuccessBeer(imageData){
 }
 
 function alertAddBeer(cameraOptions){
-    
-    
+    var box = '<div class="grey-800 align-center">'
+    box += '    <p>Imagem para apresentação do Item</p>'
+    // box += '    <img src="" style="widows: 100px; height: 100px;">'
+    box += '</div>'
     alert({
         title: 'Imagens para capa.',
         message: box,
@@ -326,20 +337,31 @@ function alertAddBeer(cameraOptions){
 }
 
 function addItem(tpItem){
-    var item = {}
+    var itemBeer = {}
+    var itemPorcao = {}
     if (tpItem == 'beer'){
-        item.imgBeer = ''
-        item.tituloBeer = document.getElementById('bebidaItemTitle').value
-        item.descricaoBeer = document.getElementById('bebidaItemDetail').value
-        item.precoBeer = document.getElementById('bebidaItemPrice').value
+        itemBeer.dadosBeer = {
+            "Beer": [
+                {
+                    "imgBeer": document.getElementById('beerImg'),
+                    "tituloBeer": document.getElementById('bebidaItemTitle').value,
+                    "descricaoBeer": document.getElementById('bebidaItemDetail').value,
+                    "precoBeer": document.getElementById('bebidaItemPrice').value
+                }
+            ]
+        }
     } else {
-        item.imgPorcao = ''
-        item.tituloPorcao = document.getElementById('porcaoItemTitle').value
-        item.descricaoPorcao = document.getElementById('porcaoItemDetail').value
-        item.precoPorcao = document.getElementById('porcaoItemPrice').value
-        
-    }
-    
+        itemPorcao.dadosPorcao = {
+            "Porcao": [
+                {
+                    "imgPorcao": document.getElementById('porcaoImg'),
+                    "tituloPorcao": document.getElementById('porcaoItemTitle').value,
+                    "descricaoPorcao": document.getElementById('porcaoItemDetail').value,
+                    "precoPorcao": document.getElementById('porcaoItemPrice').value
+                }
+            ]
+        }
+    }    
 }
 
 
