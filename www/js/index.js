@@ -1,5 +1,5 @@
-var url = 'https://g34czjej1b.execute-api.us-east-1.amazonaws.com/production'
-// var url = 'http://localhost:3000'
+// var url = 'https://g34czjej1b.execute-api.us-east-1.amazonaws.com/production'
+var url = 'http://localhost:3000'
 
 var USER = []
 var IMGCAPAS = []
@@ -337,31 +337,43 @@ function alertAddBeer(cameraOptions){
 }
 
 function addItem(tpItem){
-    var itemBeer = {}
-    var itemPorcao = {}
+    var item = {}
     if (tpItem == 'beer'){
-        itemBeer.dadosBeer = {
+        item.dadosBeer = {
             "Beer": [
                 {
-                    "imgBeer": document.getElementById('beerImg'),
+                    "imgBeer": document.getElementById('beerImg').getAttribute('src'),
                     "tituloBeer": document.getElementById('bebidaItemTitle').value,
                     "descricaoBeer": document.getElementById('bebidaItemDetail').value,
                     "precoBeer": document.getElementById('bebidaItemPrice').value
                 }
             ]
         }
+        console.log(item.dadosBeer)
     } else {
-        itemPorcao.dadosPorcao = {
+        item.dadosPorcao = {
             "Porcao": [
                 {
-                    "imgPorcao": document.getElementById('porcaoImg'),
+                    "imgPorcao": document.getElementById('porcaoImg').getAttribute('src'),
                     "tituloPorcao": document.getElementById('porcaoItemTitle').value,
                     "descricaoPorcao": document.getElementById('porcaoItemDetail').value,
                     "precoPorcao": document.getElementById('porcaoItemPrice').value
                 }
             ]
         }
-    }    
+    }
+    MobileUI.ajax.post(url + '/cadbaritem').send(item).then(function (res){
+        if(res.body.errorMessage) {
+            closeLoading()
+            alert(res.body.errorMessage)
+        } else {
+            closeLoading()
+            alert('Item salvo com sucesso.')
+        }
+    }).catch(function (err){
+        closeLoading()
+        alert('Ops, tive um probleminha para salvar seu cadastro! Tente novamente por gentileza.')
+    })
 }
 
 
