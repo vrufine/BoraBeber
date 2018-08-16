@@ -37,7 +37,6 @@ function login(){
                     openPage('barAdmin', function (){
                         IMGCAPAS = res.body.data.swiperPhotos
                         BEERITEM = res.body.data.dadosBeer
-                        console.log(IMGCAPAS)
                         console.log(BEERITEM)
                         if (IMGCAPAS == undefined){
                             MAXQTDIMG = 0
@@ -385,6 +384,44 @@ function addItem(tpItem){
     })
 }
 
+function imgOptPopOver(){
+
+     var box = '<div class="grey-800 align-center">'
+        box += '    <p>Tirar uma Foto ou buscar na Galeria ?</p>'
+        box += '    <div class="row">'
+        box += '        <div class="col">'
+        box += '            <p class="icon ion-images text-huge"></p>'
+        box += '        </div>'
+        box += '        <div class="col">'
+        box += '            <p class="icon ion-camera text-huge"></p>'
+        box += '        </div>'
+        box += '    </div>'
+        box += '</div>'
+
+    alert({
+        title: 'Imagens para capa.',
+        message: box,
+        class: 'grey-800 radius',
+        buttons:[
+            {
+                label: 'Camera',
+                class: 'text-grey-50',
+                onclick: function(){
+                    closeAlert()
+                    // addImgTypes('cam','720','400','beer')
+                }
+            },
+            {
+                label: 'Galeria',
+                class: 'text-grey-50',
+                onclick: function(){
+                    closeAlert()
+                    // addImgTypes('cam','720','400','beer')
+                }
+            }
+        ]
+    })
+}
 
 function cameraError(){
     alert(message)

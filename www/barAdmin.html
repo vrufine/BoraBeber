@@ -50,6 +50,7 @@
         </div>
         <div class="btnAddImg">
             <button class="circle icon ion-plus-circled shadow text-grey-300" onclick="openPopover('imgOptions')"></button>
+            <!-- <button class="circle icon ion-plus-circled shadow text-grey-300" onclick="imgOptPopOver()"></button> -->
         </div>
         <div class="swiper-container swipper-gallery grey-800">
             <div class="swiper-wrapper">
@@ -114,6 +115,14 @@
                 <div class="item" data="BEERITEM">
                     <div class="row">
                         <div class="col-55 cover radius margin no-padding" style="background-image:url('${imgBeer}')">
+                            <div class="space-huge"></div>
+                            <div class="space-big"></div>
+                            <div class="bottom gradient padding radius">
+                                <h1 class="text-white">${tituloBeer} ${descricaoBeer}</h1>
+                                <h1 class="text-white">R$ ${precoBeer}</h1>
+                            </div>
+                        </div>
+                        <div class  ="col-55 cover radius margin no-padding" style="background-image:url('${imgBeer}')">
                             <div class="space-huge"></div>
                             <div class="space-big"></div>
                             <div class="bottom gradient padding radius">
