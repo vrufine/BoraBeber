@@ -6,7 +6,7 @@
         <div class="right">
             <button class="icon ion-person"></button>
         </div>
-        <h1>${nomeCompany}</h1>
+        <h1 id="nameCompany">${nomeCompany}</h1>
     </div>
     <div class="menu white" id="myMenu" data="USER">
         <div class="list no-border">
@@ -41,10 +41,10 @@
         <div class="popover" id="imgOptions">
             <div class="row">
                 <div class="col">
-                    <button class="icon ion-camera" onclick="addImgTypes('cam','1300','700','painel')"></button>
+                    <button class="icon ion-camera" onclick="addImgTypes('cam','720','400','painel')"></button>
                 </div>
                 <div class="col">
-                    <button class="icon ion-images" onclick="addImgTypes('alb','1300','700','painel')"></button>
+                    <button class="icon ion-images" onclick="addImgTypes('alb','720','400','painel')"></button>
                 </div>
             </div>
         </div>
@@ -65,10 +65,10 @@
             <div class="popover" id="imgOptionsItensBeer" style="position: fixed; top: 47px; left: 50px;">
                 <div class="row">
                     <div class="col">
-                        <button class="icon ion-camera" onclick="addImgTypes('cam','1300','700','beer')"></button>
+                        <button class="icon ion-camera" onclick="addImgTypes('cam','720','400','beer')"></button>
                     </div>
                     <div class="col">
-                        <button class="icon ion-images" onclick="addImgTypes('alb','1300','700','beer')"></button>
+                        <button class="icon ion-images" onclick="addImgTypes('alb','720','400','beer')"></button>
                     </div>
                 </div>
             </div>
@@ -111,22 +111,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="item">
+                <div class="item" data="BEERITEM">
                     <div class="row">
-                        <div class="col-55 cover radius margin no-padding" style="background-image:url(img/BRAHMA-LATA.png)">
+                        <div class="col-55 cover radius margin no-padding" style="background-image:url('${imgBeer}')">
                             <div class="space-huge"></div>
                             <div class="space-big"></div>
                             <div class="bottom gradient padding radius">
-                                <h1 class="text-white">Cerveja BRAHMA Lata 350 ML</h1>
-                                <h1 class="text-white">R$ 1,68</h1>
-                            </div>
-                        </div>
-                        <div class="col cover radius margin no-padding" style="background-image:url(img/SKOL-LATA.png)">
-                            <div class="space-huge"></div>
-                            <div class="space-big"></div>
-                            <div class="bottom gradient padding radius">
-                                <h1 class="text-white text-small">Cerveja BRAHMA Lata 350 ML</h1>
-                                <h1 class="text-white">R$ 1,68</h1>
+                                <h1 class="text-white">${tituloBeer} ${descricaoBeer}</h1>
+                                <h1 class="text-white">R$ ${precoBeer}</h1>
                             </div>
                         </div>
                     </div>
@@ -137,10 +129,10 @@
             <div class="popover" id="imgOptionsItensPorcao" style="position: fixed; top: 47px; left: 50px;">
                 <div class="row">
                     <div class="col">
-                        <button class="icon ion-camera" onclick="addImgTypes('cam','1300','700','porcoes')"></button>
+                        <button class="icon ion-camera" onclick="addImgTypes('cam','720','400','porcoes')"></button>
                     </div>
                     <div class="col">
-                        <button class="icon ion-images" onclick="addImgTypes('alb','1300','700','porcoes')"></button>
+                        <button class="icon ion-images" onclick="addImgTypes('alb','720','400','porcoes')"></button>
                     </div>
                 </div>
             </div>

@@ -1,9 +1,11 @@
-// var url = 'https://g34czjej1b.execute-api.us-east-1.amazonaws.com/production'
-var url = 'http://localhost:3000'
+var url = 'https://g34czjej1b.execute-api.us-east-1.amazonaws.com/production'
+// var url = 'http://localhost:3000'
 
 var USER = []
 var IMGCAPAS = []
+var BEERITEM = []
 var MAXQTDIMG = 0
+
 MobileUI.formByObject('contetInicial', {
     userEmailName: 'Teste',
     userPassword: '123'
@@ -34,6 +36,9 @@ function login(){
                     closeLoading()
                     openPage('barAdmin', function (){
                         IMGCAPAS = res.body.data.swiperPhotos
+                        BEERITEM = res.body.data.dadosBeer
+                        console.log(IMGCAPAS)
+                        console.log(BEERITEM)
                         if (IMGCAPAS == undefined){
                             MAXQTDIMG = 0
                         } else {
@@ -210,7 +215,7 @@ function addImgTypes(tpEntrada, tWidth, tHeight, tpImg){
     }
         
     var cameraOptions = {
-        quality: 85,
+        quality: 90,
         destinationType: 0,
         sourceType: tpEnt,
         allowEdit: true,
@@ -342,6 +347,7 @@ function addItem(tpItem){
         item.dadosBeer = {
             "Beer": [
                 {
+                    "barName": document.getElementById('nameCompany').innerHTML,
                     "imgBeer": document.getElementById('beerImg').getAttribute('src'),
                     "tituloBeer": document.getElementById('bebidaItemTitle').value,
                     "descricaoBeer": document.getElementById('bebidaItemDetail').value,
@@ -349,11 +355,11 @@ function addItem(tpItem){
                 }
             ]
         }
-        console.log(item.dadosBeer)
     } else {
         item.dadosPorcao = {
             "Porcao": [
                 {
+                    "barName": document.getElementById('nameCompany').innerHTML,
                     "imgPorcao": document.getElementById('porcaoImg').getAttribute('src'),
                     "tituloPorcao": document.getElementById('porcaoItemTitle').value,
                     "descricaoPorcao": document.getElementById('porcaoItemDetail').value,
@@ -362,6 +368,7 @@ function addItem(tpItem){
             ]
         }
     }
+    loading('Salvando item, aguarde por gentileza!')
     MobileUI.ajax.post(url + '/cadbaritem').send(item).then(function (res){
         if(res.body.errorMessage) {
             closeLoading()
@@ -369,10 +376,12 @@ function addItem(tpItem){
         } else {
             closeLoading()
             alert('Item salvo com sucesso.')
+            BEERITEM = res.body.data.dadosBeer
         }
     }).catch(function (err){
+        console.log(err)
         closeLoading()
-        alert('Ops, tive um probleminha para salvar seu cadastro! Tente novamente por gentileza.')
+        alert('Ops, tive um probleminha para salvar seu item! Tente novamente por gentileza.')
     })
 }
 
