@@ -3,7 +3,9 @@ var url = 'https://g34czjej1b.execute-api.us-east-1.amazonaws.com/production'
 
 var USER = []
 var IMGCAPAS = []
+var BEERITEM = []
 var MAXQTDIMG = 0
+
 MobileUI.formByObject('contetInicial', {
     userEmailName: 'Teste',
     userPassword: '123'
@@ -33,8 +35,15 @@ function login(){
                 } else {
                     closeLoading()
                     openPage('barAdmin', function (){
-                        // console.log(res.body.data.swiperPhotos)
                         IMGCAPAS = res.body.data.swiperPhotos
+                        BEERITEM = res.body.data.dadosBeer
+                        console.log(IMGCAPAS)
+                        console.log(BEERITEM)
+                        if (IMGCAPAS == undefined){
+                            MAXQTDIMG = 0
+                        } else {
+                            MAXQTDIMG = IMGCAPAS.length
+                        }
                         setTimeout(() => {
                             new Swiper('.swipper-gallery', {
                                 pagination: '.swiper-pagination'
@@ -161,6 +170,30 @@ function cadBar(){
     })
 }
 
+function openAddItem(tpItem){
+    if(tpItem == 'beer'){
+        MobileUI.show('addItemBoxBeer')
+        MobileUI.hide('btnAddItemBeer')
+    } else {
+        MobileUI.show('addItemBoxPorcao')
+        MobileUI.hide('btnAddItemPorcao')
+    }
+}
+
+function cancelAddItem(tpItem){
+    if(tpItem == 'beer'){
+        MobileUI.hide('addItemBoxBeer')
+        MobileUI.show('btnAddItemBeer')
+        var image = document.getElementById('beerImg')
+        image.src = 'img/semImg.jpg'
+    } else {
+        MobileUI.hide('addItemBoxPorcao')
+        MobileUI.show('btnAddItemPorcao')
+        var image = document.getElementById('porcaoImg')
+        image.src = 'img/semImg.jpg'
+    }
+}
+
 function exitFromApp(){
     navigator.app.exitApp();
 }
@@ -173,7 +206,7 @@ function goDetail() {
     })
 }
 
-function addBarAmbientImg(tpEntrada){
+function addImgTypes(tpEntrada, tWidth, tHeight, tpImg){
     var tpEnt = ''
     if (tpEntrada == 'cam'){
         tpEnt = 1
@@ -182,22 +215,35 @@ function addBarAmbientImg(tpEntrada){
     }
         
     var cameraOptions = {
-        quality: 80,
+        quality: 90,
         destinationType: 0,
         sourceType: tpEnt,
         allowEdit: true,
-        targetWidth: 360,
-        targetHeight: 300,
+        targetWidth: tWidth,
+        targetHeight: tHeight,
         correctOrientation: true,
         saveToPhotoAlbum: true,
         direction: 0
     }
-    
-    alertGifMessage(cameraOptions)
+    if (MAXQTDIMG <= 6){
+        switch (tpImg){
+            case 'painel':
+                alertGifMessage(cameraOptions)
+            break
+            case 'beer':
+                alertAddBeer(cameraOptions)
+            break
+            case 'porcao':
+                alertAddPorcao(cameraOptions)
+            break
+        }
+    } else {
+        alert('Você já cadastrou a quantidade máxima de fotos permitida!')
+    }
     
 }
 
-function cameraSuccess(imageData){
+function cameraSuccessPainel(imageData){
     var ImgBar = {}
     ImgBar.barName = USER.nomeCompany
     ImgBar.swiperPhotos = {
@@ -211,39 +257,30 @@ function cameraSuccess(imageData){
     window.addEventListener("orientationchange", function(){
         screen.orientation.lock('landscape-primary')
     })
-    if (MAXQTDIMG <= 6){
-        loading('Por favor aguarde, estou salvando a imagem do seu estabelecimento.')
-        MobileUI.ajax.post(url + '/cadbar').send(ImgBar).then(function (res){
-            if(res.body.errorMessage) {
-                closeLoading()
-                alert(res.body.errorMessage)
-            } else {
-                closeLoading()
-                alert('Imagem salva com sucesso.')
-                MAXQTDIMG = res.body.data.swiperPhotos.length
-                USER = res.body.data
-                IMGCAPAS = res.body.data.swiperPhotos
-                setTimeout(() => {
-                    new Swiper('.swipper-gallery', {
-                        pagination: '.swiper-pagination'
-                    });
-                }, 1000)
-            }
-        }).catch(function (err){
-            console.log(err)
+    loading('Por favor aguarde, estou salvando a imagem do seu estabelecimento.')
+    MobileUI.ajax.post(url + '/cadbar').send(ImgBar).then(function (res){
+        if(res.body.errorMessage) {
             closeLoading()
-            alert('Ops, tive um probleminha para salvar seu cadastro! Tente novamente por gentileza.')
-        })
-    } else {
-        alert('Você já cadastrou a quantidade máxima de fotos permitida!')
-    }
+            alert(res.body.errorMessage)
+        } else {
+            closeLoading()
+            alert('Imagem salva com sucesso.')
+            MAXQTDIMG = res.body.data.swiperPhotos.length
+            USER = res.body.data
+            IMGCAPAS = res.body.data.swiperPhotos
+            setTimeout(() => {
+                new Swiper('.swipper-gallery', {
+                    pagination: '.swiper-pagination'
+                });
+            }, 1000)
+        }
+    }).catch(function (err){
+        closeLoading()
+        alert('Ops, tive um probleminha para salvar seu cadastro! Tente novamente por gentileza.')
+    })
     window.addEventListener("orientationchange", function(){
         screen.orientation.lock('portrait')
     })
-}
-
-function cameraError(){
-    alert(message)
 }
 
 function alertGifMessage(cameraOptions){
@@ -261,63 +298,99 @@ function alertGifMessage(cameraOptions){
                 class: 'text-grey-50',
                 onclick: function(){
                     closeAlert()
-                    navigator.camera.getPicture(cameraSuccess, cameraError, cameraOptions)
+                    navigator.camera.getPicture(cameraSuccessPainel, cameraError, cameraOptions)
                 }
             }
         ]
     })
 }
 
-function addBarItem(tpItem){
-    var msgTitle = ''
-    if (tpItem == 'beer'){
-        msgTitle = 'Cadastre a Cerveja'
-    } else {
-        msgTitle = 'Cadastre a porção'
+function cameraSuccessBeer(imageData){
+    var image = document.getElementById('beerImg')
+    image.src = "data:image/jpeg;base64," + imageData
+    var ImgBarBeer = {}
+    ImgBarBeer.swiperPhotos = {
+        "itemBeer": [
+            {
+                "qtdImgBeer": parseInt(MAXQTDIMG) + 1,
+                "base64ImgBeer": "data:image/jpeg;base64," + imageData,                
+            }
+        ]
     }
+}
+
+function alertAddBeer(cameraOptions){
     var box = '<div class="grey-800 align-center">'
-        box += '<div class="row">'
-        box += '    <div class="col">'
-        box += '        <img class="avatar" src="img/semImg.jpg" style="padding-top:10px; max-width: 90px; min-height: 130px; width: auto; height: auto;">'
-        box += '        <button class="circle text-green icon ion-plus-circled text-rigth"></button>'
-        box += '    </div>'
-        box += '    <div class="col">'
-        box += '        <div class="list">'
-        box += '            <div class="item">'
-        box += '                <input class="text-white" type="text" placeholder="Nome do Item">'
-        box += '            </div>'
-        box += '            <div class="item">'
-        box += '                <input class="text-white" type="text" placeholder="Descrição do Item">'
-        box += '            </div>'
-        box += '            <div class="item">'
-        box += '                <input class="text-white" type="number" placeholder="Valor do Item">'
-        box += '            </div>'
-        box += '        </div>'
-        box += '    </div>'
-        box += '</div>'
-        box += '</div>'
+    box += '    <p>Imagem para apresentação do Item</p>'
+    // box += '    <img src="" style="widows: 100px; height: 100px;">'
+    box += '</div>'
     alert({
-        title: msgTitle,
+        title: 'Imagens para capa.',
         message: box,
         class: 'grey-800 radius',
         buttons:[
             {
-                label: 'Cancelar',
+                label: 'Ok',
                 class: 'text-grey-50',
                 onclick: function(){
                     closeAlert()
-                }
-            },
-            {
-                label: 'Salvar',
-                class: 'text-grey-50',
-                onclick: function(){
-                    closeAlert()
+                    navigator.camera.getPicture(cameraSuccessBeer, cameraError, cameraOptions)
                 }
             }
-        ]        
+        ]
     })
 }
+
+function addItem(tpItem){
+    var item = {}
+    if (tpItem == 'beer'){
+        item.dadosBeer = {
+            "Beer": [
+                {
+                    "barName": document.getElementById('nameCompany').innerHTML,
+                    "imgBeer": document.getElementById('beerImg').getAttribute('src'),
+                    "tituloBeer": document.getElementById('bebidaItemTitle').value,
+                    "descricaoBeer": document.getElementById('bebidaItemDetail').value,
+                    "precoBeer": document.getElementById('bebidaItemPrice').value
+                }
+            ]
+        }
+    } else {
+        item.dadosPorcao = {
+            "Porcao": [
+                {
+                    "barName": document.getElementById('nameCompany').innerHTML,
+                    "imgPorcao": document.getElementById('porcaoImg').getAttribute('src'),
+                    "tituloPorcao": document.getElementById('porcaoItemTitle').value,
+                    "descricaoPorcao": document.getElementById('porcaoItemDetail').value,
+                    "precoPorcao": document.getElementById('porcaoItemPrice').value
+                }
+            ]
+        }
+    }
+    loading('Salvando item, aguarde por gentileza!')
+    MobileUI.ajax.post(url + '/cadbaritem').send(item).then(function (res){
+        if(res.body.errorMessage) {
+            closeLoading()
+            alert(res.body.errorMessage)
+        } else {
+            closeLoading()
+            alert('Item salvo com sucesso.')
+            BEERITEM = res.body.data.dadosBeer
+        }
+    }).catch(function (err){
+        console.log(err)
+        closeLoading()
+        alert('Ops, tive um probleminha para salvar seu item! Tente novamente por gentileza.')
+    })
+}
+
+
+function cameraError(){
+    alert(message)
+}
+
+
 
 function showMyCustomizedAlert(content, message){
     alert({
@@ -396,13 +469,5 @@ function weekDayTime(weekDay, status){
         } else {
             document.getElementById('weekDay' + weekDay).className = 'text-red'
         }
-    })    
-    
-    //### Código mantido para testar no navegador!
-    // document.getElementById('weekDay' + weekDay + status).innerHTML = '10:30'
-    // if (document.getElementById('weekDay' + weekDay + status).innerHTML !== '00:00'){
-    //     document.getElementById('weekDay' + weekDay).className = 'text-green'
-    // } else {
-    //     document.getElementById('weekDay' + weekDay).className = 'text-red'
-    // }
+    })
 }

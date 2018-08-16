@@ -49,8 +49,8 @@
   float: right;
   position: absolute;
   z-index:9999;
-  margin-top: -36px;
-  margin-left: 44px; 
+  margin-top: 68px;
+  margin-left: -42px; 
 }
 
 .text-big .icon, .text-big.icon {
