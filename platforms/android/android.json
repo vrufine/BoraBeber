@@ -46,6 +46,16 @@
             }
           ]
         }
+      },
+      "res/values/nativekeyboard.xml": {
+        "parents": {
+          "/*": []
+        }
+      },
+      "app/src/main/res/values/nativekeyboard.xml": {
+        "parents": {
+          "/*": []
+        }
       }
     }
   },

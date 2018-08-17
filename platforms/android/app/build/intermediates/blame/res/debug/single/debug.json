@@ -152,6 +152,10 @@
         "source": "C:\\worksapce\\appBoraBeber\\platforms\\android\\app\\src\\main\\res\\xml\\config.xml"
     },
     {
+        "merged": "C:\\worksapce\\BoraBeber\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable_cursor.xml.flat",
+        "source": "C:\\worksapce\\BoraBeber\\platforms\\android\\app\\src\\main\\res\\drawable\\cursor.xml"
+    },
+    {
         "merged": "C:\\worksapce\\BoraBeber\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi_icon.png.flat",
         "source": "C:\\worksapce\\BoraBeber\\platforms\\android\\app\\src\\main\\res\\mipmap-hdpi\\icon.png"
     }

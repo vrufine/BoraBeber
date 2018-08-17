@@ -15,6 +15,16 @@ window.addEventListener("orientationchange", function(){
     screen.orientation.lock('portrait')
 });
 
+document.addEventListener('showkeyboard', onKeyboardShow, false);
+
+
+NativeKeyboard.showMessenger({
+    onSubmit: function(text) {
+      alert("The user typed: " + text);
+    }
+});
+
+
 function login(){
     var usuario = {}
     usuario.email = document.getElementById('userEmailName').value

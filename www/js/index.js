@@ -37,6 +37,8 @@ function login(){
                     openPage('barAdmin', function (){
                         IMGCAPAS = res.body.data.swiperPhotos
                         BEERITEM = res.body.data.dadosBeer
+
+
                         console.log(BEERITEM)
                         if (IMGCAPAS == undefined){
                             MAXQTDIMG = 0
