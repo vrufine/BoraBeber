@@ -4,6 +4,8 @@ var url = 'https://g34czjej1b.execute-api.us-east-1.amazonaws.com/production'
 var USER = []
 var IMGCAPAS = []
 var BEERITEM = []
+var BEERPAR = []
+var BEERIMPAR = []
 var MAXQTDIMG = 0
 
 MobileUI.formByObject('contetInicial', {
@@ -38,8 +40,17 @@ function login(){
                         IMGCAPAS = res.body.data.swiperPhotos
                         BEERITEM = res.body.data.dadosBeer
 
-
-                        console.log(BEERITEM)
+                        for (i = 0; i < BEERITEM.length; i++){
+                            if (isPar(i) == 'par'){
+                                BEERPAR.push(res.body.data.dadosBeer[i])
+                            } else {
+                                BEERIMPAR.push(res.body.data.dadosBeer[i])
+                            }
+                        }
+                        console.log('Length: ' + BEERITEM.length)
+                        console.log(BEERPAR)
+                        console.log(BEERIMPAR) 
+                                               
                         if (IMGCAPAS == undefined){
                             MAXQTDIMG = 0
                         } else {
@@ -58,6 +69,14 @@ function login(){
             alert('Falha ao realizar o Login! Tente novamente.')
             alert(err)
         })
+    }
+}
+
+function isPar(number){
+    if(number & 1){
+        return('impar');
+    } else {
+        return('par');
     }
 }
 
