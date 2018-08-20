@@ -4,8 +4,6 @@ var url = 'https://g34czjej1b.execute-api.us-east-1.amazonaws.com/production'
 var USER = []
 var IMGCAPAS = []
 var BEERITEM = []
-var BEERPAR = []
-var BEERIMPAR = []
 var MAXQTDIMG = 0
 
 MobileUI.formByObject('contetInicial', {
@@ -39,18 +37,31 @@ function login(){
                     openPage('barAdmin', function (){
                         IMGCAPAS = res.body.data.swiperPhotos
                         BEERITEM = res.body.data.dadosBeer
-
+                        
                         for (i = 0; i < BEERITEM.length; i++){
                             if (isPar(i) == 'par'){
-                                BEERPAR.push(res.body.data.dadosBeer[i])
+                                BEERITEM[i].descricaoBeerPar = BEERITEM[i].descricaoBeer;
+                                BEERITEM[i].imgBeerPar = BEERITEM[i].imgBeer;
+                                BEERITEM[i].precoBeerPar = BEERITEM[i].precoBeer;
+                                BEERITEM[i].tituloBeerPar = BEERITEM[i].tituloBeer;
+                                delete BEERITEM[i].descricaoBeer;
+                                delete BEERITEM[i].imgBeer;
+                                delete BEERITEM[i].precoBeer;
+                                delete BEERITEM[i].tituloBeer;
                             } else {
-                                BEERIMPAR.push(res.body.data.dadosBeer[i])
+                                BEERITEM[i-1].descricaoBeerImpar = BEERITEM[i].descricaoBeer;
+                                BEERITEM[i-1].imgBeerImpar = BEERITEM[i].imgBeer;
+                                BEERITEM[i-1].precoBeerImpar = BEERITEM[i].precoBeer;
+                                BEERITEM[i-1].tituloBeerImpar = BEERITEM[i].tituloBeer;
+                                delete BEERITEM[i].descricaoBeer;
+                                delete BEERITEM[i].imgBeer;
+                                delete BEERITEM[i].precoBeer;
+                                delete BEERITEM[i].tituloBeer;
+                                delete BEERITEM[i]
                             }
                         }
-                        console.log('Length: ' + BEERITEM.length)
-                        console.log(BEERPAR)
-                        console.log(BEERIMPAR) 
-                                               
+
+                        console.log(BEERITEM)
                         if (IMGCAPAS == undefined){
                             MAXQTDIMG = 0
                         } else {
@@ -405,6 +416,10 @@ function addItem(tpItem){
     })
 }
 
+function editItemBeer(img, title, descri, preço){
+    alert(img + ' ' + title + ' ' + descri + ' ' + preço)
+}
+
 function imgOptPopOver(){
 
      var box = '<div class="grey-800 align-center">'
@@ -447,8 +462,6 @@ function imgOptPopOver(){
 function cameraError(){
     alert(message)
 }
-
-
 
 function showMyCustomizedAlert(content, message){
     alert({
