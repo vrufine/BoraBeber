@@ -60,8 +60,6 @@ function login(){
                                 delete BEERITEM[i]
                             }
                         }
-
-                        console.log(BEERITEM)
                         if (IMGCAPAS == undefined){
                             MAXQTDIMG = 0
                         } else {
