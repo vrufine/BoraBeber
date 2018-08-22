@@ -1,3 +1,5 @@
+var BEERITEM = []
+
 function openAddItem(tpItem){
     if(tpItem == 'beer'){
         MobileUI.show('addItemBoxBeer')
@@ -13,7 +15,7 @@ function cancelAddItem(tpItem){
         MobileUI.hide('addItemBoxBeer')
         MobileUI.show('btnAddItemBeer')
         var image = document.getElementById('beerImg')
-        image.src = 'img/semImg.jpg'        
+        image.src = 'img/semImg.jpg'
         document.getElementById('bebidaItemTitle').value = ''
         document.getElementById('bebidaItemDetail').value = ''
         document.getElementById('bebidaItemPrice').value = ''
@@ -147,7 +149,7 @@ function alertAddBeer(cameraOptions){
     // box += '    <img src="" style="widows: 100px; height: 100px;">'
     box += '</div>'
     alert({
-        title: 'Imagens para capa.',
+        title: 'Imagens para o Item',
         message: box,
         class: 'grey-800 radius',
         buttons:[
@@ -190,6 +192,7 @@ function addItem(tpItem){
             ]
         }
     }
+    var erro = ''
     loading('Salvando item, aguarde por gentileza!')
     MobileUI.ajax.post(url + '/cadbaritem').send(item).then(function (res){
         if(res.body.errorMessage) {
@@ -198,42 +201,89 @@ function addItem(tpItem){
         } else {
             closeLoading()
             alert('Item salvo com sucesso.')
-            BEERITEM = res.body.data.dadosBeer            
-                        
+            BEERITEM = res.body.data.dadosBeer
             for (i = 0; i < BEERITEM.length; i++){
-                if (isPar(i) == 'par'){
-                    BEERITEM[i].descricaoBeerPar = BEERITEM[i].descricaoBeer;
-                    BEERITEM[i].imgBeerPar = BEERITEM[i].imgBeer;
-                    BEERITEM[i].precoBeerPar = BEERITEM[i].precoBeer;
-                    BEERITEM[i].tituloBeerPar = BEERITEM[i].tituloBeer;
-                    delete BEERITEM[i].descricaoBeer;
-                    delete BEERITEM[i].imgBeer;
-                    delete BEERITEM[i].precoBeer;
-                    delete BEERITEM[i].tituloBeer;
+                if (isPar(i) === 'par'){
+                    BEERITEM[i].descricaoBeerPar = BEERITEM[i].descricaoBeer
+                    BEERITEM[i].imgBeerPar = BEERITEM[i].imgBeer
+                    BEERITEM[i].precoBeerPar = BEERITEM[i].precoBeer
+                    BEERITEM[i].tituloBeerPar = BEERITEM[i].tituloBeer
+                    delete BEERITEM[i].descricaoBeer
+                    delete BEERITEM[i].imgBeer
+                    delete BEERITEM[i].precoBeer
+                    delete BEERITEM[i].tituloBeer
                 } else {
-                    BEERITEM[i-1].descricaoBeerImpar = BEERITEM[i].descricaoBeer;
-                    BEERITEM[i-1].imgBeerImpar = BEERITEM[i].imgBeer;
-                    BEERITEM[i-1].precoBeerImpar = BEERITEM[i].precoBeer;
-                    BEERITEM[i-1].tituloBeerImpar = BEERITEM[i].tituloBeer;
-                    delete BEERITEM[i].descricaoBeer;
-                    delete BEERITEM[i].imgBeer;
-                    delete BEERITEM[i].precoBeer;
-                    delete BEERITEM[i].tituloBeer;
+                    BEERITEM[i-1].descricaoBeerImpar = BEERITEM[i].descricaoBeer
+                    BEERITEM[i-1].imgBeerImpar = BEERITEM[i].imgBeer
+                    BEERITEM[i-1].precoBeerImpar = BEERITEM[i].precoBeer
+                    BEERITEM[i-1].tituloBeerImpar = BEERITEM[i].tituloBeer
+                    delete BEERITEM[i].descricaoBeer
+                    delete BEERITEM[i].imgBeer
+                    delete BEERITEM[i].precoBeer
+                    delete BEERITEM[i].tituloBeer
                     delete BEERITEM[i]
                 }
             }
-            document.getElementById('beerImg').getAttribute('src') = 'img/semImg.jpg'
+            MobileUI.hide('addItemBoxBeer')
+            var image = document.getElementById('beerImg')
+            image.src = 'img/semImg.jpg'
             document.getElementById('bebidaItemTitle').value = ''
             document.getElementById('bebidaItemDetail').value = ''
             document.getElementById('bebidaItemPrice').value = ''
         }
     }).catch(function (err){
+        console.log(err, erro)
         closeLoading()
         alert('Ops, tive um probleminha para salvar seu item! Tente novamente por gentileza.')
     })
 }
 
 function editItemBeer(img, title, descri, preço){
-    alert(img + ' ' + title + ' ' + descri + ' ' + preço)
+var  box = '<div class="align-center" style="margin-left: 15px; margin-right: 15px;">'
+    box += '    <div class="text-center">'
+    box += '        <img src="' + img + '" style="width: 100px; height: 110px;" id="beerImg">'
+    box += '        <button class="icon ion-ios-loop-strong text-green text-strong" style="float: right; position: absolute; z-index:7; margin-top: 68px; margin-left: -42px;"></button>'
+    box += '    </div>'
+    box += '    <div class="list no-border">'
+    box += '        <div class="item border-grey-800 border-bottom" style="height: 40px;">'
+    box += '            <input type="text" placeholder="Título do Item" id="bebidaItemTitle" value="' + title + '">'
+    box += '        </div>'
+    box += '        <div class="item border-grey-800 border-bottom" style="height: 40px;">'
+    box += '            <input type="text" placeholder="Descrição do Item" id="bebidaItemDetail" value="' + descri + '">'
+    box += '        </div>'
+    box += '        <div class="item label-fixed border-grey-800 border-bottom" style="height: 50px;">'
+    box += '            <label style="margin-left: -43px;  margin-right: -30px; margin-top: 2px;">R$</label>'
+    box += '            <input type="number" placeholder="Preço" class="text-big" id="bebidaItemPrice" value="' + preço + '">'
+    box += '        </div>'
+    box += '    </div>'
+    box += '</div>'
     
+    alert({
+        title: 'Editar Item',
+        message: box,
+        class: 'grey-800 radius',
+        buttons:[
+            {
+                label: 'Remover',
+                class: 'text-grey-50',
+                onclick: function(){
+                    closeAlert()
+                }
+            },
+            {
+                label: 'Cancelar',
+                class: 'text-grey-50',
+                onclick: function(){
+                    closeAlert()
+                }
+            },
+            {
+                label: 'Salvar',
+                class: 'text-grey-50',
+                onclick: function(){
+                    closeAlert()
+                }
+            }
+        ]
+    })
 }

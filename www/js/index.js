@@ -37,27 +37,28 @@ function login(){
                     openPage('barAdmin', function (){
                         IMGCAPAS = res.body.data.swiperPhotos
                         BEERITEM = res.body.data.dadosBeer
-                        
-                        for (i = 0; i < BEERITEM.length; i++){
-                            if (isPar(i) == 'par'){
-                                BEERITEM[i].descricaoBeerPar = BEERITEM[i].descricaoBeer;
-                                BEERITEM[i].imgBeerPar = BEERITEM[i].imgBeer;
-                                BEERITEM[i].precoBeerPar = BEERITEM[i].precoBeer;
-                                BEERITEM[i].tituloBeerPar = BEERITEM[i].tituloBeer;
-                                delete BEERITEM[i].descricaoBeer;
-                                delete BEERITEM[i].imgBeer;
-                                delete BEERITEM[i].precoBeer;
-                                delete BEERITEM[i].tituloBeer;
-                            } else {
-                                BEERITEM[i-1].descricaoBeerImpar = BEERITEM[i].descricaoBeer;
-                                BEERITEM[i-1].imgBeerImpar = BEERITEM[i].imgBeer;
-                                BEERITEM[i-1].precoBeerImpar = BEERITEM[i].precoBeer;
-                                BEERITEM[i-1].tituloBeerImpar = BEERITEM[i].tituloBeer;
-                                delete BEERITEM[i].descricaoBeer;
-                                delete BEERITEM[i].imgBeer;
-                                delete BEERITEM[i].precoBeer;
-                                delete BEERITEM[i].tituloBeer;
-                                delete BEERITEM[i]
+                        if (res.body.data.dadosBeer !== undefined){
+                            for (i = 0; i < BEERITEM.length; i++){
+                                if (isPar(i) == 'par'){
+                                    BEERITEM[i].descricaoBeerPar = BEERITEM[i].descricaoBeer;
+                                    BEERITEM[i].imgBeerPar = BEERITEM[i].imgBeer;
+                                    BEERITEM[i].precoBeerPar = BEERITEM[i].precoBeer;
+                                    BEERITEM[i].tituloBeerPar = BEERITEM[i].tituloBeer;
+                                    delete BEERITEM[i].descricaoBeer;
+                                    delete BEERITEM[i].imgBeer;
+                                    delete BEERITEM[i].precoBeer;
+                                    delete BEERITEM[i].tituloBeer;
+                                } else {
+                                    BEERITEM[i-1].descricaoBeerImpar = BEERITEM[i].descricaoBeer;
+                                    BEERITEM[i-1].imgBeerImpar = BEERITEM[i].imgBeer;
+                                    BEERITEM[i-1].precoBeerImpar = BEERITEM[i].precoBeer;
+                                    BEERITEM[i-1].tituloBeerImpar = BEERITEM[i].tituloBeer;
+                                    delete BEERITEM[i].descricaoBeer;
+                                    delete BEERITEM[i].imgBeer;
+                                    delete BEERITEM[i].precoBeer;
+                                    delete BEERITEM[i].tituloBeer;
+                                    delete BEERITEM[i]
+                                }
                             }
                         }
                         if (IMGCAPAS == undefined){
