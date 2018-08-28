@@ -1,5 +1,5 @@
-var url = 'https://g34czjej1b.execute-api.us-east-1.amazonaws.com/production'
-// var url = 'http://localhost:3000'
+// var url = 'https://g34czjej1b.execute-api.us-east-1.amazonaws.com/production'
+var url = 'http://localhost:3000'
 
 var USER = []
 var IMGCAPAS = []
@@ -7,7 +7,7 @@ var BEERITEM = []
 var MAXQTDIMG = 0
 
 MobileUI.formByObject('contetInicial', {
-    userEmailName: 'Teste',
+    userEmailName: 'Bar',
     userPassword: '123'
 })
 
@@ -28,7 +28,7 @@ function login(){
                 closeLoading()
                 alert(res.body.errorMessage)
             } else {
-                USER = JSON.parse(JSON.stringify(res.body.data))
+                USER = res.body.data
                 if (USER.typeAccount == 'user'){
                     closeLoading()
                     openPage('main')

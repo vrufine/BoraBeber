@@ -1,4 +1,28 @@
 var BEERITEM = []
+var DADOSBAR = []
+
+function getDadosBar(barName){
+    var company = {}
+    company.barName = barName
+    loading('Buscando dados do estabelecimento.')
+    MobileUI.ajax.get(url + '/conscompany').send(company).then(function (res){
+        if(res.body.errorMessage) {
+            closeLoading()
+            alert(res.body.errorMessage)
+        } else {
+            closeLoading()
+            DADOSBAR = res.body.data
+        }
+    }).catch(function(err) {
+        closeLoading()
+        alert('Falha ao capturar dados do estabelecimento.')
+        alert(err)
+    })
+
+
+
+    openPage('dadosBar')
+}   
 
 function exitFromApp(){
     navigator.app.exitApp();

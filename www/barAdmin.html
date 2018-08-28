@@ -3,9 +3,6 @@
         <div class="left">
             <button class="icon ion-navicon" onclick="openMenu('myMenu')"></button>
         </div>
-        <div class="right">
-            <button class="icon ion-person"></button>
-        </div>
         <h1 id="nameCompany">${nomeCompany}</h1>
     </div>
     <div class="menu white" id="myMenu" data="USER">
@@ -17,7 +14,7 @@
                 <h1>${nomeCompany}</h1>
                 <p>${emailCompany}</p>
             </div>
-            <a class="item">
+            <a onclick="getDadosBar('${nomeCompany}')" class="item">
                 <div class="left">
                     <i class="icon ion-ios-list-outline"></i>
                 </div>
