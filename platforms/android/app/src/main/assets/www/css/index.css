@@ -40,7 +40,7 @@
   height: 22px;
   float: right;
   position: absolute;
-  z-index:9999;
+  z-index:7;
   margin-top: 250px;
   margin-left: 310px;
 }
@@ -48,7 +48,7 @@
 #btnAddImgItem {
   float: right;
   position: absolute;
-  z-index:9999;
+  z-index:7;
   margin-top: 68px;
   margin-left: -42px; 
 }

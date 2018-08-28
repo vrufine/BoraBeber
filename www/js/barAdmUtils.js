@@ -1,5 +1,9 @@
 var BEERITEM = []
 
+function exitFromApp(){
+    navigator.app.exitApp();
+}
+
 function openAddItem(tpItem){
     if(tpItem == 'beer'){
         MobileUI.show('addItemBoxBeer')

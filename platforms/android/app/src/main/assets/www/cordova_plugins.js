@@ -62,6 +62,14 @@ module.exports = [
     "clobbers": [
       "CameraPopoverHandle"
     ]
+  },
+  {
+    "id": "cordova-plugin-native-keyboard.NativeKeyboard",
+    "file": "plugins/cordova-plugin-native-keyboard/www/NativeKeyboard.js",
+    "pluginId": "cordova-plugin-native-keyboard",
+    "clobbers": [
+      "window.NativeKeyboard"
+    ]
   }
 ];
 module.exports.metadata = 
@@ -72,7 +80,8 @@ module.exports.metadata =
   "es6-promise-plugin": "4.2.2",
   "cordova-plugin-screen-orientation": "3.0.1",
   "cordova-plugin-datetimepicker": "1.0.0",
-  "cordova-plugin-camera": "4.0.3"
+  "cordova-plugin-camera": "4.0.3",
+  "cordova-plugin-native-keyboard": "1.5.7"
 };
 // BOTTOM OF METADATA
 });

@@ -6,31 +6,33 @@
         <h1>UaaU, Você está se cadastrando!</h1>
     </div>
     <div class="content has-header grey-900">
-        <div class="list no-border padding">
-            <div class="item label-float radius grey-200">
-                <label>Por qual nome você gosta de ser chamado(a) ?</label>
-                <input type="text" id="nomeUser">
+        <form>
+            <div class="list no-border padding">
+                <div class="item label-float radius grey-200">
+                    <label>Por qual nome você gosta de ser chamado(a) ?</label>
+                    <input type="text" id="nomeUser">
+                </div>
+                <div class="space"></div>
+                <div class="item label-float radius grey-200">
+                    <label>Digite seu e-mail</label>
+                    <input type="email" id="emailUser">
+                </div>
+                <div class="space"></div>
+                <div class="item label-float radius grey-200">
+                    <label>Digite uma senha para seu login.</label>
+                    <input type="password" id="passwordUser">
+                </div>
+                <div class="space"></div>
+                <div class="item label-float radius grey-200">
+                    <label>Confirme a senha para seu login.</label>
+                    <input type="password" id="passwordConfirmUser">
+                </div>
+                <div class="space"></div>
+                <div class="space"></div>
+                <div class="item">
+                    <button class="full radius shadow blue" onclick="cadUser()">Salvar e continuar</button>
+                </div>
             </div>
-            <div class="space"></div>
-            <div class="item label-float radius grey-200">
-                <label>Digite seu e-mail</label>
-                <input type="email" id="emailUser">
-            </div>
-            <div class="space"></div>
-            <div class="item label-float radius grey-200">
-                <label>Digite uma senha para seu login.</label>
-                <input type="password" id="passwordUser">
-            </div>
-            <div class="space"></div>
-            <div class="item label-float radius grey-200">
-                <label>Confirme a senha para seu login.</label>
-                <input type="password" id="passwordConfirmUser">
-            </div>
-            <div class="space"></div>
-            <div class="space"></div>
-            <div class="item">
-                <button class="full radius shadow blue" onclick="cadUser()">Salvar e continuar</button>
-            </div>
-        </div>
+        </form>
     </div>
 </div>

@@ -93,17 +93,7 @@ function isPar(number){
 function createBar() {
     
     openPage('createBar', function() {        
-        $("#tellCompany").mask("(99) 9 9999-99 99")
-        // MobileUI.formByObject('formCreateBar', {
-        //     nomeCompany: 'Bar',
-        //     emailCompany: 'bar@bar.com.br',
-        //     enderecoCompany: 'Rua do Bar',
-        //     nroCompany: '123',
-        //     bairroCompany: 'Jd. do Bar',
-        //     tellCompany: '12312312312',
-        //     passwordCompany: '123',
-        //     passwordConfirmCompany: '123'
-        // })
+        $("#tellCompany").mask("(99) 9999-99 99")
     })    
 }
 
@@ -141,7 +131,7 @@ function cadBar(){
     dadosBar.bairroCompany = document.getElementById('bairroCompany').value
     dadosBar.tellCompany = document.getElementById('tellCompany').value
     dadosBar.xNomeCompany = ""
-    dadosBar.cnpjCompany = ""
+    dadosBar.cnpjCompany = ""    
     dadosBar.callendar = {
         "weekDays": [
             {
@@ -181,7 +171,6 @@ function cadBar(){
             }
         ]
     }
-
     dadosBar.passwordCompany = document.getElementById('passwordCompany').value
     dadosBar.passwordConfirmCompany = document.getElementById('passwordConfirmCompany').value
     loading('Por favor aguarde, salvando os dados da sua empresa!')
@@ -195,6 +184,7 @@ function cadBar(){
             openPage('barAdmin')
         }
     }).catch(function (err){
+        console.log(err)
         closeLoading()
         alert('Ops, tive um probleminha para salvar seu cadastro! Tente novamente por gentileza.')
     })
@@ -226,9 +216,6 @@ function cadBar(){
 //     }
 // }
 
-function exitFromApp(){
-    navigator.app.exitApp();
-}
 
 function goDetail() {
     openPage('bardetail', function (){
