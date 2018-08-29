@@ -2,26 +2,27 @@ var BEERITEM = []
 var DADOSBAR = []
 
 function getDadosBar(barName){
-    var company = {}
-    company.barName = barName
     loading('Buscando dados do estabelecimento.')
-    MobileUI.ajax.get(url + '/conscompany').send(company).then(function (res){
+    MobileUI.ajax.get(url + '/conscompany?nome=' + barName).send().then(function (res){
         if(res.body.errorMessage) {
             closeLoading()
             alert(res.body.errorMessage)
         } else {
             closeLoading()
-            DADOSBAR = res.body.data
+            openPage('dadosBar', function(){
+                DADOSBAR = res.body.data
+                for(i=0; i<=6; i++){
+                    console.log('weekDay' + DADOSBAR.callendar.weekDays[i].day + 'OpenDadosBar')
+                    document.getElementById('weekDay' + DADOSBAR.callendar.weekDays[i].day + 'OpenDadosBar').innerHTML = DADOSBAR.callendar.weekDays[i].open
+                    // document.getElementById('weekDay' + DADOSBAR.callendar.weekDays[i].day + 'CloseDadosBar').innerHTML = DADOSBAR.callendar.weekDays[i].close
+                }            
+            })
         }
     }).catch(function(err) {
         closeLoading()
         alert('Falha ao capturar dados do estabelecimento.')
         alert(err)
     })
-
-
-
-    openPage('dadosBar')
 }   
 
 function exitFromApp(){
