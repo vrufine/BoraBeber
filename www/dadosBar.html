@@ -8,47 +8,47 @@
         </div> -->
         <h1 class="align-center">Dados do Estabelecimento</h1>
     </div>
-    <div class="content has-header" data="DADOSBAR">
+    <div class="content has-header">
         <div class="align-center">
             <img src="img/semImg.jpg">
         </div>
         <div class="row">
             <div class="col">
                 <div class="list no-border padding">
-                    <form>
+                    <form id="formDadosBar">
                         <div class="item label-float radius grey-200">
                             <label>Qual o Nome do seu estabelecimento ?</label>
-                            <input type="text" id="nomeCompanyDadosBar" class="text-black strong" value="${nomeCompany}">
+                            <input type="text" id="nomeCompany" class="text-black strong">
                         </div>
                         <div class="space"></div>
                         <div class="item label-float radius grey-200">
                             <label>Qual o Email para seu estabelecimento ?</label>
-                            <input type="email" id="emailCompanyDadosBar" class="text-black strong" value="${emailCompany}">
+                            <input type="email" id="emailCompany" class="text-black strong">
                         </div>
                         <div class="space"></div>
                         <div class="row">
                             <div class="col-90" style="margin-right: 5px">
                                 <div class="item label-float radius grey-200">
                                     <label>Endereço ?</label>
-                                    <input type="text" id="enderecoCompanyDadosBar" class="text-black strong" value="${enderecoCompany}">
+                                    <input type="text" id="enderecoCompany" class="text-black strong">
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="item label-float radius grey-200">
                                     <label>Número</label>
-                                    <input type="number" id="nroCompanyDadosBar" class="text-black strong" value="${nroCompany}">
+                                    <input type="number" id="nroCompany" class="text-black strong">
                                 </div>
                             </div>
                         </div>
                         <div class="space"></div>
                         <div class="item label-float radius border-bottom grey-200">
                             <label>Qual o Bairro do estabelecimento ?</label>
-                            <input type="text" id="bairroCompanyDadosBar" class="text-black strong" class="text-black strong" value="${bairroCompany}">
+                            <input type="text" id="bairroCompany" class="text-black strong" class="text-black strong">
                         </div>
                         <div class="space"></div>
                         <div class="item label-float radius border-bottom grey-200">
                             <label>Qual Telefone do estabelecimento ?</label>
-                            <input type="text" id="tellCompanyDadosBar" class="text-black strong" value="${tellCompany}">
+                            <input type="text" id="tellCompany" class="text-black strong">
                         </div>
                         <div class="space"></div>
                         <div class="item label-float radius grey-200">
@@ -106,25 +106,25 @@
                                 <div class="col-30">
                                     <p class="text-strong">Horário de Fechamento</p>
                                     <div class="item" onclick="weekDayTime('Dom','Close')">
-                                        <p id="weekDayDomClose"> </p>
+                                        <p id="weekDayDomCloseDadosBar"> </p>
                                     </div>
                                     <div class="item" onclick="weekDayTime('Seg','Close')">
-                                        <p id="weekDaySegClose"> </p>
+                                        <p id="weekDaySegCloseDadosBar"> </p>
                                     </div>
                                     <div class="item" onclick="weekDayTime('Ter','Close')">
-                                        <p id="weekDayTerClose"> </p>
+                                        <p id="weekDayTerCloseDadosBar"> </p>
                                     </div>
                                     <div class="item" onclick="weekDayTime('Qua','Close')">
-                                        <p id="weekDayQuaClose"> </p>
+                                        <p id="weekDayQuaCloseDadosBar"> </p>
                                     </div>
                                     <div class="item" onclick="weekDayTime('Qui','Close')">
-                                        <p id="weekDayQuiClose"> </p>
+                                        <p id="weekDayQuiCloseDadosBar"> </p>
                                     </div>
                                     <div class="item" onclick="weekDayTime('Sex','Close')">
-                                        <p id="weekDaySexClose"> </p>
+                                        <p id="weekDaySexCloseDadosBar"> </p>
                                     </div>
                                     <div class="item" onclick="weekDayTime('Sab','Close')">
-                                        <p id="weekDaySabClose"> </p>
+                                        <p id="weekDaySabCloseDadosBar"> </p>
                                     </div>
                                 </div>
                             </div>

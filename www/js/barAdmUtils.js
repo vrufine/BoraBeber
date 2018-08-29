@@ -11,10 +11,11 @@ function getDadosBar(barName){
             closeLoading()
             openPage('dadosBar', function(){
                 DADOSBAR = res.body.data
+                MobileUI.formByObject('formDadosBar', res.body.data)
+                
                 for(i=0; i<=6; i++){
-                    console.log('weekDay' + DADOSBAR.callendar.weekDays[i].day + 'OpenDadosBar')
                     document.getElementById('weekDay' + DADOSBAR.callendar.weekDays[i].day + 'OpenDadosBar').innerHTML = DADOSBAR.callendar.weekDays[i].open
-                    // document.getElementById('weekDay' + DADOSBAR.callendar.weekDays[i].day + 'CloseDadosBar').innerHTML = DADOSBAR.callendar.weekDays[i].close
+                    document.getElementById('weekDay' + DADOSBAR.callendar.weekDays[i].day + 'CloseDadosBar').innerHTML = DADOSBAR.callendar.weekDays[i].close
                 }            
             })
         }
