@@ -1,4 +1,30 @@
 var BEERITEM = []
+var DADOSBAR = []
+
+function getDadosBar(barName){
+    loading('Buscando dados do estabelecimento.')
+    MobileUI.ajax.get(url + '/conscompany?nome=' + barName).send().then(function (res){
+        if(res.body.errorMessage) {
+            closeLoading()
+            alert(res.body.errorMessage)
+        } else {
+            closeLoading()
+            openPage('dadosBar', function(){
+                DADOSBAR = res.body.data
+                MobileUI.formByObject('formDadosBar', res.body.data)
+                
+                for(i=0; i<=6; i++){
+                    document.getElementById('weekDay' + DADOSBAR.callendar.weekDays[i].day + 'OpenDadosBar').innerHTML = DADOSBAR.callendar.weekDays[i].open
+                    document.getElementById('weekDay' + DADOSBAR.callendar.weekDays[i].day + 'CloseDadosBar').innerHTML = DADOSBAR.callendar.weekDays[i].close
+                }            
+            })
+        }
+    }).catch(function(err) {
+        closeLoading()
+        alert('Falha ao capturar dados do estabelecimento.')
+        alert(err)
+    })
+}   
 
 function exitFromApp(){
     navigator.app.exitApp();
@@ -60,6 +86,9 @@ function addImgTypes(tpEntrada, tWidth, tHeight, tpImg){
             break
             case 'porcao':
                 alertAddPorcao(cameraOptions)
+            break
+            case 'bar':
+                alertAddImgBar(cameraOptions)
             break
         }
     } else {
@@ -163,6 +192,35 @@ function alertAddBeer(cameraOptions){
                 onclick: function(){
                     closeAlert()
                     navigator.camera.getPicture(cameraSuccessBeer, cameraError, cameraOptions)
+                }
+            }
+        ]
+    })
+}
+
+function cameraSuccessBar(imageData){
+    var image = document.getElementById('imgBar')
+    image.src = "data:image/jpeg;base64," + imageData
+    var imgBar = "data:image/jpeg;base64," + imageData
+}
+
+function alertAddImgBar(cameraOptions){
+var box = '<div class="grey-800 align-center">'
+    box += '    <p>Escolha uma boa imagem para seu estabelecimento!</p>'
+    box += '    <p>Pode ser uma logo ou uma imagem de apresentação. Esta irá aparecer na listagem de todos os bares !</p>'
+    box += '    <p>Você poderá altera-la aqui sempre que quiser.</p>'
+    box += '</div>'
+    alert({
+        title: 'Imagens para o Bar',
+        message: box,
+        class: 'grey-800 radius',
+        buttons:[
+            {
+                label: 'Ok',
+                class: 'text-grey-50',
+                onclick: function(){
+                    closeAlert()
+                    navigator.camera.getPicture(cameraSuccessBar, cameraError, cameraOptions)
                 }
             }
         ]

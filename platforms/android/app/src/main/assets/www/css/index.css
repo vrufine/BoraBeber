@@ -53,6 +53,16 @@
   margin-left: -42px; 
 }
 
+#btnAddImgBar {
+  float: right;
+  position: absolute;
+  z-index:7;
+  width: 46px;
+  height: 42px;
+  margin-top: 95px;
+  margin-left: -38px;
+}
+
 .text-big .icon, .text-big.icon {
   font-size: 25px!important;
 }

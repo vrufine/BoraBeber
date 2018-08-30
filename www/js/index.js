@@ -319,8 +319,6 @@ function weekCollor(weekDay){
 }
 
 function weekDayTime(weekDay, status){
-    var weekDay = weekDay
-    var status = status
     var options = {
         type: 'time',
         date: new Date(),
@@ -330,7 +328,7 @@ function weekDayTime(weekDay, status){
 
     window.DateTimePicker.pick(options, function (date) {
         var ts = new Date(date)
-        document.getElementById('weekDay' + weekDay + status).innerHTML = moment(ts).format('HH:mm')
+        document.getElementById('weekDay' + weekDay + status).innerHTML = moment(ts).format('HH') + ':00'
         if (document.getElementById('weekDay' + weekDay + status).innerHTML !== '00:00'){
             document.getElementById('weekDay' + weekDay).className = 'text-green'
         } else {

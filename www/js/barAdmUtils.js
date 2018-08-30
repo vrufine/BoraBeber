@@ -87,6 +87,9 @@ function addImgTypes(tpEntrada, tWidth, tHeight, tpImg){
             case 'porcao':
                 alertAddPorcao(cameraOptions)
             break
+            case 'bar':
+                alertAddImgBar(cameraOptions)
+            break
         }
     } else {
         alert('Você já cadastrou a quantidade máxima de fotos permitida!')
@@ -189,6 +192,35 @@ function alertAddBeer(cameraOptions){
                 onclick: function(){
                     closeAlert()
                     navigator.camera.getPicture(cameraSuccessBeer, cameraError, cameraOptions)
+                }
+            }
+        ]
+    })
+}
+
+function cameraSuccessBar(imageData){
+    var image = document.getElementById('imgBar')
+    image.src = "data:image/jpeg;base64," + imageData
+    var imgBar = "data:image/jpeg;base64," + imageData
+}
+
+function alertAddImgBar(cameraOptions){
+var box = '<div class="grey-800 align-center">'
+    box += '    <p>Escolha uma boa imagem para seu estabelecimento!</p>'
+    box += '    <p>Pode ser uma logo ou uma imagem de apresentação. Esta irá aparecer na listagem de todos os bares !</p>'
+    box += '    <p>Você poderá altera-la aqui sempre que quiser.</p>'
+    box += '</div>'
+    alert({
+        title: 'Imagens para o Bar',
+        message: box,
+        class: 'grey-800 radius',
+        buttons:[
+            {
+                label: 'Ok',
+                class: 'text-grey-50',
+                onclick: function(){
+                    closeAlert()
+                    navigator.camera.getPicture(cameraSuccessBar, cameraError, cameraOptions)
                 }
             }
         ]
