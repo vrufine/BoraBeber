@@ -286,7 +286,7 @@ function addItem(tpItem){
                     delete BEERITEM[i]
                 }
             }
-            MobileUI.hide('addItemBoxBeer')
+            // MobileUI.hide('addItemBoxBeer')
             var image = document.getElementById('beerImg')
             image.src = 'img/semImg.jpg'
             document.getElementById('bebidaItemTitle').value = ''
@@ -303,7 +303,7 @@ function addItem(tpItem){
 function editItemBeer(img, title, descri, preço){
 var  box = '<div class="align-center" style="margin-left: 15px; margin-right: 15px;">'
     box += '    <div class="text-center">'
-    box += '        <img src="' + img + '" style="width: 100px; height: 110px;" id="beerImg">'
+    box += '        <img src="' + img + '" style="width: 100px; height: 110px;" id="beerImg" class="radius">'
     box += '        <button class="icon ion-ios-loop-strong text-green text-strong" style="float: right; position: absolute; z-index:7; margin-top: 68px; margin-left: -42px;"></button>'
     box += '    </div>'
     box += '    <div class="list no-border">'
