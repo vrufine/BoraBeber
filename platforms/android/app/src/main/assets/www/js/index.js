@@ -171,6 +171,7 @@ function cadBar(){
             }
         ]
     }
+    dadosBar.imgCompany = document.getElementById('imgBar').getAttribute('src')
     dadosBar.passwordCompany = document.getElementById('passwordCompany').value
     dadosBar.passwordConfirmCompany = document.getElementById('passwordConfirmCompany').value
     loading('Por favor aguarde, salvando os dados da sua empresa!')

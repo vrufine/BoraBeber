@@ -103,7 +103,7 @@ function cameraSuccessPainel(imageData){
         "photosCapa": [
             {
                 "imgOrder": parseInt(MAXQTDIMG) + 1,
-                "base64Photo": "data:image/jpeg;base64," + imageData,                
+                "base64Photo": "data:image/jpeg;base64," + imageData,
             }
         ]
     }
