@@ -1,5 +1,5 @@
-var url = 'https://g34czjej1b.execute-api.us-east-1.amazonaws.com/production'
-// var url = 'http://localhost:3000'
+// var url = 'https://g34czjej1b.execute-api.us-east-1.amazonaws.com/production'
+var url = 'http://localhost:3000'
 
 var USER = []
 var IMGCAPAS = []
@@ -124,6 +124,7 @@ function cadUser(){
 function cadBar(){
     var dadosBar = {}
     dadosBar.typeAccount = 'company'
+    dadosBar.imgCompany = document.getElementById('imgBar').getAttribute('src')
     dadosBar.nomeCompany = document.getElementById('nomeCompany').value
     dadosBar.emailCompany = document.getElementById('emailCompany').value
     dadosBar.enderecoCompany = document.getElementById('enderecoCompany').value
