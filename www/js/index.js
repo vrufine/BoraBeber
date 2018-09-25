@@ -7,18 +7,22 @@ var BEERITEM = []
 var MAXQTDIMG = 0
 
 MobileUI.formByObject('contetInicial', {
-    userEmailName: 'Bar',
+    userEmailName: 'bar@bar.com',
     userPassword: '123'
 })
 
 window.addEventListener("orientationchange", function(){
     screen.orientation.lock('portrait')
-});
+})
+
+function trim(str){
+    return str.replace(/\s+$/,'')
+}
 
 function login(){
     var usuario = {}
-    usuario.email = document.getElementById('userEmailName').value
-    usuario.senha = document.getElementById('userPassword').value    
+    usuario.email = trim(document.getElementById('userEmailName').value)
+    usuario.senha = trim(document.getElementById('userPassword').value)
     if (document.getElementById('userEmailName').value == "" || document.getElementById('userPassword').value == ""){
         alert('Usuário e Senha vazios, verifique e tente novamente por gentileza !')
     } else {
