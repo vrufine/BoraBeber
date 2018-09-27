@@ -66,6 +66,7 @@
 .text-big .icon, .text-big.icon {
   font-size: 25px!important;
 }
+
 .list-bebidas-bar .item [valid-bind=''] {
   visibility: hidden;
 }
