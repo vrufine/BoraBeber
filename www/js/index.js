@@ -42,17 +42,6 @@ function login(){
                         IMGCAPAS = res.body.data.swiperPhotos
                         BEERITEM = res.body.data.dadosBeer
                         if (res.body.data.dadosBeer !== undefined){
-                            // if (isPar(BEERITEM.length) == 'impar'){
-                            //     console.log('teste')
-                            //     BEERITEM.push({
-                            //         "barName" : res.body.data.dadosBeer[0].barName,
-                            //         "descricaoBeerPar":'Item', 
-                            //         "imgBeerPar" : 'img/semImg.jpg', 
-                            //         "tituloBeerPar":'Sem Item', 
-                            //         "precoBeerPar" : '0,00'
-                            //     })
-                            // }
-                            // console.log(BEERITEM)
                             for (i = 0; i < BEERITEM.length; i++){
                                 if (BEERITEM[i].descricaoBeer == ""){
                                     BEERITEM[i].descricaoBeer = "Sem Descrição"
