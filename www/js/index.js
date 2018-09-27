@@ -42,25 +42,51 @@ function login(){
                         IMGCAPAS = res.body.data.swiperPhotos
                         BEERITEM = res.body.data.dadosBeer
                         if (res.body.data.dadosBeer !== undefined){
+                            // if (isPar(BEERITEM.length) == 'impar'){
+                            //     console.log('teste')
+                            //     BEERITEM.push({
+                            //         "barName" : res.body.data.dadosBeer[0].barName,
+                            //         "descricaoBeerPar":'Item', 
+                            //         "imgBeerPar" : 'img/semImg.jpg', 
+                            //         "tituloBeerPar":'Sem Item', 
+                            //         "precoBeerPar" : '0,00'
+                            //     })
+                            // }
+                            // console.log(BEERITEM)
                             for (i = 0; i < BEERITEM.length; i++){
-                                if (isPar(i) == 'par'){
-                                    BEERITEM[i].descricaoBeerPar = BEERITEM[i].descricaoBeer;
-                                    BEERITEM[i].imgBeerPar = BEERITEM[i].imgBeer;
-                                    BEERITEM[i].precoBeerPar = BEERITEM[i].precoBeer;
-                                    BEERITEM[i].tituloBeerPar = BEERITEM[i].tituloBeer;
-                                    delete BEERITEM[i].descricaoBeer;
-                                    delete BEERITEM[i].imgBeer;
-                                    delete BEERITEM[i].precoBeer;
-                                    delete BEERITEM[i].tituloBeer;
+                                if (BEERITEM[i].descricaoBeer == ""){
+                                    BEERITEM[i].descricaoBeer = "Sem Descrição"
+                                }
+                                if (BEERITEM[i].imgBeer == ""){
+                                    BEERITEM[i].imgBeer = "img/semImg.jpg"
+                                }
+                                if (BEERITEM[i].precoBeer == ""){
+                                    BEERITEM[i].precoBeer = "0,00"
                                 } else {
-                                    BEERITEM[i-1].descricaoBeerImpar = BEERITEM[i].descricaoBeer;
-                                    BEERITEM[i-1].imgBeerImpar = BEERITEM[i].imgBeer;
-                                    BEERITEM[i-1].precoBeerImpar = BEERITEM[i].precoBeer;
-                                    BEERITEM[i-1].tituloBeerImpar = BEERITEM[i].tituloBeer;
-                                    delete BEERITEM[i].descricaoBeer;
-                                    delete BEERITEM[i].imgBeer;
-                                    delete BEERITEM[i].precoBeer;
-                                    delete BEERITEM[i].tituloBeer;
+                                    BEERITEM[i].precoBeer = BEERITEM[i].precoBeer.replace(".",",")
+                                }
+                                if (BEERITEM[i].tituloBeer == ""){
+                                    BEERITEM[i].tituloBeer = "Sem Titulo"
+                                }
+
+                                if (isPar(i) == 'par'){
+                                    BEERITEM[i].descricaoBeerPar = BEERITEM[i].descricaoBeer
+                                    BEERITEM[i].imgBeerPar = BEERITEM[i].imgBeer
+                                    BEERITEM[i].precoBeerPar = BEERITEM[i].precoBeer
+                                    BEERITEM[i].tituloBeerPar = BEERITEM[i].tituloBeer
+                                    delete BEERITEM[i].descricaoBeer
+                                    delete BEERITEM[i].imgBeer
+                                    delete BEERITEM[i].precoBeer
+                                    delete BEERITEM[i].tituloBeer
+                                } else {
+                                    BEERITEM[i-1].descricaoBeerImpar = BEERITEM[i].descricaoBeer
+                                    BEERITEM[i-1].imgBeerImpar = BEERITEM[i].imgBeer
+                                    BEERITEM[i-1].precoBeerImpar = BEERITEM[i].precoBeer
+                                    BEERITEM[i-1].tituloBeerImpar = BEERITEM[i].tituloBeer
+                                    delete BEERITEM[i].descricaoBeer
+                                    delete BEERITEM[i].imgBeer
+                                    delete BEERITEM[i].precoBeer
+                                    delete BEERITEM[i].tituloBeer
                                     delete BEERITEM[i]
                                 }
                             }

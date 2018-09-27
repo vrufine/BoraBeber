@@ -1,4 +1,4 @@
-<div class="page">
+<div class="page" ng-model="teste">
     <div class="header grey-900" data="USER">
         <div class="left">
             <button class="icon ion-navicon" onclick="openMenu('myMenu')"></button>
@@ -112,7 +112,8 @@
                 </div>
                 <div class="item" data="BEERITEM">
                     <div class="row">
-                        <div class="col-55 cover radius margin no-padding" style="background-image:url('${imgBeerPar}')" onclick="editItemBeer('${imgBeerPar}','${tituloBeerPar}', '${descricaoBeerPar}','${precoBeerPar}')">
+                        <div class="col-55 cover radius margin no-padding" style="background-image:url('${imgBeerPar}')" 
+                        onclick="editItemBeer('${imgBeerPar}','${tituloBeerPar}', '${descricaoBeerPar}','${precoBeerPar}')">
                             <div class="space-huge"></div>
                             <div class="space-big"></div>
                             <div class="bottom gradient padding radius">
@@ -120,7 +121,8 @@
                                 <h1 class="text-white">R$ ${precoBeerPar}</h1>
                             </div>
                         </div>
-                        <div class="col-55 cover radius margin no-padding" style="background-image:url('${imgBeerImpar}')" onclick="editItemBeer('${imgBeerImpar}', '${tituloBeerImpar}', '${descricaoBeerImpar}','${precoBeerImpar}')">
+                        <div class="col-55 cover radius margin no-padding" style="background-image:url('${imgBeerImpar}')" 
+                        onclick="editItemBeer('${imgBeerImpar}', '${tituloBeerImpar}', '${descricaoBeerImpar}','${precoBeerImpar}')">
                             <div class="space-huge"></div>
                             <div class="space-big"></div>
                             <div class="bottom gradient padding radius">
