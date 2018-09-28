@@ -265,6 +265,21 @@ function addItem(tpItem){
             alert('Item salvo com sucesso.')
             BEERITEM = res.body.data.dadosBeer
             for (i = 0; i < BEERITEM.length; i++){
+                if (BEERITEM[i].descricaoBeer == ""){
+                    BEERITEM[i].descricaoBeer = "Sem Descrição"
+                }
+                if (BEERITEM[i].imgBeer == ""){
+                    BEERITEM[i].imgBeer = "img/semImg.jpg"
+                }
+                if (BEERITEM[i].precoBeer == ""){
+                    BEERITEM[i].precoBeer = "0,00"
+                } else {
+                    BEERITEM[i].precoBeer = BEERITEM[i].precoBeer.replace(".",",")
+                }
+                if (BEERITEM[i].tituloBeer == ""){
+                    BEERITEM[i].tituloBeer = "Sem Titulo"
+                }
+
                 if (isPar(i) === 'par'){
                     BEERITEM[i].descricaoBeerPar = BEERITEM[i].descricaoBeer
                     BEERITEM[i].imgBeerPar = BEERITEM[i].imgBeer
