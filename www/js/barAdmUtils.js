@@ -315,22 +315,23 @@ function addItem(tpItem){
     })
 }
 
-function editItemBeer(img, title, descri, preço){
+function editItemBeer(idBar, idBeer, img, descri, preco){
+    console.log(idBar, idBeer)
 var  box = '<div class="align-center" style="margin-left: 15px; margin-right: 15px;">'
     box += '    <div class="text-center">'
     box += '        <img src="' + img + '" style="width: 100px; height: 110px;" id="beerImg" class="radius">'
-    box += '        <button class="icon ion-ios-loop-strong text-green text-strong" style="float: right; position: absolute; z-index:7; margin-top: 68px; margin-left: -42px;"></button>'
+    // box += '        <button class="icon ion-ios-loop-strong text-green text-strong" style="float: right; position: absolute; z-index:7; margin-top: 68px; margin-left: -42px;"></button>'
     box += '    </div>'
     box += '    <div class="list no-border">'
+    // box += '        <div class="item border-grey-800 border-bottom" style="height: 40px;">'
+    // box += '            <input type="text" class="text-black" placeholder="Título do Item" id="bebidaItemTitle" value="' + title + '">'
+    // box += '        </div>'
     box += '        <div class="item border-grey-800 border-bottom" style="height: 40px;">'
-    box += '            <input type="text" class="text-white" placeholder="Título do Item" id="bebidaItemTitle" value="' + title + '">'
-    box += '        </div>'
-    box += '        <div class="item border-grey-800 border-bottom" style="height: 40px;">'
-    box += '            <input type="text" class="text-white" placeholder="Descrição do Item" id="bebidaItemDetail" value="' + descri + '">'
+    box += '            <input type="text" class="text-black" placeholder="Descrição do Item" id="bebidaItemDetail" value="' + descri + '">'
     box += '        </div>'
     box += '        <div class="item label-fixed border-grey-800 border-bottom" style="height: 50px;">'
     box += '            <label style="margin-left: -43px;  margin-right: -30px; margin-top: 2px;">R$</label>'
-    box += '            <input type="number" class="text-white" placeholder="Preço" class="text-big" id="bebidaItemPrice" value="' + preço + '">'
+    box += '            <input type="number" class="text-black" placeholder="Preço" class="text-big" id="bebidaItemPrice" value="' + parseFloat(preco.replace(",",".")) + '">'
     box += '        </div>'
     box += '    </div>'
     box += '</div>'
@@ -338,29 +339,37 @@ var  box = '<div class="align-center" style="margin-left: 15px; margin-right: 15
     alert({
         title: 'Editar Item',
         message: box,
-        class: 'grey-800 radius',
+        class: 'grey-50 radius',
         buttons:[
             {
                 label: 'Salvar',
-                class: 'text-grey-50',
+                class: 'text-black',
                 onclick: function(){
                     closeAlert()
                 }
             },
             {
                 label: 'Del',
-                class: 'text-grey-50',
+                class: 'text-black',
                 onclick: function(){
                     closeAlert()
                 }
             },
             {
                 label: 'Canc',
-                class: 'text-grey-50',
+                class: 'text-black',
                 onclick: function(){
                     closeAlert()
                 }
             }
         ]
     })
+}
+
+function updateItemBeer(){
+
+}
+
+function dellItemBeer(){
+
 }

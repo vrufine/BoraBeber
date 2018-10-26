@@ -1,5 +1,5 @@
-var url = 'https://g34czjej1b.execute-api.us-east-1.amazonaws.com/production'
-// var url = 'http://localhost:3000'
+// var url = 'https://g34czjej1b.execute-api.us-east-1.amazonaws.com/production'
+var url = 'http://localhost:3000'
 
 var USER = []
 var IMGCAPAS = []
@@ -44,7 +44,7 @@ function login(){
                         if (res.body.data.dadosBeer !== undefined){
                             for (i = 0; i < BEERITEM.length; i++){
                                 if (BEERITEM[i].descricaoBeer == ""){
-                                    BEERITEM[i].descricaoBeer = "Sem Descrição"
+                                    BEERITEM[i].descricaoBeer = ""
                                 }
                                 if (BEERITEM[i].imgBeer == ""){
                                     BEERITEM[i].imgBeer = "img/semImg.jpg"
@@ -55,23 +55,43 @@ function login(){
                                     BEERITEM[i].precoBeer = BEERITEM[i].precoBeer.replace(".",",")
                                 }
                                 if (BEERITEM[i].tituloBeer == ""){
-                                    BEERITEM[i].tituloBeer = "Sem Titulo"
+                                    BEERITEM[i].tituloBeer = ""
                                 }
-
+                                if (BEERITEM[i].medida == ""){
+                                    BEERITEM[i].medida = ""
+                                }
+                                if (BEERITEM[i].recipiente == ""){
+                                    BEERITEM[i].recipiente = ""
+                                }
+                                
                                 if (isPar(i) == 'par'){
+                                    BEERITEM[i].idBarPar = res.body.data._id
+                                    BEERITEM[i].idBeerPar = BEERITEM[i].idBeer
                                     BEERITEM[i].descricaoBeerPar = BEERITEM[i].descricaoBeer
                                     BEERITEM[i].imgBeerPar = BEERITEM[i].imgBeer
                                     BEERITEM[i].precoBeerPar = BEERITEM[i].precoBeer
                                     BEERITEM[i].tituloBeerPar = BEERITEM[i].tituloBeer
+                                    BEERITEM[i].medidaPar = BEERITEM[i].medida
+                                    BEERITEM[i].recipientePar = BEERITEM[i].recipiente
+                                    delete BEERITEM[i].idBeer
                                     delete BEERITEM[i].descricaoBeer
                                     delete BEERITEM[i].imgBeer
                                     delete BEERITEM[i].precoBeer
                                     delete BEERITEM[i].tituloBeer
+                                    delete BEERITEM[i].medida
+                                    delete BEERITEM[i].recipiente
                                 } else {
+                                    BEERITEM[i-1].idBarImpar = res.body.data._id
+                                    BEERITEM[i-1].idBeerImpar = BEERITEM[i].idBeer
                                     BEERITEM[i-1].descricaoBeerImpar = BEERITEM[i].descricaoBeer
                                     BEERITEM[i-1].imgBeerImpar = BEERITEM[i].imgBeer
                                     BEERITEM[i-1].precoBeerImpar = BEERITEM[i].precoBeer
                                     BEERITEM[i-1].tituloBeerImpar = BEERITEM[i].tituloBeer
+                                    BEERITEM[i-1].medidaImpar = BEERITEM[i].medida
+                                    BEERITEM[i-1].recipienteImpar = BEERITEM[i].recipiente
+                                    delete BEERITEM[i].idBeer
+                                    delete BEERITEM[i].medida
+                                    delete BEERITEM[i].recipiente
                                     delete BEERITEM[i].descricaoBeer
                                     delete BEERITEM[i].imgBeer
                                     delete BEERITEM[i].precoBeer
