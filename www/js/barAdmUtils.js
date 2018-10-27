@@ -263,50 +263,7 @@ function addItem(tpItem){
         } else {
             closeLoading()
             alert('Item salvo com sucesso.')
-            BEERITEM = res.body.data.dadosBeer
-            for (i = 0; i < BEERITEM.length; i++){
-                if (BEERITEM[i].descricaoBeer == ""){
-                    BEERITEM[i].descricaoBeer = "Sem Descrição"
-                }
-                if (BEERITEM[i].imgBeer == ""){
-                    BEERITEM[i].imgBeer = "img/semImg.jpg"
-                }
-                if (BEERITEM[i].precoBeer == ""){
-                    BEERITEM[i].precoBeer = "0,00"
-                } else {
-                    BEERITEM[i].precoBeer = BEERITEM[i].precoBeer.replace(".",",")
-                }
-                if (BEERITEM[i].tituloBeer == ""){
-                    BEERITEM[i].tituloBeer = "Sem Titulo"
-                }
-
-                if (isPar(i) === 'par'){
-                    BEERITEM[i].descricaoBeerPar = BEERITEM[i].descricaoBeer
-                    BEERITEM[i].imgBeerPar = BEERITEM[i].imgBeer
-                    BEERITEM[i].precoBeerPar = BEERITEM[i].precoBeer
-                    BEERITEM[i].tituloBeerPar = BEERITEM[i].tituloBeer
-                    delete BEERITEM[i].descricaoBeer
-                    delete BEERITEM[i].imgBeer
-                    delete BEERITEM[i].precoBeer
-                    delete BEERITEM[i].tituloBeer
-                } else {
-                    BEERITEM[i-1].descricaoBeerImpar = BEERITEM[i].descricaoBeer
-                    BEERITEM[i-1].imgBeerImpar = BEERITEM[i].imgBeer
-                    BEERITEM[i-1].precoBeerImpar = BEERITEM[i].precoBeer
-                    BEERITEM[i-1].tituloBeerImpar = BEERITEM[i].tituloBeer
-                    delete BEERITEM[i].descricaoBeer
-                    delete BEERITEM[i].imgBeer
-                    delete BEERITEM[i].precoBeer
-                    delete BEERITEM[i].tituloBeer
-                    delete BEERITEM[i]
-                }
-            }
-            // MobileUI.hide('addItemBoxBeer')
-            var image = document.getElementById('beerImg')
-            image.src = 'img/semImg.jpg'
-            document.getElementById('bebidaItemTitle').value = ''
-            document.getElementById('bebidaItemDetail').value = ''
-            document.getElementById('bebidaItemPrice').value = ''
+            updateListItens(res.body.data.dadosBeer)
         }
     }).catch(function (err){
         console.log(err, erro)
@@ -316,7 +273,6 @@ function addItem(tpItem){
 }
 
 function editItemBeer(idBar, idBeer, img, descri, preco){
-    console.log(idBar, idBeer)
 var  box = '<div class="align-center" style="margin-left: 15px; margin-right: 15px;">'
     box += '    <div class="text-center">'
     box += '        <img src="' + img + '" style="width: 100px; height: 110px;" id="beerImg" class="radius">'
@@ -352,7 +308,28 @@ var  box = '<div class="align-center" style="margin-left: 15px; margin-right: 15
                 label: 'Del',
                 class: 'text-black',
                 onclick: function(){
-                    closeAlert()
+                    alert({
+                        title: 'Confirmação',
+                        message: 'Deseja remover o item da sua lista de produtos ?',
+                        class: 'grey-50 radius',
+                        buttons: [
+                            {
+                                label: 'Não',
+                                class: 'text-black',
+                                onclick: function(){
+                                    closeAlert()
+                                }
+                            },
+                            {
+                                label: 'Sim',
+                                class: 'text-black',
+                                onclick: function(){
+                                    dellItemBeer(idBar, idBeer)
+                                    closeAlert()
+                                }
+                            }
+                        ]
+                    }, closeAlert())
                 }
             },
             {
@@ -370,6 +347,65 @@ function updateItemBeer(){
 
 }
 
-function dellItemBeer(){
+function dellItemBeer(idBar, idBeer){
+    var item = {}
+    item.idBar = idBar
+    item.idBeer = idBeer
+    loading('O item será removido de seus produtos, por favor aguarde!')
+    MobileUI.ajax.post(url + '/removebeer').send(item).then(function (res){
+        if(res.body.errorMessage) {
+            closeLoading()
+            alert(res.body.errorMessage)
+        } else {
+            closeLoading()
+            alert('Item removido com sucesso.')
+            console.log(res.body.data[0].dadosBeer)
+            updateListItens(res.body.data[0].dadosBeer)
+        }
+    }).catch(function (err){
+        console.log(err, erro)
+        closeLoading()
+        alert('Erro')
+    })
+}
 
+function updateListItens(dados){
+    BEERITEM = dados
+    for (i = 0; i < BEERITEM.length; i++){
+        if (BEERITEM[i].descricaoBeer == ""){
+            BEERITEM[i].descricaoBeer = "Sem Descrição"
+        }
+        if (BEERITEM[i].imgBeer == ""){
+            BEERITEM[i].imgBeer = "img/semImg.jpg"
+        }
+        if (BEERITEM[i].precoBeer == ""){
+            BEERITEM[i].precoBeer = "0,00"
+        } else {
+            BEERITEM[i].precoBeer = BEERITEM[i].precoBeer.replace(".",",")
+        }
+        if (BEERITEM[i].tituloBeer == ""){
+            BEERITEM[i].tituloBeer = "Sem Titulo"
+        }
+
+        if (isPar(i) === 'par'){
+            BEERITEM[i].descricaoBeerPar = BEERITEM[i].descricaoBeer
+            BEERITEM[i].imgBeerPar = BEERITEM[i].imgBeer
+            BEERITEM[i].precoBeerPar = BEERITEM[i].precoBeer
+            BEERITEM[i].tituloBeerPar = BEERITEM[i].tituloBeer
+            delete BEERITEM[i].descricaoBeer
+            delete BEERITEM[i].imgBeer
+            delete BEERITEM[i].precoBeer
+            delete BEERITEM[i].tituloBeer
+        } else {
+            BEERITEM[i-1].descricaoBeerImpar = BEERITEM[i].descricaoBeer
+            BEERITEM[i-1].imgBeerImpar = BEERITEM[i].imgBeer
+            BEERITEM[i-1].precoBeerImpar = BEERITEM[i].precoBeer
+            BEERITEM[i-1].tituloBeerImpar = BEERITEM[i].tituloBeer
+            delete BEERITEM[i].descricaoBeer
+            delete BEERITEM[i].imgBeer
+            delete BEERITEM[i].precoBeer
+            delete BEERITEM[i].tituloBeer
+            delete BEERITEM[i]
+        }
+    }
 }

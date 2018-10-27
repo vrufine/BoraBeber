@@ -11,6 +11,11 @@ MobileUI.formByObject('contetInicial', {
     userPassword: '123'
 })
 
+// MobileUI.formByObject('contetInicial', {
+//     userEmailName: 'alexandre_muzulao@hotmail.com',
+//     userPassword: '1234'
+// })
+
 window.addEventListener("orientationchange", function(){
     screen.orientation.lock('portrait')
 })
