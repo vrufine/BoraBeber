@@ -1,4 +1,4 @@
-<div class="page">
+<div class="page" ng-model="teste">
     <div class="header grey-900" data="USER">
         <div class="left">
             <button class="icon ion-navicon" onclick="openMenu('myMenu')"></button>
@@ -69,7 +69,7 @@
                     </div>
                 </div>
             </div>
-            <div class="list">
+            <div class="list list-bebidas-bar">
                 <div class="item">
                     <div class="align-center" id="btnAddItemBeer">
                         <button class="radius shadow grey-800 icon ion-plus-circled" onclick="openAddItem('beer')">Adicionar Cerveja</button>
@@ -112,19 +112,21 @@
                 </div>
                 <div class="item" data="BEERITEM">
                     <div class="row">
-                        <div class="col-55 cover radius margin no-padding" style="background-image:url('${imgBeerPar}')" onclick="editItemBeer('${imgBeerPar}','${tituloBeerPar}', '${descricaoBeerPar}','${precoBeerPar}')">
+                        <div class="col-55 cover radius margin no-padding" style="background-image:url('${imgBeerPar}')" 
+                        onclick="editItemBeer('${idBarPar}', '${idBeerPar}', '${imgBeerPar}', '${descricaoBeerPar}', '${precoBeerPar}')">
                             <div class="space-huge"></div>
                             <div class="space-big"></div>
                             <div class="bottom gradient padding radius">
-                                <h1 class="text-white">${tituloBeerPar} ${descricaoBeerPar}</h1>
+                                <h1 class="text-white">${tituloBeerPar} ${recipientePar} ${medidaPar} ${descricaoBeerPar}</h1>
                                 <h1 class="text-white">R$ ${precoBeerPar}</h1>
                             </div>
                         </div>
-                        <div class="col-55 cover radius margin no-padding" style="background-image:url('${imgBeerImpar}')" onclick="editItemBeer('${imgBeerImpar}', '${tituloBeerImpar}', '${descricaoBeerImpar}','${precoBeerImpar}')">
+                        <div class="col-55 cover radius margin no-padding" style="background-image:url('${imgBeerImpar}')" valid-bind="${precoBeerImpar}"
+                        onclick="editItemBeer('${idBarImpar}', '${idBeerImpar}', '${imgBeerImpar}', '${descricaoBeerImpar}','${precoBeerImpar}')">
                             <div class="space-huge"></div>
                             <div class="space-big"></div>
                             <div class="bottom gradient padding radius">
-                                <h1 class="text-white">${tituloBeerImpar} ${descricaoBeerImpar}</h1>
+                                <h1 class="text-white">${tituloBeerImpar} ${recipienteImpar} ${medidaImpar} ${descricaoBeerImpar}</h1>
                                 <h1 class="text-white">R$ ${precoBeerImpar}</h1>
                             </div>
                         </div>

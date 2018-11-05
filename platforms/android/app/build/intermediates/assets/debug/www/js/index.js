@@ -7,18 +7,27 @@ var BEERITEM = []
 var MAXQTDIMG = 0
 
 MobileUI.formByObject('contetInicial', {
-    userEmailName: 'Bar',
+    userEmailName: 'bar@bar.com',
     userPassword: '123'
 })
 
+// MobileUI.formByObject('contetInicial', {
+//     userEmailName: 'alexandre_muzulao@hotmail.com',
+//     userPassword: '1234'
+// })
+
 window.addEventListener("orientationchange", function(){
     screen.orientation.lock('portrait')
-});
+})
+
+function trim(str){
+    return str.replace(/\s+$/,'')
+}
 
 function login(){
     var usuario = {}
-    usuario.email = document.getElementById('userEmailName').value
-    usuario.senha = document.getElementById('userPassword').value    
+    usuario.email = trim(document.getElementById('userEmailName').value)
+    usuario.senha = trim(document.getElementById('userPassword').value)
     if (document.getElementById('userEmailName').value == "" || document.getElementById('userPassword').value == ""){
         alert('Usuário e Senha vazios, verifique e tente novamente por gentileza !')
     } else {
@@ -39,24 +48,59 @@ function login(){
                         BEERITEM = res.body.data.dadosBeer
                         if (res.body.data.dadosBeer !== undefined){
                             for (i = 0; i < BEERITEM.length; i++){
-                                if (isPar(i) == 'par'){
-                                    BEERITEM[i].descricaoBeerPar = BEERITEM[i].descricaoBeer;
-                                    BEERITEM[i].imgBeerPar = BEERITEM[i].imgBeer;
-                                    BEERITEM[i].precoBeerPar = BEERITEM[i].precoBeer;
-                                    BEERITEM[i].tituloBeerPar = BEERITEM[i].tituloBeer;
-                                    delete BEERITEM[i].descricaoBeer;
-                                    delete BEERITEM[i].imgBeer;
-                                    delete BEERITEM[i].precoBeer;
-                                    delete BEERITEM[i].tituloBeer;
+                                if (BEERITEM[i].descricaoBeer == ""){
+                                    BEERITEM[i].descricaoBeer = ""
+                                }
+                                if (BEERITEM[i].imgBeer == ""){
+                                    BEERITEM[i].imgBeer = "img/semImg.jpg"
+                                }
+                                if (BEERITEM[i].precoBeer == ""){
+                                    BEERITEM[i].precoBeer = "0,00"
                                 } else {
-                                    BEERITEM[i-1].descricaoBeerImpar = BEERITEM[i].descricaoBeer;
-                                    BEERITEM[i-1].imgBeerImpar = BEERITEM[i].imgBeer;
-                                    BEERITEM[i-1].precoBeerImpar = BEERITEM[i].precoBeer;
-                                    BEERITEM[i-1].tituloBeerImpar = BEERITEM[i].tituloBeer;
-                                    delete BEERITEM[i].descricaoBeer;
-                                    delete BEERITEM[i].imgBeer;
-                                    delete BEERITEM[i].precoBeer;
-                                    delete BEERITEM[i].tituloBeer;
+                                    BEERITEM[i].precoBeer = BEERITEM[i].precoBeer.replace(".",",")
+                                }
+                                if (BEERITEM[i].tituloBeer == ""){
+                                    BEERITEM[i].tituloBeer = ""
+                                }
+                                if (BEERITEM[i].medida == ""){
+                                    BEERITEM[i].medida = ""
+                                }
+                                if (BEERITEM[i].recipiente == ""){
+                                    BEERITEM[i].recipiente = ""
+                                }
+                                
+                                if (isPar(i) == 'par'){
+                                    BEERITEM[i].idBarPar = res.body.data._id
+                                    BEERITEM[i].idBeerPar = BEERITEM[i].idBeer
+                                    BEERITEM[i].descricaoBeerPar = BEERITEM[i].descricaoBeer
+                                    BEERITEM[i].imgBeerPar = BEERITEM[i].imgBeer
+                                    BEERITEM[i].precoBeerPar = BEERITEM[i].precoBeer
+                                    BEERITEM[i].tituloBeerPar = BEERITEM[i].tituloBeer
+                                    BEERITEM[i].medidaPar = BEERITEM[i].medida
+                                    BEERITEM[i].recipientePar = BEERITEM[i].recipiente
+                                    delete BEERITEM[i].idBeer
+                                    delete BEERITEM[i].descricaoBeer
+                                    delete BEERITEM[i].imgBeer
+                                    delete BEERITEM[i].precoBeer
+                                    delete BEERITEM[i].tituloBeer
+                                    delete BEERITEM[i].medida
+                                    delete BEERITEM[i].recipiente
+                                } else {
+                                    BEERITEM[i-1].idBarImpar = res.body.data._id
+                                    BEERITEM[i-1].idBeerImpar = BEERITEM[i].idBeer
+                                    BEERITEM[i-1].descricaoBeerImpar = BEERITEM[i].descricaoBeer
+                                    BEERITEM[i-1].imgBeerImpar = BEERITEM[i].imgBeer
+                                    BEERITEM[i-1].precoBeerImpar = BEERITEM[i].precoBeer
+                                    BEERITEM[i-1].tituloBeerImpar = BEERITEM[i].tituloBeer
+                                    BEERITEM[i-1].medidaImpar = BEERITEM[i].medida
+                                    BEERITEM[i-1].recipienteImpar = BEERITEM[i].recipiente
+                                    delete BEERITEM[i].idBeer
+                                    delete BEERITEM[i].medida
+                                    delete BEERITEM[i].recipiente
+                                    delete BEERITEM[i].descricaoBeer
+                                    delete BEERITEM[i].imgBeer
+                                    delete BEERITEM[i].precoBeer
+                                    delete BEERITEM[i].tituloBeer
                                     delete BEERITEM[i]
                                 }
                             }

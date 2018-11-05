@@ -310,7 +310,7 @@ var  box = '<div class="align-center" style="margin-left: 15px; margin-right: 15
                 onclick: function(){
                     alert({
                         title: 'Confirmação',
-                        message: 'Deseja remover o item da sua lista de produtos ?',
+                        message: 'Deseja remover o item  da sua lista de produtos ?',
                         class: 'grey-50 radius',
                         buttons: [
                             {
@@ -358,9 +358,8 @@ function dellItemBeer(idBar, idBeer){
             alert(res.body.errorMessage)
         } else {
             closeLoading()
-            alert('Item removido com sucesso.')
-            console.log(res.body.data[0].dadosBeer)
             updateListItens(res.body.data[0].dadosBeer)
+            alert('Item removido com sucesso.')
         }
     }).catch(function (err){
         console.log(err, erro)
@@ -371,41 +370,44 @@ function dellItemBeer(idBar, idBeer){
 
 function updateListItens(dados){
     BEERITEM = dados
-    for (i = 0; i < BEERITEM.length; i++){
-        if (BEERITEM[i].descricaoBeer == ""){
-            BEERITEM[i].descricaoBeer = "Sem Descrição"
+    openPage('barAdmin', function(){
+        for (i = 0; i < BEERITEM.length; i++){
+            if (BEERITEM[i].descricaoBeer == ""){
+                BEERITEM[i].descricaoBeer = "Sem Descrição"
+            }
+            if (BEERITEM[i].imgBeer == ""){
+                BEERITEM[i].imgBeer = "img/semImg.jpg"
+            }
+            if (BEERITEM[i].precoBeer == ""){
+                BEERITEM[i].precoBeer = "0,00"
+            } else {
+                BEERITEM[i].precoBeer = BEERITEM[i].precoBeer.replace(".",",")
+            }
+            if (BEERITEM[i].tituloBeer == ""){
+                BEERITEM[i].tituloBeer = "Sem Titulo"
+            }
+    
+            if (isPar(i) === 'par'){
+                BEERITEM[i].descricaoBeerPar = BEERITEM[i].descricaoBeer
+                BEERITEM[i].imgBeerPar = BEERITEM[i].imgBeer
+                BEERITEM[i].precoBeerPar = BEERITEM[i].precoBeer
+                BEERITEM[i].tituloBeerPar = BEERITEM[i].tituloBeer
+                delete BEERITEM[i].descricaoBeer
+                delete BEERITEM[i].imgBeer
+                delete BEERITEM[i].precoBeer
+                delete BEERITEM[i].tituloBeer
+            } else {
+                BEERITEM[i-1].descricaoBeerImpar = BEERITEM[i].descricaoBeer
+                BEERITEM[i-1].imgBeerImpar = BEERITEM[i].imgBeer
+                BEERITEM[i-1].precoBeerImpar = BEERITEM[i].precoBeer
+                BEERITEM[i-1].tituloBeerImpar = BEERITEM[i].tituloBeer
+                delete BEERITEM[i].descricaoBeer
+                delete BEERITEM[i].imgBeer
+                delete BEERITEM[i].precoBeer
+                delete BEERITEM[i].tituloBeer
+                delete BEERITEM[i]
+            }
         }
-        if (BEERITEM[i].imgBeer == ""){
-            BEERITEM[i].imgBeer = "img/semImg.jpg"
-        }
-        if (BEERITEM[i].precoBeer == ""){
-            BEERITEM[i].precoBeer = "0,00"
-        } else {
-            BEERITEM[i].precoBeer = BEERITEM[i].precoBeer.replace(".",",")
-        }
-        if (BEERITEM[i].tituloBeer == ""){
-            BEERITEM[i].tituloBeer = "Sem Titulo"
-        }
-
-        if (isPar(i) === 'par'){
-            BEERITEM[i].descricaoBeerPar = BEERITEM[i].descricaoBeer
-            BEERITEM[i].imgBeerPar = BEERITEM[i].imgBeer
-            BEERITEM[i].precoBeerPar = BEERITEM[i].precoBeer
-            BEERITEM[i].tituloBeerPar = BEERITEM[i].tituloBeer
-            delete BEERITEM[i].descricaoBeer
-            delete BEERITEM[i].imgBeer
-            delete BEERITEM[i].precoBeer
-            delete BEERITEM[i].tituloBeer
-        } else {
-            BEERITEM[i-1].descricaoBeerImpar = BEERITEM[i].descricaoBeer
-            BEERITEM[i-1].imgBeerImpar = BEERITEM[i].imgBeer
-            BEERITEM[i-1].precoBeerImpar = BEERITEM[i].precoBeer
-            BEERITEM[i-1].tituloBeerImpar = BEERITEM[i].tituloBeer
-            delete BEERITEM[i].descricaoBeer
-            delete BEERITEM[i].imgBeer
-            delete BEERITEM[i].precoBeer
-            delete BEERITEM[i].tituloBeer
-            delete BEERITEM[i]
-        }
-    }
+        console.log(BEERITEM)
+    })
 }
