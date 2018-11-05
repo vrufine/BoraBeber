@@ -357,10 +357,9 @@ function dellItemBeer(idBar, idBeer){
             closeLoading()
             alert(res.body.errorMessage)
         } else {
-            IMGCAPAS = res.body.data.swiperPhotos
             BEERITEM = res.body.data.dadosBeer
             closeLoading()
-            updateListItens()
+            updateListItens(res.body.data._id)
             alert('Item removido com sucesso.')
         }
     }).catch(function (err){
@@ -370,7 +369,7 @@ function dellItemBeer(idBar, idBeer){
     })
 }
 
-function updateListItens(){
+function updateListItens(_id){
     if (BEERITEM !== undefined){
         for (i = 0; i < BEERITEM.length; i++){
             if (BEERITEM[i].descricaoBeer == ""){
@@ -395,7 +394,7 @@ function updateListItens(){
             }
             
             if (isPar(i) == 'par'){
-                // BEERITEM[i].idBarPar = res.body.data._id
+                BEERITEM[i].idBarPar = _id
                 BEERITEM[i].idBeerPar = BEERITEM[i].idBeer
                 BEERITEM[i].descricaoBeerPar = BEERITEM[i].descricaoBeer
                 BEERITEM[i].imgBeerPar = BEERITEM[i].imgBeer
@@ -411,8 +410,7 @@ function updateListItens(){
                 delete BEERITEM[i].medida
                 delete BEERITEM[i].recipiente
             } else {
-                console.log('impar')
-                // BEERITEM[i-1].idBarImpar = res.body.data._id
+                BEERITEM[i-1].idBarImpar = _id
                 BEERITEM[i-1].idBeerImpar = BEERITEM[i].idBeer
                 BEERITEM[i-1].descricaoBeerImpar = BEERITEM[i].descricaoBeer
                 BEERITEM[i-1].imgBeerImpar = BEERITEM[i].imgBeer
