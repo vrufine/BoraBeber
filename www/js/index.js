@@ -46,6 +46,7 @@ function login(){
                     openPage('barAdmin', function (){
                         IMGCAPAS = res.body.data.swiperPhotos
                         BEERITEM = res.body.data.dadosBeer
+                        console.log(BEERITEM)
                         if (res.body.data.dadosBeer !== undefined){
                             for (i = 0; i < BEERITEM.length; i++){
                                 if (BEERITEM[i].descricaoBeer == ""){

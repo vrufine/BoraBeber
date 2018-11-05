@@ -275,7 +275,7 @@ function addItem(tpItem){
 function editItemBeer(idBar, idBeer, img, descri, preco){
 var  box = '<div class="align-center" style="margin-left: 15px; margin-right: 15px;">'
     box += '    <div class="text-center">'
-    box += '        <img src="' + img + '" style="width: 100px; height: 110px;" id="beerImg" class="radius">'
+    box += '        <img src="' + img + '" style="height: 110px;" id="beerImg" class="radius">'
     // box += '        <button class="icon ion-ios-loop-strong text-green text-strong" style="float: right; position: absolute; z-index:7; margin-top: 68px; margin-left: -42px;"></button>'
     box += '    </div>'
     box += '    <div class="list no-border">'
@@ -357,23 +357,24 @@ function dellItemBeer(idBar, idBeer){
             closeLoading()
             alert(res.body.errorMessage)
         } else {
+            IMGCAPAS = res.body.data.swiperPhotos
+            BEERITEM = res.body.data.dadosBeer
             closeLoading()
-            updateListItens(res.body.data[0].dadosBeer)
+            updateListItens()
             alert('Item removido com sucesso.')
         }
     }).catch(function (err){
-        console.log(err, erro)
+        console.log(err)
         closeLoading()
         alert('Erro')
     })
 }
 
-function updateListItens(dados){
-    BEERITEM = dados
-    openPage('barAdmin', function(){
+function updateListItens(){
+    if (BEERITEM !== undefined){
         for (i = 0; i < BEERITEM.length; i++){
             if (BEERITEM[i].descricaoBeer == ""){
-                BEERITEM[i].descricaoBeer = "Sem Descrição"
+                BEERITEM[i].descricaoBeer = ""
             }
             if (BEERITEM[i].imgBeer == ""){
                 BEERITEM[i].imgBeer = "img/semImg.jpg"
@@ -384,23 +385,44 @@ function updateListItens(dados){
                 BEERITEM[i].precoBeer = BEERITEM[i].precoBeer.replace(".",",")
             }
             if (BEERITEM[i].tituloBeer == ""){
-                BEERITEM[i].tituloBeer = "Sem Titulo"
+                BEERITEM[i].tituloBeer = ""
             }
-    
-            if (isPar(i) === 'par'){
+            if (BEERITEM[i].medida == ""){
+                BEERITEM[i].medida = ""
+            }
+            if (BEERITEM[i].recipiente == ""){
+                BEERITEM[i].recipiente = ""
+            }
+            
+            if (isPar(i) == 'par'){
+                // BEERITEM[i].idBarPar = res.body.data._id
+                BEERITEM[i].idBeerPar = BEERITEM[i].idBeer
                 BEERITEM[i].descricaoBeerPar = BEERITEM[i].descricaoBeer
                 BEERITEM[i].imgBeerPar = BEERITEM[i].imgBeer
                 BEERITEM[i].precoBeerPar = BEERITEM[i].precoBeer
                 BEERITEM[i].tituloBeerPar = BEERITEM[i].tituloBeer
+                BEERITEM[i].medidaPar = BEERITEM[i].medida
+                BEERITEM[i].recipientePar = BEERITEM[i].recipiente
+                delete BEERITEM[i].idBeer
                 delete BEERITEM[i].descricaoBeer
                 delete BEERITEM[i].imgBeer
                 delete BEERITEM[i].precoBeer
                 delete BEERITEM[i].tituloBeer
+                delete BEERITEM[i].medida
+                delete BEERITEM[i].recipiente
             } else {
+                console.log('impar')
+                // BEERITEM[i-1].idBarImpar = res.body.data._id
+                BEERITEM[i-1].idBeerImpar = BEERITEM[i].idBeer
                 BEERITEM[i-1].descricaoBeerImpar = BEERITEM[i].descricaoBeer
                 BEERITEM[i-1].imgBeerImpar = BEERITEM[i].imgBeer
                 BEERITEM[i-1].precoBeerImpar = BEERITEM[i].precoBeer
                 BEERITEM[i-1].tituloBeerImpar = BEERITEM[i].tituloBeer
+                BEERITEM[i-1].medidaImpar = BEERITEM[i].medida
+                BEERITEM[i-1].recipienteImpar = BEERITEM[i].recipiente
+                delete BEERITEM[i].idBeer
+                delete BEERITEM[i].medida
+                delete BEERITEM[i].recipiente
                 delete BEERITEM[i].descricaoBeer
                 delete BEERITEM[i].imgBeer
                 delete BEERITEM[i].precoBeer
@@ -408,6 +430,5 @@ function updateListItens(dados){
                 delete BEERITEM[i]
             }
         }
-        console.log(BEERITEM)
-    })
+    }
 }
