@@ -283,11 +283,11 @@ var  box = '<div class="align-center" style="margin-left: 15px; margin-right: 15
     // box += '            <input type="text" class="text-black" placeholder="Título do Item" id="bebidaItemTitle" value="' + title + '">'
     // box += '        </div>'
     box += '        <div class="item border-grey-800 border-bottom" style="height: 40px;">'
-    box += '            <input type="text" class="text-black" placeholder="Descrição do Item" id="bebidaItemDetail" value="' + descri + '">'
+    box += '            <input type="text" class="text-black" placeholder="Descrição do Item" id="bebidaItemNewDetail" value="' + descri + '">'
     box += '        </div>'
     box += '        <div class="item label-fixed border-grey-800 border-bottom" style="height: 50px;">'
     box += '            <label style="margin-left: -43px;  margin-right: -30px; margin-top: 2px;">R$</label>'
-    box += '            <input type="number" class="text-black" placeholder="Preço" class="text-big" id="bebidaItemPrice" value="' + parseFloat(preco.replace(",",".")) + '">'
+    box += '            <input type="number" class="text-black" placeholder="Preço" class="text-big" id="bebidaItemNewPrice" value="' + parseFloat(preco.replace(",",".")) + '">'    
     box += '        </div>'
     box += '    </div>'
     box += '</div>'
@@ -300,6 +300,8 @@ var  box = '<div class="align-center" style="margin-left: 15px; margin-right: 15
                 label: 'Salvar',
                 class: 'text-black',
                 onclick: function(){
+                    var newDetail = document.getElementById('bebidaItemNewDetail').value
+                    var newPrice = document.getElementById('bebidaItemNewPrice').value
                     alert({
                         title : 'Confirmação',
                         message: 'Deseja alterar os dados do item ?',
@@ -316,7 +318,7 @@ var  box = '<div class="align-center" style="margin-left: 15px; margin-right: 15
                                 label: 'Sim',
                                 class: 'text-black',
                                 onclick: function(){
-                                    updateItemBeer(idBar, idBeer, document.getElementById('bebidaItemDetail').value, document.getElementById('bebidaItemPrice').value)
+                                    updateItemBeer(idBar, idBeer, newDetail, newPrice)
                                     closeAlert()
                                 }
                             }
@@ -368,8 +370,7 @@ function updateItemBeer(idBar, idBeer, descri, preco){
     item.idBar = idBar
     item.idBeer = idBeer
     item.descricaoBeer = descri
-    item.precoBeer = preco
-    console.log(item)
+    item.precoBeer = preco    
     loading('Alterando os dados do seu item, por favor aguarde!')
     MobileUI.ajax.post(url + '/updateitembar').send(item).then(function (res){
         if(res.body.errorMessage) {
