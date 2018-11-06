@@ -20,12 +20,18 @@
                 </div>
                 <h1>Dados Bar</h1>
             </a>
+            <a onclick="" class="item">
+                <div class="left">
+                    <i class="icon ion-beer grey-500"></i>
+                </div>
+                <h1>Incluir Cerveja</h1>
+            </a>
             <a onclick="closeMenu('myMenu')" class="item">
                 <div class="left">
                     <i class="icon ion-ios-arrow-thin-left"></i>
                 </div>
-                <h1>Close menu</h1>
-            </a>
+                <h1>Fechar Menu</h1>
+            </a>            
             <a onclick="exitFromApp()" class="item">
                 <div class="left">
                     <i class="icon ion-ios-close-outline"></i>
@@ -110,11 +116,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="item" data="BEERITEM">
+                <div class="item" data="BEERITEM" style="height: 200px;">
                     <div class="row">
-                        <div class="col-55 cover radius margin no-padding" style="background-image:url('${imgBeerPar}')" 
+                        <div class="col-55 cover radius margin no-padding" style="background-image:url('${imgBeerPar}');" 
                         onclick="editItemBeer('${idBarPar}', '${idBeerPar}', '${imgBeerPar}', '${descricaoBeerPar}', '${precoBeerPar}')">
                             <div class="space-huge"></div>
+                            <div class="space-big"></div>
                             <div class="space-big"></div>
                             <div class="bottom gradient padding radius">
                                 <h1 class="text-white">${tituloBeerPar} ${recipientePar} ${medidaPar} ${descricaoBeerPar}</h1>
@@ -124,6 +131,7 @@
                         <div class="col-55 cover radius margin no-padding" style="background-image:url('${imgBeerImpar}')" valid-bind="${precoBeerImpar}"
                         onclick="editItemBeer('${idBarImpar}', '${idBeerImpar}', '${imgBeerImpar}', '${descricaoBeerImpar}','${precoBeerImpar}')">
                             <div class="space-huge"></div>
+                            <div class="space-big"></div>
                             <div class="space-big"></div>
                             <div class="bottom gradient padding radius">
                                 <h1 class="text-white">${tituloBeerImpar} ${recipienteImpar} ${medidaImpar} ${descricaoBeerImpar}</h1>

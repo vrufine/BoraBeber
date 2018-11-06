@@ -275,7 +275,7 @@ function addItem(tpItem){
 function editItemBeer(idBar, idBeer, img, descri, preco){
 var  box = '<div class="align-center" style="margin-left: 15px; margin-right: 15px;">'
     box += '    <div class="text-center">'
-    box += '        <img src="' + img + '" style="width: 100px; height: 110px;" id="beerImg" class="radius">'
+    box += '        <img src="' + img + '" style="height: 110px;" id="beerImg" class="radius">'
     // box += '        <button class="icon ion-ios-loop-strong text-green text-strong" style="float: right; position: absolute; z-index:7; margin-top: 68px; margin-left: -42px;"></button>'
     box += '    </div>'
     box += '    <div class="list no-border">'
@@ -310,7 +310,7 @@ var  box = '<div class="align-center" style="margin-left: 15px; margin-right: 15
                 onclick: function(){
                     alert({
                         title: 'Confirmação',
-                        message: 'Deseja remover o item da sua lista de produtos ?',
+                        message: 'Deseja remover o item  da sua lista de produtos ?',
                         class: 'grey-50 radius',
                         buttons: [
                             {
@@ -357,55 +357,76 @@ function dellItemBeer(idBar, idBeer){
             closeLoading()
             alert(res.body.errorMessage)
         } else {
+            BEERITEM = res.body.data.dadosBeer
             closeLoading()
+            updateListItens(res.body.data._id)
             alert('Item removido com sucesso.')
-            console.log(res.body.data[0].dadosBeer)
-            updateListItens(res.body.data[0].dadosBeer)
         }
     }).catch(function (err){
-        console.log(err, erro)
+        console.log(err)
         closeLoading()
         alert('Erro')
     })
 }
 
-function updateListItens(dados){
-    BEERITEM = dados
-    for (i = 0; i < BEERITEM.length; i++){
-        if (BEERITEM[i].descricaoBeer == ""){
-            BEERITEM[i].descricaoBeer = "Sem Descrição"
-        }
-        if (BEERITEM[i].imgBeer == ""){
-            BEERITEM[i].imgBeer = "img/semImg.jpg"
-        }
-        if (BEERITEM[i].precoBeer == ""){
-            BEERITEM[i].precoBeer = "0,00"
-        } else {
-            BEERITEM[i].precoBeer = BEERITEM[i].precoBeer.replace(".",",")
-        }
-        if (BEERITEM[i].tituloBeer == ""){
-            BEERITEM[i].tituloBeer = "Sem Titulo"
-        }
-
-        if (isPar(i) === 'par'){
-            BEERITEM[i].descricaoBeerPar = BEERITEM[i].descricaoBeer
-            BEERITEM[i].imgBeerPar = BEERITEM[i].imgBeer
-            BEERITEM[i].precoBeerPar = BEERITEM[i].precoBeer
-            BEERITEM[i].tituloBeerPar = BEERITEM[i].tituloBeer
-            delete BEERITEM[i].descricaoBeer
-            delete BEERITEM[i].imgBeer
-            delete BEERITEM[i].precoBeer
-            delete BEERITEM[i].tituloBeer
-        } else {
-            BEERITEM[i-1].descricaoBeerImpar = BEERITEM[i].descricaoBeer
-            BEERITEM[i-1].imgBeerImpar = BEERITEM[i].imgBeer
-            BEERITEM[i-1].precoBeerImpar = BEERITEM[i].precoBeer
-            BEERITEM[i-1].tituloBeerImpar = BEERITEM[i].tituloBeer
-            delete BEERITEM[i].descricaoBeer
-            delete BEERITEM[i].imgBeer
-            delete BEERITEM[i].precoBeer
-            delete BEERITEM[i].tituloBeer
-            delete BEERITEM[i]
+function updateListItens(_id){
+    if (BEERITEM !== undefined){
+        for (i = 0; i < BEERITEM.length; i++){
+            if (BEERITEM[i].descricaoBeer == ""){
+                BEERITEM[i].descricaoBeer = ""
+            }
+            if (BEERITEM[i].imgBeer == ""){
+                BEERITEM[i].imgBeer = "img/semImg.jpg"
+            }
+            if (BEERITEM[i].precoBeer == ""){
+                BEERITEM[i].precoBeer = "0,00"
+            } else {
+                BEERITEM[i].precoBeer = BEERITEM[i].precoBeer.replace(".",",")
+            }
+            if (BEERITEM[i].tituloBeer == ""){
+                BEERITEM[i].tituloBeer = ""
+            }
+            if (BEERITEM[i].medida == ""){
+                BEERITEM[i].medida = ""
+            }
+            if (BEERITEM[i].recipiente == ""){
+                BEERITEM[i].recipiente = ""
+            }
+            
+            if (isPar(i) == 'par'){
+                BEERITEM[i].idBarPar = _id
+                BEERITEM[i].idBeerPar = BEERITEM[i].idBeer
+                BEERITEM[i].descricaoBeerPar = BEERITEM[i].descricaoBeer
+                BEERITEM[i].imgBeerPar = BEERITEM[i].imgBeer
+                BEERITEM[i].precoBeerPar = BEERITEM[i].precoBeer
+                BEERITEM[i].tituloBeerPar = BEERITEM[i].tituloBeer
+                BEERITEM[i].medidaPar = BEERITEM[i].medida
+                BEERITEM[i].recipientePar = BEERITEM[i].recipiente
+                delete BEERITEM[i].idBeer
+                delete BEERITEM[i].descricaoBeer
+                delete BEERITEM[i].imgBeer
+                delete BEERITEM[i].precoBeer
+                delete BEERITEM[i].tituloBeer
+                delete BEERITEM[i].medida
+                delete BEERITEM[i].recipiente
+            } else {
+                BEERITEM[i-1].idBarImpar = _id
+                BEERITEM[i-1].idBeerImpar = BEERITEM[i].idBeer
+                BEERITEM[i-1].descricaoBeerImpar = BEERITEM[i].descricaoBeer
+                BEERITEM[i-1].imgBeerImpar = BEERITEM[i].imgBeer
+                BEERITEM[i-1].precoBeerImpar = BEERITEM[i].precoBeer
+                BEERITEM[i-1].tituloBeerImpar = BEERITEM[i].tituloBeer
+                BEERITEM[i-1].medidaImpar = BEERITEM[i].medida
+                BEERITEM[i-1].recipienteImpar = BEERITEM[i].recipiente
+                delete BEERITEM[i].idBeer
+                delete BEERITEM[i].medida
+                delete BEERITEM[i].recipiente
+                delete BEERITEM[i].descricaoBeer
+                delete BEERITEM[i].imgBeer
+                delete BEERITEM[i].precoBeer
+                delete BEERITEM[i].tituloBeer
+                delete BEERITEM[i]
+            }
         }
     }
 }
