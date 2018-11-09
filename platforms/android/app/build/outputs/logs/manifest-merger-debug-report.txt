@@ -21,7 +21,7 @@ INJECTED from C:\worksapce\BoraBeber\platforms\android\app\src\main\AndroidManif
 INJECTED from C:\worksapce\BoraBeber\platforms\android\app\src\main\AndroidManifest.xml:2:1-18:12
 INJECTED from C:\worksapce\BoraBeber\platforms\android\app\src\main\AndroidManifest.xml:2:1-18:12
 	package
-		ADDED from C:\worksapce\BoraBeber\platforms\android\app\src\main\AndroidManifest.xml:2:102-135
+		ADDED from C:\worksapce\BoraBeber\platforms\android\app\src\main\AndroidManifest.xml:2:102-132
 		INJECTED from C:\worksapce\BoraBeber\platforms\android\app\src\main\AndroidManifest.xml
 		INJECTED from C:\worksapce\BoraBeber\platforms\android\app\src\main\AndroidManifest.xml
 	android:versionName
@@ -31,7 +31,7 @@ INJECTED from C:\worksapce\BoraBeber\platforms\android\app\src\main\AndroidManif
 	android:hardwareAccelerated
 		ADDED from C:\worksapce\BoraBeber\platforms\android\app\src\main\AndroidManifest.xml:2:11-45
 	xmlns:android
-		ADDED from C:\worksapce\BoraBeber\platforms\android\app\src\main\AndroidManifest.xml:2:136-194
+		ADDED from C:\worksapce\BoraBeber\platforms\android\app\src\main\AndroidManifest.xml:2:133-191
 	android:versionCode
 		ADDED from C:\worksapce\BoraBeber\platforms\android\app\src\main\AndroidManifest.xml:2:46-73
 		INJECTED from C:\worksapce\BoraBeber\platforms\android\app\src\main\AndroidManifest.xml
@@ -66,7 +66,7 @@ MERGED from [com.android.support:support-v4:24.1.1] C:\Users\Alexandre Muzulão\.
 		ADDED from C:\worksapce\BoraBeber\platforms\android\app\src\main\AndroidManifest.xml:5:18-52
 	android:icon
 		ADDED from C:\worksapce\BoraBeber\platforms\android\app\src\main\AndroidManifest.xml:5:53-80
-activity#io.cordova.hellocordova.MainActivity
+activity#io.cordova.borabeber.MainActivity
 ADDED from C:\worksapce\BoraBeber\platforms\android\app\src\main\AndroidManifest.xml:6:9-11:20
 	android:label
 		ADDED from C:\worksapce\BoraBeber\platforms\android\app\src\main\AndroidManifest.xml:6:97-134
