@@ -42,7 +42,7 @@ script:
     - gradle --version
     - node --version
     - npm --version
-    - cordova platform add android
+    # - cordova platform add android
     - cordova build android
 
 deploy:
