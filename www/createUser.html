@@ -6,6 +6,20 @@
         <h1>UaaU, Você está se cadastrando!</h1>
     </div>
     <div class="content has-header grey-900">
+        <div class="popover" id="imgBarOptions">
+            <div class="row">
+                <div class="col">
+                    <button class="icon ion-camera" onclick="addImgTypes('cam','120','160','bar')"></button>
+                </div>
+                <div class="col">
+                    <button class="icon ion-images" onclick="addImgTypes('alb','120','160','bar')"></button>
+                </div>
+            </div>
+        </div>
+        <div class="align-center">
+            <img src="img/semImg.jpg" id="imgBar" style="width: 110px; height: 140px; margin-top: 5px;" class="radius">
+            <button class="icon ion-plus-circled text-green text-big" id="btnAddImgBar" onclick="openPopover('imgBarOptions')"></button>
+        </div>
         <div class="list no-border padding">
             <form>
                 <div class="item label-float radius grey-200">
@@ -27,7 +41,6 @@
                     <label>Confirme a senha para seu login.</label>
                     <input type="password" id="passwordConfirmUser">
                 </div>
-                <div class="space"></div>
                 <div class="space"></div>
             </form>
             <div class="item">
