@@ -410,6 +410,13 @@ function dellItemBeer(idBar, idBeer){
     })
 }
 
+function getBeers(){
+    
+    openPage('barAddBeer', function (){
+
+    })
+}
+
 function updateListItens(_id){
     if (BEERITEM !== undefined){
         for (i = 0; i < BEERITEM.length; i++){
